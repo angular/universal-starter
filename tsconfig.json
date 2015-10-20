@@ -12,6 +12,8 @@
     "node_modules"
   ],
   "files": [
-    "typings/tsd.d.ts"
+    "typings/tsd.d.ts",
+    "universal.d.ts",
+    "server.ts"
   ]
 }
