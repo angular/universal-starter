@@ -1,4 +1,4 @@
-# Full-Stack Angular Starter
+# Angular 2 Universal Starter
 
 A minimal Angular 2 starter for Universal JavaScript using TypeScript and Webpack
 
