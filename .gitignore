@@ -1,0 +1,5 @@
+/__build__
+/__server_build__
+/node_modules
+/typings
+npm-debug.log
