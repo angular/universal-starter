@@ -7,6 +7,7 @@
   "scripts": {
     "preinstall": "tsd install node express --save",
     "build": "webpack",
+    "prestart": "npm run build",
     "start": "ts-node server.ts"
   },
   "license": "Apache-2.0",
