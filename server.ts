@@ -1,5 +1,5 @@
 import * as express from 'express';
-import {ng2engineWithPreboot} from 'angular2-universal-preview';
+import {ng2engine} from 'angular2-universal-preview';
 
 // Angular 2
 import {App} from './src/app';
@@ -7,7 +7,7 @@ import {App} from './src/app';
 let app = express();
 
 // Express View
-app.engine('.ng2.html', ng2engineWithPreboot);
+app.engine('.ng2.html', ng2engine);
 app.set('views', __dirname);
 app.set('view engine', 'ng2.html');
 
