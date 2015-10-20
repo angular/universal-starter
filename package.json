@@ -1,0 +1,34 @@
+{
+  "name": "angular2-universal-starter",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angular-class/angular2-universal-starter.git"
+  },
+  "scripts": {
+    "preinstall": "tsd install node express --save",
+    "build": "webpack",
+    "start": "ts-node server.ts"
+  },
+  "license": "Apache-2.0",
+  "contributors": [
+    "PatrickJS <github@gdi2290.com>",
+    "Jeff Whelpley <jeff@gethuman.com>"
+  ],
+  "dependencies": {
+    "@reactivex/rxjs": "5.0.0-alpha.4",
+    "angular2": "2.0.0-alpha.44",
+    "angular2-universal-preview": "0.4.7",
+    "express": "^4.13.3",
+    "preboot": "^1.0.0",
+    "reflect-metadata": "0.1.2",
+    "zone.js": "0.5.8"
+  },
+  "devDependencies": {
+    "ts-loader": "^0.5.6",
+    "ts-node": "^0.2.4",
+    "tsd": "^0.6.5",
+    "typescript": "^1.6.2",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.1"
+  }
+}
