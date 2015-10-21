@@ -18,7 +18,7 @@
   "dependencies": {
     "@reactivex/rxjs": "5.0.0-alpha.4",
     "angular2": "2.0.0-alpha.44",
-    "angular2-universal-preview": "0.5.2",
+    "angular2-universal-preview": "0.5.4",
     "css": "^2.2.1",
     "express": "^4.13.3",
     "lodash": "^3.10.1",
