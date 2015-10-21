@@ -19,7 +19,10 @@
     "@reactivex/rxjs": "5.0.0-alpha.4",
     "angular2": "2.0.0-alpha.44",
     "angular2-universal-preview": "0.5.2",
+    "css": "^2.2.1",
     "express": "^4.13.3",
+    "lodash": "^3.10.1",
+    "parse5": "^1.5.0",
     "preboot": "^1.0.0",
     "reflect-metadata": "0.1.2",
     "zone.js": "0.5.8"
