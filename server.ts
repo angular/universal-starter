@@ -17,7 +17,7 @@ app.use(express.static(__dirname));
 
 
 app.use('/', (req, res) => {
-  res.render('index', { App });
+  res.render('index', { App, preboot: false });
 });
 
 

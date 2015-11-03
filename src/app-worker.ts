@@ -1,4 +1,4 @@
-import {Component} from 'angular2/angular2';
+import {Component} from 'angular2/web_worker/worker';
 
 @Component({
   selector: 'app',
@@ -13,4 +13,5 @@ export class App {
   name: string = 'AngularConnect';
 }
 
-console.log('app')
+
+console.log('app-worker')
