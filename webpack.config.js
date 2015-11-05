@@ -1,5 +1,6 @@
 
 module.exports = {
+  target: 'web',
   entry: './src/bootstrap',
   output: {
     path: __dirname + '/__build__',
