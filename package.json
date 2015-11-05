@@ -34,6 +34,7 @@
     "tsd": "^0.6.5",
     "typescript": "^1.6.2",
     "webpack": "^1.12.2",
-    "webpack-dev-server": "^1.12.1"
+    "webpack-dev-server": "^1.12.1",
+    "html-webpack-plugin": "^1.6.2"
   }
 }

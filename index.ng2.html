@@ -1,17 +1,27 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" {% if(o.htmlWebpackPlugin.files.manifest) { %} manifest="{%= o.htmlWebpackPlugin.files.manifest %}"{% } %}>
 <head>
-  <meta charset="UTF-8">
-  <title>Angular 2 Universal Starter</title>
+    <meta charset="UTF-8">
+    <title>{%=o.htmlWebpackPlugin.options.title || 'Webpack App'%}</title>
+    {% if (o.htmlWebpackPlugin.files.favicon) { %}
+        <link rel="shortcut icon" href="{%=o.htmlWebpackPlugin.files.favicon%}">
+    {% } %}
+    {% for (var css in o.htmlWebpackPlugin.files.css) { %}
+        <link href="{%=o.htmlWebpackPlugin.files.css[css] %}" rel="stylesheet">
+    {% } %}
 </head>
 <body>
-
-  <app>
-    Loading...
-  </app>
-
-  <script src="/node_modules/reflect-metadata/Reflect.js"></script>
-  <script src="/node_modules/zone.js/dist/zone.js"></script>
-  <script src="/__build__/bundle.js"></script>
+    <app></app>
+    {% var chunks = o.htmlWebpackPlugin.files.chunks;
+        // FIXME remove after merge
+        // https://github.com/ampedandwired/html-webpack-plugin/pull/110
+        var orderedChunks = {
+           common: chunks.common,
+           vendors: chunks.vendors,
+           app: chunks.app
+        };
+        for (var chunk in orderedChunks) { %}
+            <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>
+        {% }
+     %}
 </body>
-</html>

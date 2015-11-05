@@ -6,8 +6,8 @@
     "target": "es5",
     "module": "commonjs",
     "removeComments": true,
-    "sourceMap": false,
-    "outDir": "__server_build__"
+    "sourceMap": true,
+    "outDir": "server_build"
   },
   "exclude": [
     "node_modules"
