@@ -1,5 +1,5 @@
-/__build__
-/__server_build__
+/build
+/server_build
 /node_modules
 /typings
 npm-debug.log

@@ -6,16 +6,16 @@
   "bundle": "typings/tsd.d.ts",
   "installed": {
     "serve-static/serve-static.d.ts": {
-      "commit": "68548c2daab053869f323d475419c693478bbb73"
+      "commit": "001ca36ba58cef903c4c063555afb07bbc36bb58"
     },
     "express/express.d.ts": {
-      "commit": "68548c2daab053869f323d475419c693478bbb73"
+      "commit": "001ca36ba58cef903c4c063555afb07bbc36bb58"
     },
     "mime/mime.d.ts": {
-      "commit": "68548c2daab053869f323d475419c693478bbb73"
+      "commit": "001ca36ba58cef903c4c063555afb07bbc36bb58"
     },
     "node/node.d.ts": {
-      "commit": "68548c2daab053869f323d475419c693478bbb73"
+      "commit": "001ca36ba58cef903c4c063555afb07bbc36bb58"
     }
   }
 }
