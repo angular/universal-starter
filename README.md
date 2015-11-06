@@ -2,9 +2,11 @@
 
 A minimal Angular 2 starter for Universal JavaScript using TypeScript and Webpack
 
+> If you're looking for the repo from the AngularConnect talk look in the [angular-connect branch](https://github.com/angular/universal-starter/tree/angular-connect)
+
 ## Installation
 
-* `npm install -g typescript ts-node tsd webpack`
+* `npm install --global typescript ts-node tsd webpack`
 * `npm install`
 
 ## Serve
