@@ -36,8 +36,8 @@
     "zone.js": "0.5.10"
   },
   "devDependencies": {
+    "nodemon": "^1.8.1",
     "ts-loader": "^0.7.2",
-    "ts-node": "^0.5.5",
     "tsd": "^0.6.5",
     "typescript": "^1.7.3",
     "webpack": "^1.12.10",

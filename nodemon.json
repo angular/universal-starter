@@ -1,0 +1,8 @@
+{
+  "ignore": [
+    "src/client.ts",
+    "dist"
+  ],
+  "ext" : "js ts json html",
+  "legacy-watch": true
+}
