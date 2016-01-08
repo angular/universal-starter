@@ -1,10 +1,10 @@
-import {Component, Directive, ElementRef, Renderer} from 'angular2/angular2';
+import {Component, Directive, ElementRef, Renderer} from 'angular2/core';
 
 
 @Directive({
   selector: '[x-large]'
 })
-class XLarge {
+export class XLarge {
   constructor(element: ElementRef, renderer: Renderer) {
     // we must interact with the dom through Renderer for webworker/server to see the changes
     renderer.setElementStyle(element, 'fontSize', 'x-large');
