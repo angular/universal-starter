@@ -7,11 +7,11 @@
     "url": "https://github.com/angular/universal-starter.git"
   },
   "scripts": {
-    "preinstall": "tsd install node express --save",
-    "watch": "webpack --watch",
-    "build": "webpack",
+    "preinstall": "./node_modules/.bin/tsd install node express --save",
+    "watch": "./node_modules/.bin/webpack --watch",
+    "build": "./node_modules/.bin/webpack",
     "prestart": "npm run build",
-    "start": "node dist/server/bundle.js",
+    "start": "./node_modules/.bin/nodemon dist/server/bundle.js",
     "predebug": "npm run build",
     "debug": "node --debug-brk dist/server/bundle.js"
   },
