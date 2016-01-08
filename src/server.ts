@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as express from 'express';
 import * as universal from 'angular2-universal-preview';
 // Angular 2
-import {App} from './app';
+import {App} from './app/app';
 
 let app = express();
 let root = path.join(path.resolve(__dirname, '..'));
