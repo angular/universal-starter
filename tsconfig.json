@@ -6,15 +6,11 @@
     "target": "es5",
     "module": "commonjs",
     "removeComments": true,
-    "sourceMap": false,
-    "outDir": "__server_build__"
+    "sourceMap": true
   },
-  "exclude": [
-    "node_modules"
-  ],
   "files": [
     "typings/tsd.d.ts",
-    "universal.d.ts",
-    "server.ts"
+    "src/client.ts",
+    "src/server.ts"
   ]
 }
