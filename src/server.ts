@@ -1,19 +1,20 @@
+// polyfills
+import * as path from 'path';
 import * as express from 'express';
-import {ng2engine} from 'angular2-universal-preview';
-
+import * as universal from 'angular2-universal-preview';
 // Angular 2
-import {App} from './src/app';
+import {App} from './app';
 
 let app = express();
+let root = path.join(path.resolve(__dirname, '..'));
 
 // Express View
-app.engine('.ng2.html', ng2engine);
+app.engine('.ng2.html', universal.ng2engine);
 app.set('views', __dirname);
 app.set('view engine', 'ng2.html');
 
-
 // static files
-app.use(express.static(__dirname));
+app.use(express.static(root));
 
 
 app.use('/', (req, res) => {
