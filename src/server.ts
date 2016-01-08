@@ -9,9 +9,9 @@ let app = express();
 let root = path.join(path.resolve(__dirname, '..'));
 
 // Express View
-app.engine('.ng2.html', universal.ng2engine);
+app.engine('.html', universal.ng2engine);
 app.set('views', __dirname);
-app.set('view engine', 'ng2.html');
+app.set('view engine', 'html');
 
 // Serve static files
 app.use(express.static(root));
