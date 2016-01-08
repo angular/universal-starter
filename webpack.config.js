@@ -2,13 +2,7 @@ var webpackMerge = require('webpack-merge');
 var path = require('path');
 
 var common = {
-  context: process.cwd(),
-  output: {
-    publicPath: path.resolve(__dirname),
-    filename: 'bundle.js'
-  },
   resolve: {
-    root: __dirname + '/src',
     extensions: ['', '.ts', '.json', '.js']
   },
   module: {
@@ -60,10 +54,21 @@ var server = {
   }
 };
 
+var defaults = {
+  context: process.cwd(),
+  resolve: {
+    root: __dirname + '/src'
+  },
+  output: {
+    publicPath: path.resolve(__dirname),
+    filename: 'bundle.js'
+  }
+}
+
 module.exports = [
   // Client
-  webpackMerge({}, common, client),
+  webpackMerge({}, defaults, common, client),
 
   // Server
-  webpackMerge({}, common, server)
+  webpackMerge({}, defaults, common, server)
 ]

@@ -6,10 +6,14 @@ A minimal Angular 2 starter for Universal JavaScript using TypeScript and Webpac
 
 ## Installation
 
-* `npm install --global typescript ts-node tsd webpack`
+* `npm install --global typescript tsd webpack nodemon`
 * `npm install`
 
 ## Serve
 
 * `npm start` to build your client app and start a web server
 * `npm run build` to prepare a distributable bundle
+
+## Watch files
+* `npm watch` to build your client app and start a web server
+
