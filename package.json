@@ -24,7 +24,7 @@
   ],
   "dependencies": {
     "angular2": "2.0.0-beta.0",
-    "angular2-universal-preview": "0.24.0",
+    "angular2-universal-preview": "0.29.0",
     "css": "2.2.1",
     "express": "^4.13.3",
     "lodash": "^3.10.1",
