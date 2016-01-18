@@ -15,7 +15,7 @@
     "predebug": "npm run build",
     "debug": "node --debug-brk dist/server/bundle.js"
   },
-  "license": "Apache-2.0",
+  "license": "MIT",
   "contributors": [
     "AngularClass <hello@angularclass.com>",
     "PatrickJS <patrick@angularclass.com>",
