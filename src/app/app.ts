@@ -1,4 +1,5 @@
 import {Component, Directive, ElementRef, Renderer} from 'angular2/core';
+import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 
 
 @Directive({
@@ -12,19 +13,51 @@ export class XLarge {
 }
 
 
+
+@Component({
+  selector: 'home',
+  template: `
+  Home
+  `
+})
+export class Home {
+}
+
+@Component({
+  selector: 'about',
+  template: `
+  About
+  `
+})
+export class About {
+}
+
+
 @Component({
   selector: 'app',
-  directives: [ XLarge ],
+  directives: [ ...ROUTER_DIRECTIVES, XLarge ],
   template: `
   <div>
+    <nav>
+      <a [routerLink]=" ['./Home'] ">Home</a>
+      <a [routerLink]=" ['./About'] ">About</a>
+    </nav>
     <div>
       <span x-large>Hello, {{ name }}!</span>
     </div>
 
     name: <input type="text" [value]="name" (input)="name = $event.target.value" autofocus>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
   </div>
   `
 })
+@RouteConfig([
+  { path: '/', component: Home, name: 'Home' },
+  { path: '/home', component: Home, name: 'Home' },
+  { path: '/about', component: About, name: 'About' }
+])
 export class App {
   name: string = 'AngularConnect';
 }
