@@ -1,11 +1,8 @@
 import * as path from 'path';
 import * as express from 'express';
-import universal, {
-  BASE_URL,
-  SERVER_LOCATION_PROVIDERS
-} from 'angular2-universal-preview';
 
 // Angular 2
+import {ng2engine, BASE_URL, SERVER_LOCATION_PROVIDERS} from 'angular2-universal-preview';
 import {provide, enableProdMode} from 'angular2/core';
 import {ROUTER_PROVIDERS} from 'angular2/router';
 import {App} from './app/app';
@@ -16,7 +13,7 @@ let root = path.join(path.resolve(__dirname, '..'));
 enableProdMode();
 
 // Express View
-app.engine('.html', universal.ng2engine);
+app.engine('.html', ng2engine);
 app.set('views', __dirname);
 app.set('view engine', 'html');
 
@@ -29,7 +26,7 @@ app.use('/*', (req, res) => {
     App,
     providers: [
       ROUTER_PROVIDERS,
-      provide(BASE_URL, {useValue: 'http://localhost:3000' + req.originalUrl}),
+      provide(BASE_URL, {useValue: req.originalUrl}),
       SERVER_LOCATION_PROVIDERS,
     ],
     preboot: true
