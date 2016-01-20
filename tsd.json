@@ -1,21 +1,27 @@
 {
   "version": "v4",
-  "repo": "borisyankov/DefinitelyTyped",
+  "repo": "angular/DefinitelyTyped",
   "ref": "master",
-  "path": "typings",
-  "bundle": "typings/tsd.d.ts",
+  "path": "tsd_typings",
+  "bundle": "tsd_typings/tsd.d.ts",
   "installed": {
-    "serve-static/serve-static.d.ts": {
-      "commit": "70bf7e2bfeb0d5b1b651ef3219bcc65c8eec117e"
+    "zone/zone.d.ts": {
+      "commit": "31e7317c9a0793857109236ef7c7f223305a8aa9"
+    },
+    "es6-shim/es6-shim.d.ts": {
+      "commit": "31e7317c9a0793857109236ef7c7f223305a8aa9"
     },
     "express/express.d.ts": {
-      "commit": "70bf7e2bfeb0d5b1b651ef3219bcc65c8eec117e"
+      "commit": "31e7317c9a0793857109236ef7c7f223305a8aa9"
     },
-    "mime/mime.d.ts": {
-      "commit": "70bf7e2bfeb0d5b1b651ef3219bcc65c8eec117e"
+    "serve-static/serve-static.d.ts": {
+      "commit": "31e7317c9a0793857109236ef7c7f223305a8aa9"
     },
     "node/node.d.ts": {
-      "commit": "70bf7e2bfeb0d5b1b651ef3219bcc65c8eec117e"
+      "commit": "31e7317c9a0793857109236ef7c7f223305a8aa9"
+    },
+    "mime/mime.d.ts": {
+      "commit": "31e7317c9a0793857109236ef7c7f223305a8aa9"
     }
   }
 }
