@@ -11,12 +11,22 @@
   <app>
     Loading...
   </app>
-
+  <!-- ES6-related imports -->
   <script src="/node_modules/es6-shim/es6-shim.js"></script>
-  <script src="/node_modules/es6-promise/dist/es6-promise.js"></script>
-  <script src="/node_modules/reflect-metadata/Reflect.js"></script>
-  <script src="/node_modules/zone.js/dist/zone-microtask.js"></script>
-  <script src="/node_modules/zone.js/dist/long-stack-trace-zone.js"></script>
-  <script src="/dist/client/bundle.js"></script>
+  <script src="/node_modules/systemjs/dist/system-polyfills.js"></script>
+  <script src="/node_modules/angular2/bundles/angular2-polyfills.js"></script>
+  <script src="/node_modules/systemjs/dist/system.js"></script>
+  <script src="/node_modules/angular2/bundles/angular2.dev.js"></script>
+  <script src="/node_modules/angular2/bundles/http.js"></script>
+  <script src="/node_modules/angular2/bundles/router.js"></script>
+  <script src="/node_modules/rxjs/bundles/Rx.js"></script>
+
+  <script src="/dist/system.config.js"></script>
+  <script>
+    System.import('./dist/client.js')
+      .catch(function(err){
+        console.error(err);
+      });
+  </script>
 </body>
 </html>
