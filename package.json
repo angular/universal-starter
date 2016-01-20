@@ -7,7 +7,8 @@
     "url": "https://github.com/angular/universal-starter.git"
   },
   "scripts": {
-    "postinstall": "./node_modules/.bin/tsd install node express --save",
+    "clean:ng2": "./node_modules/.bin/rimraf node_modules/angular2/manual_typings",
+    "postinstall": "./node_modules/.bin/typings install && npm run clean:ng2",
     "watch": "./node_modules/.bin/webpack --watch",
     "build": "./node_modules/.bin/webpack",
     "prestart": "npm run build",
@@ -37,9 +38,11 @@
   },
   "devDependencies": {
     "nodemon": "^1.8.1",
+    "rimraf": "^2.5.0",
     "ts-loader": "^0.7.2",
     "tsd": "^0.6.5",
     "typescript": "^1.7.3",
+    "typings": "^0.6.2",
     "webpack": "^1.12.10",
     "webpack-dev-server": "^1.14.0",
     "webpack-merge": "^0.7.1"

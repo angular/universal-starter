@@ -8,7 +8,7 @@
     "sourceMap": true
   },
   "files": [
-    "typings/tsd.d.ts",
+    "typings/main.d.ts",
     "src/client.ts",
     "src/server.ts"
   ]
