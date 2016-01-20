@@ -17,11 +17,7 @@ app.engine('.html', ng2engine);
 app.set('views', __dirname);
 app.set('view engine', 'html');
 
-// Serve static files
-app.use(express.static(root));
-
-// Routes
-app.use('/*', (req, res) => {
+function ngApp(req, res) {
   res.render('index', {
     App,
     providers: [
@@ -31,7 +27,15 @@ app.use('/*', (req, res) => {
     ],
     preboot: true
   });
-});
+}
+
+// Routes
+app.use('/', ngApp);
+app.use('/about', ngApp);
+app.use('/home', ngApp);
+
+// Serve static files
+app.use(express.static(root));
 
 // Server
 app.listen(3000, () => {
