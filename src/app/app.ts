@@ -36,6 +36,11 @@ export class About {
 @Component({
   selector: 'app',
   directives: [ ...ROUTER_DIRECTIVES, XLarge ],
+  styles: [`
+    nav a.router-link-active {
+      background-color: red;
+    }
+  `],
   template: `
   <div>
     <nav>
