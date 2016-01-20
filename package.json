@@ -7,7 +7,7 @@
     "url": "https://github.com/angular/universal-starter.git"
   },
   "scripts": {
-    "preinstall": "./node_modules/.bin/tsd install node express --save",
+    "postinstall": "./node_modules/.bin/tsd install node express --save",
     "watch": "./node_modules/.bin/webpack --watch",
     "build": "./node_modules/.bin/webpack",
     "prestart": "npm run build",
