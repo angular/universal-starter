@@ -2,6 +2,8 @@
 /__server_build__
 /node_modules
 /typings
+/tsd_typings/
 npm-debug.log
 
 /dist/
+
