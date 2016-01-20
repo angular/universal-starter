@@ -40,7 +40,6 @@ app.use('/', ngApp);
 app.use('/about', ngApp);
 app.use('/home', ngApp);
 
-
 // Server
 app.listen(3000, () => {
   console.log('Listen on http://localhost:3000');
