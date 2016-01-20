@@ -29,13 +29,13 @@ function ngApp(req, res) {
   });
 }
 
+// Serve static files
+app.use(express.static(root));
+
 // Routes
 app.use('/', ngApp);
 app.use('/about', ngApp);
 app.use('/home', ngApp);
-
-// Serve static files
-app.use(express.static(root));
 
 // Server
 app.listen(3000, () => {
