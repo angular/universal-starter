@@ -7,9 +7,7 @@
     "removeComments": true,
     "sourceMap": true
   },
-  "files": [
-    "typings/tsd.d.ts",
-    "src/client.ts",
-    "src/server.ts"
+  "exclude": [
+    "node_modules"
   ]
 }
