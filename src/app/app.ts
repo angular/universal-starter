@@ -35,7 +35,10 @@ export class About {
 
 @Component({
   selector: 'app',
-  directives: [ ...ROUTER_DIRECTIVES, XLarge ],
+  directives: [
+    ...ROUTER_DIRECTIVES,
+    XLarge
+  ],
   template: `
   <div>
     <nav>
