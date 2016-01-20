@@ -24,8 +24,8 @@
     "Jeff Cross <crossj@google.com>"
   ],
   "dependencies": {
-    "angular2": "2.0.0-beta.0",
-    "angular2-universal-preview": "^0.30.1",
+    "angular2": "2.0.0-beta.1",
+    "angular2-universal-preview": "^0.32.0",
     "css": "2.2.1",
     "express": "^4.13.3",
     "lodash": "^3.10.1",
@@ -39,7 +39,7 @@
   "devDependencies": {
     "nodemon": "^1.8.1",
     "rimraf": "^2.5.0",
-    "ts-loader": "^0.7.2",
+    "ts-loader": "^0.8.0",
     "tsd": "^0.6.5",
     "typescript": "^1.7.3",
     "typings": "^0.6.2",

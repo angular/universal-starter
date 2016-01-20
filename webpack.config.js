@@ -46,7 +46,7 @@ var server = {
 };
 
 var defaults = {
-  context: process.cwd(),
+  context: __dirname,
   resolve: {
     root: __dirname + '/src'
   },

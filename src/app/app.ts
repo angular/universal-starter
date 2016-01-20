@@ -8,7 +8,7 @@ import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 export class XLarge {
   constructor(element: ElementRef, renderer: Renderer) {
     // we must interact with the dom through Renderer for webworker/server to see the changes
-    renderer.setElementStyle(element, 'fontSize', 'x-large');
+    renderer.setElementStyle(element.nativeElement, 'fontSize', 'x-large');
   }
 }
 
