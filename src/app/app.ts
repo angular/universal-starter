@@ -8,7 +8,7 @@ import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 export class XLarge {
   constructor(element: ElementRef, renderer: Renderer) {
     // we must interact with the dom through Renderer for webworker/server to see the changes
-    renderer.setElementStyle(element, 'fontSize', 'x-large');
+    renderer.setElementStyle(element.nativeElement, 'fontSize', 'x-large');
   }
 }
 
@@ -35,7 +35,10 @@ export class About {
 
 @Component({
   selector: 'app',
-  directives: [ ...ROUTER_DIRECTIVES, XLarge ],
+  directives: [
+    ...ROUTER_DIRECTIVES,
+    XLarge
+  ],
   styles: [`
     nav a.router-link-active {
       background-color: red;

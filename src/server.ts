@@ -4,11 +4,11 @@ import * as express from 'express';
 // Angular 2
 import {ng2engine, BASE_URL, SERVER_LOCATION_PROVIDERS} from 'angular2-universal-preview';
 import {provide, enableProdMode} from 'angular2/core';
-import {ROUTER_PROVIDERS} from 'angular2/router';
+import {APP_BASE_HREF, ROUTER_PROVIDERS} from 'angular2/router';
 import {App} from './app/app';
 
 let app = express();
-let root = path.join(path.resolve(__dirname, '..'));
+let root = path.join(path.resolve(__dirname, '..', '..'));
 
 enableProdMode();
 
@@ -19,11 +19,15 @@ app.set('view engine', 'html');
 
 // ngApp
 function ngApp(req, res) {
+  let baseUrl = '/';
+  let url = req.originalUrl || '/';
+
   res.render('index', {
     App,
     providers: [
       ROUTER_PROVIDERS,
       provide(BASE_URL, {useValue: req.originalUrl}),
+      provide(APP_BASE_HREF, {useValue: baseUrl}),
       SERVER_LOCATION_PROVIDERS,
     ],
     preboot: true
