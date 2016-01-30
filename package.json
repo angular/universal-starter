@@ -7,7 +7,7 @@
     "url": "https://github.com/angular/universal-starter.git"
   },
   "scripts": {
-    "clean:ng2": "./node_modules/.bin/rimraf node_modules/angular2/manual_typings",
+    "clean:ng2": "./node_modules/.bin/rimraf node_modules/angular2/manual_typings node_modules/angular2/typings node_modules/angular2/bundles/typings",
     "postinstall": "./node_modules/.bin/typings install && npm run clean:ng2",
     "watch": "./node_modules/.bin/webpack --watch",
     "build": "./node_modules/.bin/webpack",
@@ -25,13 +25,13 @@
   ],
   "dependencies": {
     "angular2": "2.0.0-beta.1",
-    "angular2-universal-preview": "0.32.2",
+    "angular2-universal-preview": "~0.41.1",
     "css": "2.2.1",
     "es6-shim": "^0.33.3",
     "express": "^4.13.3",
     "lodash": "^3.10.1",
     "parse5": "^1.5.0",
-    "preboot": "^1.0.2",
+    "preboot": "~1.1.0",
     "reflect-metadata": "0.1.2",
     "rxjs": "5.0.0-beta.0",
     "xhr2": "^0.1.3",
