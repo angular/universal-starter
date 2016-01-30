@@ -62,7 +62,7 @@ export class About {
   { path: '/about', component: About, name: 'About' }
 ])
 export class App {
-  name: string = 'AngularConnect';
+  name: string = 'Angular 2';
 }
 
 
