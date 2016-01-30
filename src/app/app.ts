@@ -39,6 +39,11 @@ export class About {
     ...ROUTER_DIRECTIVES,
     XLarge
   ],
+  styles: [`
+    .router-link-active {
+      background-color: lightgray;
+    }
+  `],
   template: `
   <div>
     <nav>
