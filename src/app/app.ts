@@ -12,7 +12,14 @@ export class XLarge {
   }
 }
 
-
+@Component({
+  selector: 'contact',
+  template: `
+  Contact
+  `
+})
+export class Contact {
+}
 
 @Component({
   selector: 'home',
@@ -63,7 +70,7 @@ export class About {
 })
 @RouteConfig([
   { path: '/', component: Home, name: 'Home' },
-  { path: '/home', component: Home, name: 'Home' },
+  { path: '/contact', component: Contact, name: 'Contact' },
   { path: '/about', component: About, name: 'About' }
 ])
 export class App {
