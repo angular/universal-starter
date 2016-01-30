@@ -1,10 +1,21 @@
-var webpackMerge = require('webpack-merge');
+var webpack = require('webpack');
 var path = require('path');
 
-var common = {
+module.exports = {
+  context: __dirname,
+  target: 'web',
+  entry: './src/client',
+  output: {
+    path: __dirname + '/dist/client',
+    publicPath: __dirname,
+    filename: 'bundle.js'
+  },
+
   resolve: {
+    root: __dirname + '/src',
     extensions: ['', '.ts', '.json', '.js']
   },
+
   module: {
     loaders: [
       {
@@ -12,54 +23,20 @@ var common = {
         loader: 'ts-loader',
         exclude: [ /node_modules/ ]
       }
+    ],
+    noParse: [
+      path.resolve('node_modules', 'es6-shim', 'dist'),
+      path.resolve('node_modules', 'angular2', 'bundles'),
+      path.resolve('node_modules', 'zone.js', 'dist'),
     ]
-  }
-};
-
-var client = {
-  target: 'web',
-  entry: './src/client',
-  output: {
-    path: __dirname + '/dist/client'
-  }
-};
-
-var server = {
-  target: 'node',
-  entry: './src/server',
-  output: {
-    path: __dirname + '/dist/server'
   },
-  externals: function checkNodeImport(context, request, cb) {
-    if (!path.isAbsolute(request) && request.charAt(0) !== '.') {
-      cb(null, 'commonjs ' + request); return;
-    }
-    cb();
-  },
-  node: {
-    global: true,
-    __dirname: true,
-    __filename: true,
-    process: true,
-    Buffer: true
-  }
-};
 
-var defaults = {
-  context: __dirname,
-  resolve: {
-    root: __dirname + '/src'
-  },
-  output: {
-    publicPath: path.resolve(__dirname),
-    filename: 'bundle.js'
-  }
+  plugins: [
+    new webpack.optimize.OccurenceOrderPlugin(true),
+    new webpack.optimize.UglifyJsPlugin({
+      mangle: false,
+      comments: false
+    })
+  ]
+
 }
-
-module.exports = [
-  // Client
-  webpackMerge({}, defaults, common, client),
-
-  // Server
-  webpackMerge({}, defaults, common, server)
-]
