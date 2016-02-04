@@ -24,7 +24,7 @@ function ngApp(req, res) {
     App,
     providers: [
       provide(APP_BASE_HREF, {useValue: baseUrl}),
-      provide(REQUEST_URL, {useValue: req.originalUrl}),
+      provide(REQUEST_URL, {useValue: url}),
       ROUTER_PROVIDERS,
       SERVER_LOCATION_PROVIDERS,
     ],
