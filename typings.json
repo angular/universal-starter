@@ -5,7 +5,7 @@
     "mime": "github:DefinitelyTyped/DefinitelyTyped/mime/mime.d.ts#2e7a477ac2b6471055aa6e0e56b333e8f327d6b7",
     "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#2e7a477ac2b6471055aa6e0e56b333e8f327d6b7",
     "serve-static": "github:DefinitelyTyped/DefinitelyTyped/serve-static/serve-static.d.ts#2e7a477ac2b6471055aa6e0e56b333e8f327d6b7",
-    "zone": "github:angular/DefinitelyTyped/zone/zone.d.ts#31e7317c9a0793857109236ef7c7f223305a8aa9",
+    "zone": "github:DefinitelyTyped/DefinitelyTyped/zone.js/zone.js.d.ts#b923a5aaf013ac84c566f27ba6b5843211981c7a",
     "ng2": "github:gdi2290/typings-ng2/ng2.d.ts#32998ff5584c0eab0cd9dc7704abb1c5c450701c"
   }
 }
