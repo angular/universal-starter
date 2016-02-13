@@ -1,5 +1,5 @@
 import gulp = require('gulp');
-import {REQUEST_URL, SERVER_LOCATION_PROVIDERS} from 'angular2-universal-preview';
+import {REQUEST_URL, NODE_LOCATION_PROVIDERS} from 'angular2-universal-preview';
 import {provide, enableProdMode} from 'angular2/core';
 import {APP_BASE_HREF, ROUTER_PROVIDERS} from 'angular2/router';
 
@@ -18,7 +18,7 @@ gulp.task('prerender', () => {
         provide(APP_BASE_HREF, {useValue: '/'}),
         provide(REQUEST_URL, {useValue: '/'}),
         ROUTER_PROVIDERS,
-        SERVER_LOCATION_PROVIDERS,
+        NODE_LOCATION_PROVIDERS,
       ],
       preboot: true
     }))
