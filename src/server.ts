@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as express from 'express';
 
 // Angular 2
-import {ng2engine, REQUEST_URL, SERVER_LOCATION_PROVIDERS} from 'angular2-universal-preview';
+import {ng2engine, REQUEST_URL, NODE_LOCATION_PROVIDERS} from 'angular2-universal-preview';
 import {provide, enableProdMode} from 'angular2/core';
 import {APP_BASE_HREF, ROUTER_PROVIDERS} from 'angular2/router';
 import {App} from './app/app';
@@ -26,7 +26,7 @@ function ngApp(req, res) {
       provide(APP_BASE_HREF, {useValue: baseUrl}),
       provide(REQUEST_URL, {useValue: url}),
       ROUTER_PROVIDERS,
-      SERVER_LOCATION_PROVIDERS,
+      NODE_LOCATION_PROVIDERS,
     ],
     preboot: true
   });
