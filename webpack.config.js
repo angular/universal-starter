@@ -3,7 +3,7 @@ var path = require('path');
 
 var common = {
   resolve: {
-    extensions: ['', '.ts', '.json', '.js']
+    extensions: ['', '.ts', '.js']
   },
   module: {
     loaders: [
@@ -30,12 +30,7 @@ var server = {
   output: {
     path: __dirname + '/dist/server'
   },
-  externals: function checkNodeImport(context, request, cb) {
-    if (!path.isAbsolute(request) && request.charAt(0) !== '.') {
-      cb(null, 'commonjs ' + request); return;
-    }
-    cb();
-  },
+  externals: checkNodeImport,
   node: {
     global: true,
     __dirname: true,
@@ -63,3 +58,11 @@ module.exports = [
   // Server
   webpackMerge({}, defaults, common, server)
 ]
+
+// Helpers
+function checkNodeImport(context, request, cb) {
+    if (!path.isAbsolute(request) && request.charAt(0) !== '.') {
+      cb(null, 'commonjs ' + request); return;
+    }
+    cb();
+  }
