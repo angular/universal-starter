@@ -9,6 +9,7 @@
   "scripts": {
     "postinstall": "./node_modules/.bin/typings install",
     "watch": "./node_modules/.bin/webpack --watch",
+    "prebuild": "./node_modules/.bin/rimraf dist",
     "build": "./node_modules/.bin/webpack",
     "prestart": "npm run build",
     "start": "./node_modules/.bin/nodemon dist/server/bundle.js",
