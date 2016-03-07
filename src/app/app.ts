@@ -40,8 +40,8 @@ export class About {
     XLarge
   ],
   styles: [`
-    nav a.router-link-active {
-      background-color: red;
+    .router-link-active {
+      background-color: lightgray;
     }
   `],
   template: `
@@ -62,12 +62,13 @@ export class About {
   `
 })
 @RouteConfig([
-  { path: '/', component: Home, name: 'Home' },
+  { path: '/', component: Home, name: 'Home', useAsDefault: true },
   { path: '/home', component: Home, name: 'Home' },
-  { path: '/about', component: About, name: 'About' }
+  { path: '/about', component: About, name: 'About' },
+  { path: '/**', redirectTo: ['Home'] }
 ])
 export class App {
-  name: string = 'AngularConnect';
+  name: string = 'Angular 2';
 }
 
 
