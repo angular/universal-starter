@@ -1,4 +1,3 @@
-//import 'angular2-universal-preview/polyfills';
 import {prebootComplete} from 'angular2-universal-preview';
 
 import {bootstrap} from 'angular2/platform/browser';
