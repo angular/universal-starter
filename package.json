@@ -7,14 +7,9 @@
     "url": "https://github.com/angular/universal-starter.git"
   },
   "scripts": {
-    "postinstall": "./node_modules/.bin/typings install",
-    "watch": "./node_modules/.bin/webpack --watch",
-    "prebuild": "./node_modules/.bin/rimraf dist",
-    "build": "./node_modules/.bin/webpack",
-    "prestart": "npm run build",
-    "start": "./node_modules/.bin/nodemon dist/server/bundle.js",
-    "predebug": "npm run build",
-    "debug": "node --debug-brk dist/server/bundle.js"
+    "postinstall": "gulp clean:ng2 && typings install",
+    "prestart": "gulp clean && gulp build",
+    "start": "gulp server"
   },
   "license": "MIT",
   "contributors": [
@@ -37,13 +32,17 @@
     "zone.js": "0.5.15"
   },
   "devDependencies": {
-    "nodemon": "^1.8.1",
-    "rimraf": "^2.5.0",
-    "ts-loader": "^0.8.1",
+    "del": "^2.2.0",
+    "gulp": "^3.9.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-nodemon": "^2.0.6",
+    "gulp-rimraf": "^0.2.0",
+    "gulp-typescript": "^2.10.0",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.5",
+    "systemjs": "^0.19.6",
+    "systemjs-builder": "^0.14.11",
     "typescript": "^1.8.7",
-    "typings": "^0.6.8",
-    "webpack": "^1.12.10",
-    "webpack-dev-server": "^1.14.0",
-    "webpack-merge": "^0.7.1"
+    "typings": "^0.6.8"
   }
 }

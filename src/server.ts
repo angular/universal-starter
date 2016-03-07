@@ -11,7 +11,7 @@ import {App} from './app/app';
 import {Title, ServerOnlyApp} from './server-only-app/server-only-app';
 
 let app = express();
-let root = path.join(path.resolve(__dirname, '..'));
+let root = path.join(path.resolve(__dirname, '..', '..'));
 
 enableProdMode();
 
