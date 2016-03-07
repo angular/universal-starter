@@ -1,32 +1,39 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Angular 2 Universal Starter</title>
-  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-  <base href="/">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Angular 2 Universal">
+    <meta name="keywords" content="Angular 2,Universal">
+    <meta name="author" content="PatrickJS">
+    <title>Angular 2 Universal Starter</title>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <base href="/">
+  </head>
+  <body>
 
-  <app>
-    Loading...
-  </app>
-  <!-- ES6-related imports -->
-  <script src="/node_modules/es6-shim/es6-shim.js"></script>
-  <script src="/node_modules/systemjs/dist/system-polyfills.js"></script>
-  <script src="/node_modules/angular2/bundles/angular2-polyfills.js"></script>
-  <script src="/node_modules/systemjs/dist/system.js"></script>
-  <script src="/node_modules/angular2/bundles/angular2.dev.js"></script>
-  <script src="/node_modules/angular2/bundles/http.js"></script>
-  <script src="/node_modules/angular2/bundles/router.js"></script>
-  <script src="/node_modules/rxjs/bundles/Rx.js"></script>
+    <app>
+      Loading...
+    </app>
+    <server-only-app>
+      Loading...
+    </server-only-app>
 
-  <script src="/dist/src/system.config.js"></script>
-  <script>
-    System.import('./dist/src/client.js')
-      .catch(function(err){
-        console.error(err);
-      });
-  </script>
-</body>
+    <!-- ES6-related imports -->
+    <script src="/node_modules/es6-shim/es6-shim.js"></script>
+    <script src="/node_modules/systemjs/dist/system-polyfills.js"></script>
+    <script src="/node_modules/angular2/bundles/angular2-polyfills.js"></script>
+    <script src="/node_modules/systemjs/dist/system.js"></script>
+    <script src="/node_modules/angular2/bundles/angular2.dev.js"></script>
+    <script src="/node_modules/angular2/bundles/http.js"></script>
+    <script src="/node_modules/angular2/bundles/router.js"></script>
+    <script src="/node_modules/rxjs/bundles/Rx.js"></script>
+
+    <script src="/dist/src/system.config.js"></script>
+    <script>
+      System.import('./dist/src/client.js')
+        .catch(function(err){
+          console.error(err);
+        });
+    </script>
+  </body>
 </html>
