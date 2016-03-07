@@ -7,7 +7,7 @@ A minimal Angular 2 starter for Universal JavaScript using TypeScript and Webpac
 
 ## Installation
 
-* `npm install --global typescript typings gulp nodemon`
+* `npm install --global typescript typings`
 * `npm install`
 
 ## Serve
