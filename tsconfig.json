@@ -7,10 +7,12 @@
     "removeComments": true,
     "sourceMap": true
   },
-  "files": [
+  "exclude": [
     "typings/main.d.ts",
-    "src/client.ts",
-    "gulpfile.ts",
-    "Gruntfile.ts"
-  ]
+    "typings/main",
+    "node_modules"
+  ],
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "atom": { "rewriteTsconfig": false }
 }

@@ -1,42 +1,50 @@
+var webpackMerge = require('webpack-merge');
 var webpack = require('webpack');
 var path = require('path');
 
-module.exports = {
-  context: __dirname,
+var commonConfig = {
+  resolve: {
+    extensions: ['', '.ts', '.js']
+  },
+  module: {
+    loaders: [
+      // TypeScript
+      { test: /\.ts$/, loader: 'ts-loader', exclude: [ /node_modules/ ] }
+    ]
+  },
+  plugins: [
+    new webpack.optimize.OccurenceOrderPlugin(true)
+  ]
+};
+
+
+var clientConfig = {
   target: 'web',
   entry: './src/client',
   output: {
-    path: __dirname + '/dist/client',
-    publicPath: __dirname,
-    filename: 'bundle.js'
-  },
+    path: path.join(__dirname, 'dist', 'client')
+  }
+};
 
-  resolve: {
-    root: __dirname + '/src',
-    extensions: ['', '.ts', '.json', '.js']
-  },
-
+// Default config
+var defaultConfig = {
   module: {
-    loaders: [
-      {
-        test: /\.ts$/,
-        loader: 'ts-loader',
-        exclude: [ /node_modules/ ]
-      }
-    ],
     noParse: [
-      path.resolve('node_modules', 'es6-shim', 'dist'),
-      path.resolve('node_modules', 'angular2', 'bundles'),
-      path.resolve('node_modules', 'zone.js', 'dist'),
+      path.join(__dirname, 'zone.js', 'dist'),
+      path.join(__dirname, 'angular2', 'bundles')
     ]
   },
+  context: __dirname,
+  resolve: {
+    root: path.join(__dirname, '/src')
+  },
+  output: {
+    publicPath: path.resolve(__dirname),
+    filename: 'bundle.js'
+  }
+};
 
-  plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(true),
-    new webpack.optimize.UglifyJsPlugin({
-      mangle: false,
-      comments: false
-    })
-  ]
-
-}
+module.exports = [
+  // Client
+  webpackMerge({}, defaultConfig, commonConfig, clientConfig)
+];
