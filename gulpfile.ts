@@ -21,7 +21,7 @@ gulp.task('prerender', () => {
         ROUTER_PROVIDERS,
         NODE_LOCATION_PROVIDERS,
       ],
-      preboot: false
+      preboot: true
     }))
     .pipe(gulp.dest('dist'));
 });

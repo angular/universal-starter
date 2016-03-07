@@ -40,7 +40,7 @@ module.exports = function(grunt) {
             ROUTER_PROVIDERS,
             NODE_LOCATION_PROVIDERS,
           ],
-          preboot: false
+          preboot: true
         },
         files: {
           'tmp/default_options': [
