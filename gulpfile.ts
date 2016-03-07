@@ -7,7 +7,6 @@ import {APP_BASE_HREF, ROUTER_PROVIDERS} from 'angular2/router';
 var ngPreRender = require('angular2-gulp-prerender');
 
 import {App} from './src/app/app';
-import {Title, ServerOnlyApp} from './src/server-only-app/server-only-app';
 
 enableProdMode();
 
@@ -15,7 +14,7 @@ gulp.task('prerender', () => {
 
   return gulp.src('./src/index.html')
     .pipe(ngPreRender({
-      directives: [App, Title, ServerOnlyApp],
+      App,
       providers: [
         provide(APP_BASE_HREF, {useValue: '/'}),
         provide(REQUEST_URL, {useValue: '/'}),
