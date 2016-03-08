@@ -6,10 +6,14 @@
  * Licensed under the MIT license.
  */
 
+import 'angular2-universal-preview/polyfills';
 import {REQUEST_URL, NODE_LOCATION_PROVIDERS} from 'angular2-universal-preview';
 import {provide, enableProdMode} from 'angular2/core';
 import {APP_BASE_HREF, ROUTER_PROVIDERS} from 'angular2/router';
+
 import {App} from './src/app/app';
+import {Title, ServerOnlyApp} from './src/server-only-app/server-only-app';
+
 enableProdMode();
 
 module.exports = function(grunt) {
@@ -33,7 +37,7 @@ module.exports = function(grunt) {
     'angular2-prerender': {
       default_options: {
         options: {
-          App,
+          directives: [ App, Title, ServerOnlyApp ],
           providers: [
             provide(APP_BASE_HREF, { useValue: '/' }),
             provide(REQUEST_URL, { useValue: '/' }),
