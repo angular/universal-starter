@@ -32,7 +32,7 @@ function ngApp(req, res) {
       ROUTER_PROVIDERS,
       NODE_LOCATION_PROVIDERS,
     ],
-    preboot: false
+    preboot: true
   });
 }
 

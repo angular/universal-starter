@@ -5,7 +5,7 @@ import {Component} from 'angular2/core';
   template: `{{ seo }}`
 })
 export class Title {
-  seo = 'Angular 2 Universal Starter - this component replaces the <title> element';
+  seo = 'Angular 2 Universal Starter - this component replaces the title element';
 }
 
 
