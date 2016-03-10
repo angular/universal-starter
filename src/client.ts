@@ -9,4 +9,4 @@ import {App} from './app/app';
 bootstrap(App, [
   ...ROUTER_PROVIDERS
 ])
-.then(prebootComplete)
+.then(prebootComplete);
