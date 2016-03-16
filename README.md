@@ -16,5 +16,5 @@ If you're looking for a SystemJS version of the repo look in the [systemjs branc
 * `npm run build` to prepare a distributable bundle
 
 ## Watch files
-* `npm watch` to build your client app and start a web server
+* `npm run watch` to build your client app and start a web server
 
