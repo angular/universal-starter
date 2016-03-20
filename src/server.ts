@@ -25,14 +25,15 @@ function ngApp(req, res) {
   let baseUrl = '/';
   let url = req.originalUrl || '/';
   res.render('index', {
-    directives: [App, Title, ServerOnlyApp],
+    directives: [ Html ],
     providers: [
       provide(APP_BASE_HREF, {useValue: baseUrl}),
       provide(REQUEST_URL, {useValue: url}),
       ROUTER_PROVIDERS,
       NODE_LOCATION_PROVIDERS,
     ],
-    preboot: true
+    async: false,
+    preboot: false
   });
 }
 
