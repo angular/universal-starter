@@ -1,53 +1,20 @@
 import {Component} from 'angular2/core';
-
-@Component({
-  selector: 'title',
-  template: `{{ seo }}`
-})
-export class Title {
-  seo = 'Angular 2 Universal Starter - this component replaces the title element';
-}
-
-
-
-@Component({
-  selector: 'server-only-app',
-  template: `
-  <footer>{{ seo }}</footer>
-  `
-})
-export class ServerOnlyApp {
-  seo = 'Angular 2 Universal';
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-// WIP: see issue https://github.com/angular/angular/pull/7455 and https://github.com/angular/universal/issues/309
-import {App, Home, About} from '../app/app';
 import {RouteConfig} from 'angular2/router';
+
+// Require our Universal App
+import {App, Home, About} from '../app/app.component';
 
 @Component({
   selector: 'html',
   directives: [
-    Title,
-    App,
-    ServerOnlyApp
+    App
   ],
   providers: [
 
   ],
   template: `
   <head>
+    <title>{{ seo.title }}</title>
     <meta charset="UTF-8">
     <meta name="description" content="Angular 2 Universal">
     <meta name="keywords" content="Angular 2,Universal">
@@ -76,5 +43,7 @@ import {RouteConfig} from 'angular2/router';
   { path: '/**', redirectTo: ['Home'] }
 ])
 export class Html {
-  seo = 'Angular 2 Universal Starter - this component replaces the <title> element';
+  seo = {
+    title: 'Angular 2 Universal Starter - this component replaces the title element'
+  };
 }
