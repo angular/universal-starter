@@ -5,9 +5,20 @@ import {RouteConfig} from 'angular2/router';
 import {App, Home, About} from '../app/app.component';
 
 @Component({
+  selector: 'server-only-app',
+  template: `
+  <footer>{{ seo }}</footer>
+  `
+})
+export class ServerOnlyApp {
+  seo = 'Angular 2 Universal - server only rendered component';
+}
+
+@Component({
   selector: 'html',
   directives: [
-    App
+    App,
+    ServerOnlyApp
   ],
   providers: [
 
@@ -19,20 +30,22 @@ import {App, Home, About} from '../app/app.component';
     <meta name="description" content="Angular 2 Universal">
     <meta name="keywords" content="Angular 2,Universal">
     <meta name="author" content="PatrickJS">
-    <title>Angular 2 Universal Starter</title>
+
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-    <base href="/">
+
+    <base [attr.href]="seo.baseUrl">
   </head>
   <body>
 
     <app>
       Loading...
     </app>
+
     <server-only-app>
       Loading...
     </server-only-app>
 
-    <script async src="/dist/client/bundle.js"></script>
+    <script async [attr.src]="scriptUrl"></script>
   </body>
   `
 })
@@ -44,6 +57,8 @@ import {App, Home, About} from '../app/app.component';
 ])
 export class Html {
   seo = {
+    baseUrl: '/',
+    src: '/dist/client/bundle.js',
     title: 'Angular 2 Universal Starter - this component replaces the title element'
   };
 }
