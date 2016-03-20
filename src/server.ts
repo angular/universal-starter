@@ -7,8 +7,8 @@ import {expressEngine, REQUEST_URL, NODE_LOCATION_PROVIDERS} from 'angular2-univ
 import {provide, enableProdMode} from 'angular2/core';
 import {APP_BASE_HREF, ROUTER_PROVIDERS} from 'angular2/router';
 // Application
-import {App} from './app/app';
-import {Title, ServerOnlyApp} from './server-only-app/server-only-app';
+import {App} from './app/app.component';
+import {Html} from './server-only-app/html.component';
 
 let app = express();
 let root = path.join(path.resolve(__dirname, '..'));

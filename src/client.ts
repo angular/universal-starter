@@ -4,7 +4,7 @@ import {prebootComplete} from 'angular2-universal-preview';
 import {bootstrap} from 'angular2/platform/browser';
 import {ROUTER_PROVIDERS} from 'angular2/router';
 
-import {App} from './app/app';
+import {App} from './app/app.component';
 
 bootstrap(App, [
   ...ROUTER_PROVIDERS
