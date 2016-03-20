@@ -1,4 +1,4 @@
-# Angular 2 Universal Starter
+# Angular 2 Universal Starter [![Universal Angular 2](https://img.shields.io/badge/universal-angular2-brightgreen.svg?style=flat)](https://github.com/angular/universal)
 
 A minimal Angular 2 starter for Universal JavaScript using TypeScript and Webpack
 
