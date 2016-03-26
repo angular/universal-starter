@@ -45,7 +45,7 @@ export class ServerOnlyApp {
       Loading...
     </server-only-app>
 
-    <script async [attr.src]="scriptUrl"></script>
+    {{ scripts }}
   </body>
   `
 })
@@ -58,7 +58,11 @@ export class ServerOnlyApp {
 export class Html {
   seo = {
     baseUrl: '/',
-    src: '/dist/client/bundle.js',
     title: 'Angular 2 Universal Starter - this component replaces the title element'
   };
+
+  scripts = `
+    <script src="/dist/client/bundle.js"></script>
+  `;
+
 }
