@@ -1,5 +1,6 @@
 import {Component, Directive, ElementRef, Renderer} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+import {Http} from 'angular2/http';
 
 
 @Directive({
@@ -55,9 +56,12 @@ export class About {
     </div>
 
     name: <input type="text" [value]="name" (input)="name = $event.target.value" autofocus>
+    <pre>{{ data | json }}</pre>
+
     <main>
       <router-outlet></router-outlet>
     </main>
+    
   </div>
   `
 })
@@ -69,6 +73,17 @@ export class About {
 ])
 export class App {
   name: string = 'Angular 2';
+  data = {};
+  constructor(public http: Http) {
+
+  }
+  ngOnInit() {
+    // the API is slow and should be cached
+
+    // this.http.get('http://jsonplaceholder.typicode.com/todos')
+    //   .subscribe(res => {
+    //     this.data = res.json();
+    //   });
+  }
+
 }
-
-
