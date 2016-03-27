@@ -1,6 +1,6 @@
 import * as path from 'path';
 import * as express from 'express';
-
+import * as bodyParser from 'body-parser';
 // Angular 2
 import 'angular2-universal-preview/polyfills';
 import {
@@ -28,6 +28,8 @@ app.engine('.html', expressEngine);
 app.set('views', __dirname);
 app.set('view engine', 'html');
 
+app.use(bodyParser.json());
+
 
 function ngApp(req, res) {
   let baseUrl = '/';
@@ -41,13 +43,20 @@ function ngApp(req, res) {
       NODE_LOCATION_PROVIDERS,
       NODE_PRELOAD_CACHE_HTTP_PROVIDERS,
     ],
-    async: false,
+    async: true,
     preboot: false
   });
 }
 
 // Serve static files
 app.use(express.static(root, {index: false}));
+
+// Our API for demos only
+app.get('/data.json', (req, res) => {
+  res.json({
+    data: 'fake data'
+  });
+});
 
 // Routes with html5pushstate
 app.use('/', ngApp);

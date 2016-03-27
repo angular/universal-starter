@@ -63,5 +63,4 @@ export class Html {
     title: 'Angular 2 Universal Starter - this component replaces the title element'
   };
 
-
 }
