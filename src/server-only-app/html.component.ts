@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, ViewEncapsulation} from 'angular2/core';
 import {RouteConfig} from 'angular2/router';
 
 // Require our Universal App
@@ -23,6 +23,7 @@ export class ServerOnlyApp {
   providers: [
 
   ],
+  encapsulation: ViewEncapsulation.None,
   template: `
   <head>
     <title>{{ seo.title }}</title>
@@ -45,7 +46,7 @@ export class ServerOnlyApp {
       Loading...
     </server-only-app>
 
-    {{ scripts }}
+    <script async [attr.src]="seo.src"></script>
   </body>
   `
 })
@@ -58,11 +59,9 @@ export class ServerOnlyApp {
 export class Html {
   seo = {
     baseUrl: '/',
+    src: '/dist/client/bundle.js',
     title: 'Angular 2 Universal Starter - this component replaces the title element'
   };
 
-  scripts = `
-    <script src="/dist/client/bundle.js"></script>
-  `;
 
 }
