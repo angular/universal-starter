@@ -61,7 +61,7 @@ export class About {
     <main>
       <router-outlet></router-outlet>
     </main>
-    
+
   </div>
   `
 })
@@ -78,12 +78,11 @@ export class App {
 
   }
   ngOnInit() {
-    // the API is slow and should be cached
-
-    // this.http.get('http://jsonplaceholder.typicode.com/todos')
-    //   .subscribe(res => {
-    //     this.data = res.json();
-    //   });
+    // we need to use full urls for the server to work
+    this.http.get('http://localhost:3000/data.json')
+      .subscribe(res => {
+        this.data = res.json();
+      });
   }
 
 }
