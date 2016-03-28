@@ -7,7 +7,6 @@ If you're looking for a SystemJS version of the repo look in the [systemjs branc
 
 ## Installation
 
-* `npm install --global typescript typings webpack nodemon`
 * `npm install`
 
 ## Serve
