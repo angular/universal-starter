@@ -1,6 +1,6 @@
 # Angular 2 Universal Starter
 
-A minimal Angular 2 starter for Universal JavaScript using TypeScript and Webpack
+A minimal Angular 2 starter for Universal JavaScript using TypeScript and SystemJS
 
 > If you're looking for the repo from the AngularConnect talk look in the [angular-connect branch](https://github.com/angular/universal-starter/tree/angular-connect)  
 > If you're looking for a Webpack version of the repo look in the [master branch](https://github.com/angular/universal-starter/)
