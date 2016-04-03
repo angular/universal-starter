@@ -46,7 +46,7 @@ export class ServerOnlyApp {
       Loading...
     </server-only-app>
 
-    <script async [attr.src]="seo.src"></script>
+    <script [attr.src]="seo.src"></script>
   </body>
   `
 })
