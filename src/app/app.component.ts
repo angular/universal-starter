@@ -61,6 +61,7 @@ export class About {
     <main>
       <router-outlet></router-outlet>
     </main>
+    <h1>{{ server }}</h1>
 
   </div>
   `
@@ -74,10 +75,14 @@ export class About {
 export class App {
   name: string = 'Angular 2';
   data = {};
+  server;
   constructor(public http: Http) {
 
   }
   ngOnInit() {
+    setTimeout(() => {
+      this.server = 'Rendered on the Server';
+    }, 10);
     // we need to use full urls for the server to work
     this.http.get('http://localhost:3000/data.json')
       .subscribe(res => {
