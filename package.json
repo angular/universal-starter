@@ -7,12 +7,13 @@
     "url": "https://github.com/angular/universal-starter.git"
   },
   "scripts": {
-    "postinstall": "./node_modules/.bin/typings install",
-    "watch": "./node_modules/.bin/webpack --watch",
-    "prebuild": "./node_modules/.bin/rimraf dist",
-    "build": "./node_modules/.bin/webpack",
+    "postinstall": "typings install",
+    "watch": "webpack --watch",
+    "prebuild": "rimraf dist",
+    "build": "webpack",
     "prestart": "npm run build",
-    "start": "./node_modules/.bin/nodemon dist/server/bundle.js",
+    "server": "nodemon dist/server/bundle.js",
+    "start": "npm run server",
     "predebug": "npm run build",
     "debug": "node --debug-brk dist/server/bundle.js"
   },
