@@ -42,7 +42,7 @@ function ngApp(req, res) {
       NODE_HTTP_PROVIDERS,
     ],
     async: true,
-    preboot: false
+    preboot: false // { appRoot: 'app' } // your top level app component selector
   });
 }
 
