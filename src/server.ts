@@ -2,13 +2,13 @@ import * as path from 'path';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 // Angular 2
-import 'angular2-universal-preview/polyfills';
+import 'angular2-universal/polyfills';
 import {
   expressEngine,
   REQUEST_URL,
   NODE_ROUTER_PROVIDERS,
   NODE_HTTP_PROVIDERS
-} from 'angular2-universal-preview';
+} from 'angular2-universal';
 
 import {provide, enableProdMode} from 'angular2/core';
 import {APP_BASE_HREF} from 'angular2/router';
