@@ -7,7 +7,8 @@ import {
   expressEngine,
   REQUEST_URL,
   NODE_ROUTER_PROVIDERS,
-  NODE_HTTP_PROVIDERS
+  NODE_HTTP_PROVIDERS,
+  ExpressEngineOptions
 } from 'angular2-universal';
 
 import {provide, enableProdMode} from 'angular2/core';
@@ -33,7 +34,8 @@ app.use(bodyParser.json());
 function ngApp(req, res) {
   let baseUrl = '/';
   let url = req.originalUrl || '/';
-  res.render('index', {
+
+  let config: ExpressEngineOptions = {
     directives: [ Html ],
     providers: [
       provide(APP_BASE_HREF, {useValue: baseUrl}),
@@ -43,7 +45,9 @@ function ngApp(req, res) {
     ],
     async: true,
     preboot: false // { appRoot: 'app' } // your top level app component selector
-  });
+  };
+
+  res.render('index', config);
 }
 
 // Serve static files
