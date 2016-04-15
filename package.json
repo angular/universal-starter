@@ -25,8 +25,8 @@
     "Jeff Cross <crossj@google.com>"
   ],
   "dependencies": {
-    "angular2-universal": "~0.91.0",
     "angular2": "2.0.0-beta.15",
+    "angular2-universal": "~0.92.0",
     "body-parser": "^1.15.0",
     "express": "^4.13.3",
     "preboot": "^2.0.5",
