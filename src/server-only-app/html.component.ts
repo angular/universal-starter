@@ -4,6 +4,7 @@ import {RouteConfig} from 'angular2/router';
 // Require our Universal App
 import {App, Home, About} from '../app/app.component';
 
+
 @Component({
   selector: 'server-only-app',
   template: `
@@ -23,7 +24,11 @@ export class ServerOnlyApp {
   providers: [
 
   ],
-  encapsulation: ViewEncapsulation.None,
+  styles: [`
+    footer {
+      background:#000;
+    }
+  `],
   template: `
   <head>
     <title>{{ seo.title }}</title>
@@ -34,7 +39,11 @@ export class ServerOnlyApp {
 
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
+    <ng-style-host></ng-style-host>
+
     <base [attr.href]="seo.baseUrl">
+
+
   </head>
   <body>
 
@@ -45,6 +54,8 @@ export class ServerOnlyApp {
     <server-only-app>
       Loading...
     </server-only-app>
+
+    <footer>I should be red</footer>
 
     <script [attr.src]="seo.src"></script>
   </body>
