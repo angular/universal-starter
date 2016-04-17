@@ -39,7 +39,7 @@ export class ServerOnlyApp {
 
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
-    <ng-style-host></ng-style-host>
+    <universal-styles></universal-styles>
 
     <base [attr.href]="seo.baseUrl">
 
