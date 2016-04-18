@@ -1,9 +1,12 @@
 import * as path from 'path';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
+
 // Angular 2
 import 'angular2-universal/polyfills';
 import {
+  provide,
+  enableProdMode,
   expressEngine,
   REQUEST_URL,
   ORIGIN_URL,
@@ -13,15 +16,12 @@ import {
   ExpressEngineConfig
 } from 'angular2-universal';
 
-import {provide, enableProdMode} from 'angular2/core';
-import {APP_BASE_HREF} from 'angular2/router';
-
 // Application
 import {App} from './app/app.component';
 import {Html} from './server-only-app/html.component';
 
-let app = express();
-let root = path.join(path.resolve(__dirname, '..'));
+const app = express();
+const ROOT = path.join(path.resolve(__dirname, '..'));
 
 enableProdMode();
 
@@ -56,7 +56,7 @@ function ngApp(req, res) {
 }
 
 // Serve static files
-app.use(express.static(root, {index: false}));
+app.use(express.static(ROOT, {index: false}));
 
 // Our API for demos only
 app.get('/data.json', (req, res) => {
