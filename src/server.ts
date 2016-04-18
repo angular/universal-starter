@@ -6,9 +6,11 @@ import 'angular2-universal/polyfills';
 import {
   expressEngine,
   REQUEST_URL,
+  ORIGIN_URL,
+  BASE_URL,
   NODE_ROUTER_PROVIDERS,
   NODE_HTTP_PROVIDERS,
-  ExpressEngineOptions
+  ExpressEngineConfig
 } from 'angular2-universal';
 
 import {provide, enableProdMode} from 'angular2/core';
@@ -35,10 +37,13 @@ function ngApp(req, res) {
   let baseUrl = '/';
   let url = req.originalUrl || '/';
 
-  let config: ExpressEngineOptions = {
+  let config: ExpressEngineConfig = {
     directives: [ Html ],
+    platformProviders: [
+      provide(ORIGIN_URL, {useValue: 'http://localhost:3000'}),
+      provide(BASE_URL, {useValue: baseUrl}),
+    ],
     providers: [
-      provide(APP_BASE_HREF, {useValue: baseUrl}),
       provide(REQUEST_URL, {useValue: url}),
       NODE_ROUTER_PROVIDERS,
       NODE_HTTP_PROVIDERS,
