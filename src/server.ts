@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 
-// Angular 2
+// Angular 2 Universal
 import 'angular2-universal/polyfills';
 import {
   provide,
@@ -18,7 +18,6 @@ import {
 
 // Application
 import {App} from './app/app.component';
-import {Html} from './server-only-app/html.component';
 
 const app = express();
 const ROOT = path.join(path.resolve(__dirname, '..'));
@@ -38,7 +37,7 @@ function ngApp(req, res) {
   let url = req.originalUrl || '/';
 
   let config: ExpressEngineConfig = {
-    directives: [ Html ],
+    directives: [ App ],
     platformProviders: [
       provide(ORIGIN_URL, {useValue: 'http://localhost:3000'}),
       provide(BASE_URL, {useValue: baseUrl}),
