@@ -1,10 +1,11 @@
 {
   "ambientDependencies": {
     "body-parser": "registry:dt/body-parser#0.0.0+20160317120654",
-    "es6-shim": "github:DefinitelyTyped/DefinitelyTyped/es6-shim/es6-shim.d.ts#6697d6f7dadbf5773cb40ecda35a76027e0783b2",
-    "express": "github:DefinitelyTyped/DefinitelyTyped/express/express.d.ts#2e7a477ac2b6471055aa6e0e56b333e8f327d6b7",
-    "mime": "github:DefinitelyTyped/DefinitelyTyped/mime/mime.d.ts#2e7a477ac2b6471055aa6e0e56b333e8f327d6b7",
-    "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#2e7a477ac2b6471055aa6e0e56b333e8f327d6b7",
-    "serve-static": "github:DefinitelyTyped/DefinitelyTyped/serve-static/serve-static.d.ts#2e7a477ac2b6471055aa6e0e56b333e8f327d6b7"
+    "es6-shim": "registry:dt/es6-shim#0.31.2+20160317120654",
+    "express": "registry:dt/express#4.0.0+20160317120654",
+    "express-serve-static-core": "registry:dt/express-serve-static-core#0.0.0+20160322035842",
+    "mime": "registry:dt/mime#0.0.0+20160316155526",
+    "node": "registry:dt/node#4.0.0+20160412142033",
+    "serve-static": "registry:dt/serve-static#0.0.0+20160317120654"
   }
 }
