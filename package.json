@@ -26,15 +26,15 @@
   ],
   "dependencies": {
     "angular2": "2.0.0-beta.15",
-    "angular2-universal": "~0.98.1",
+    "angular2-universal": "~0.98.3",
     "body-parser": "^1.15.0",
     "express": "^4.13.3",
     "preboot": "^2.0.5",
-    "rxjs": "5.0.0-beta.2"
+    "rxjs": "5.0.0-beta.5"
   },
   "devDependencies": {
     "nodemon": "^1.8.1",
-    "rimraf": "^2.5.0",
+    "rimraf": "^2.5.2",
     "ts-loader": "^0.8.1",
     "typescript": "^1.8.7",
     "typings": "~0.8.1",
