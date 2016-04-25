@@ -60,7 +60,7 @@ app.use(express.static(ROOT, {index: false}));
 // Our API for demos only
 app.get('/data.json', (req, res) => {
   res.json({
-    data: 'fake data'
+    data: 'This fake data came from the server.'
   });
 });
 
@@ -71,5 +71,5 @@ app.use('/home', ngApp);
 
 // Server
 app.listen(3000, () => {
-  console.log('Listen on http://localhost:3000');
+  console.log('Listening on: http://localhost:3000');
 });
