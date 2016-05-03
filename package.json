@@ -25,12 +25,12 @@
     "Jeff Cross <crossj@google.com>"
   ],
   "dependencies": {
-    "angular2": "2.0.0-beta.15",
-    "angular2-universal": "~0.98.3",
+    "angular2": "2.0.0-beta.17",
+    "angular2-universal": "~0.99.0",
     "body-parser": "^1.15.0",
     "express": "^4.13.3",
-    "preboot": "^2.0.5",
-    "rxjs": "5.0.0-beta.2"
+    "preboot": "^2.0.8",
+    "rxjs": "5.0.0-beta.6"
   },
   "devDependencies": {
     "nodemon": "^1.8.1",
