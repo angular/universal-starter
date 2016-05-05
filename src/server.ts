@@ -55,6 +55,10 @@ function ngApp(req, res) {
   res.render('index', config);
 }
 
+function indexFile(req, res) {
+  res.sendFile('/index.html', {root: __dirname});
+}
+
 // Serve static files
 app.use(express.static(ROOT, {index: false}));
 
