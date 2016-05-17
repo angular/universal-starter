@@ -2,6 +2,8 @@ import {Component, Directive, ElementRef, Renderer} from '@angular/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {Http} from '@angular/http';
 
+import {PuppyLoveAppComponent} from './puppy-love.component';
+
 /////////////////////////
 // ** Example Directive
 // Notice we don't touch the Element directly
@@ -42,7 +44,8 @@ export class About { }
   selector: 'app', // <app></app>
   directives: [
     ...ROUTER_DIRECTIVES,
-    XLarge
+    XLarge,
+    PuppyLoveAppComponent
   ],
   styles: [`
     * { padding:0; margin:0; }
@@ -63,6 +66,7 @@ export class About { }
   <nav>
     <a [routerLink]=" ['./Home'] ">Home</a>
     <a [routerLink]=" ['./About'] ">About</a>
+    <a [routerLink]=" ['./PuppyLoveAppComponent'] ">Puppy Love</a>
   </nav>
   <div class="hero-universal">
     <div class="inner-hero">
@@ -90,6 +94,7 @@ export class About { }
   { path: '/', component: Home, name: 'Home', useAsDefault: true },
   { path: '/home', component: Home, name: 'Home' },
   { path: '/about', component: About, name: 'About' },
+  { path: '/puppy', component: PuppyLoveAppComponent, name: 'PuppyLoveAppComponent' },
   { path: '/**', redirectTo: ['Home'] }
 ])
 export class App {
