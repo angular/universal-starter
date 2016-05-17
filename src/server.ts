@@ -4,9 +4,6 @@ import * as path from 'path';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 
-function Event() {}
-(<any>global).Event = Event;
-
 // Angular 2 Universal
 import {
   provide,
