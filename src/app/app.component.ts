@@ -1,6 +1,6 @@
-import {Component, Directive, ElementRef, Renderer} from 'angular2/core';
-import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
-import {Http} from 'angular2/http';
+import {Component, Directive, ElementRef, Renderer} from '@angular/core';
+import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import {Http} from '@angular/http';
 
 /////////////////////////
 // ** Example Directive
@@ -50,8 +50,7 @@ export class About { }
     nav { background:#158126; min-height:40px; border-bottom:5px #046923 solid; }
     nav a { font-weight:bold; text-decoration:none; color:#fff; padding:20px; display:inline-block; }
     nav a:hover { background:#00AF36; }
-    .hero-universal { min-height:500px; display:block; padding:20px;
-        background:url('https://cloud.githubusercontent.com/assets/1016365/10639063/138338bc-7806-11e5-8057-d34c75f3cafc.png') no-repeat center center; }
+    .hero-universal { min-height:500px; display:block; padding:20px; background: url('/src/logo.png') no-repeat center center; }
     .inner-hero { background: rgba(255, 255, 255, 0.75); border:5px #ccc solid; padding:25px; }
     .router-link-active { background-color: #00AF36; }
     blockquote { border-left:5px #158126 solid; background:#fff; padding:20px 20px 20px 40px; }
@@ -96,7 +95,7 @@ export class About { }
 export class App {
   title: string = 'ftw';
   data = {};
-  server:string;
+  server: string;
 
   constructor(public http: Http) { }
 

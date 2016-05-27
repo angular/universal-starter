@@ -1,5 +1,5 @@
 {
-  "name": "angular2-universal-starter",
+  "name": "universal-starter",
   "version": "2.0.0",
   "description": "Angular 2 Universal starter kit by @AngularClass",
   "repository": {
@@ -25,12 +25,19 @@
     "Jeff Cross <crossj@google.com>"
   ],
   "dependencies": {
-    "angular2": "2.0.0-beta.15",
-    "angular2-universal": "~0.98.3",
+    "@angular/common": "2.0.0-rc.1",
+    "@angular/compiler": "2.0.0-rc.1",
+    "@angular/core": "2.0.0-rc.1",
+    "@angular/http": "2.0.0-rc.1",
+    "@angular/platform-browser": "2.0.0-rc.1",
+    "@angular/platform-browser-dynamic": "2.0.0-rc.1",
+    "@angular/platform-server": "2.0.0-rc.1",
+    "@angular/router-deprecated": "2.0.0-rc.1",
+    "angular2-universal": "~0.101.4",
     "body-parser": "^1.15.0",
     "express": "^4.13.3",
-    "preboot": "^2.0.5",
-    "rxjs": "5.0.0-beta.2"
+    "preboot": "~2.0.10",
+    "rxjs": "5.0.0-beta.6"
   },
   "devDependencies": {
     "nodemon": "^1.8.1",

@@ -1,9 +1,10 @@
+import 'angular2-universal/polyfills';
+
 import * as path from 'path';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 
 // Angular 2 Universal
-import 'angular2-universal/polyfills';
 import {
   provide,
   enableProdMode,
@@ -52,6 +53,10 @@ function ngApp(req, res) {
   };
 
   res.render('index', config);
+}
+
+function indexFile(req, res) {
+  res.sendFile('/index.html', {root: __dirname});
 }
 
 // Serve static files
