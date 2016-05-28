@@ -40,12 +40,19 @@
     "rxjs": "5.0.0-beta.6"
   },
   "devDependencies": {
+    "autoprefixer": "^6.3.6",
+    "css-loader": "^0.23.1",
+    "html-loader": "^0.4.3",
+    "node-sass": "^3.7.0",
     "nodemon": "^1.8.1",
+    "postcss-loader": "^0.9.1",
     "rimraf": "^2.5.2",
+    "sass-loader": "^3.2.0",
+    "to-string-loader": "^1.1.4",
     "ts-loader": "^0.8.1",
     "typescript": "^1.8.7",
     "typings": "~0.8.1",
-    "webpack": "^1.12.10",
+    "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.0",
     "webpack-merge": "^0.8.4"
   }

@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
+var autoprefixer = require('autoprefixer');
 
 var commonConfig = {
   resolve: {
@@ -8,8 +9,13 @@ var commonConfig = {
   module: {
     loaders: [
       // TypeScript
-      { test: /\.ts$/, loader: 'ts-loader' }
+      { test: /\.ts$/, loader: 'ts-loader' },
+      { test: /\.html/, loaders: ['html'] },
+      { test: /\.scss$/, loaders: ['to-string', 'css', 'postcss', 'sass'] }
     ]
+  },
+  postcss: function () {
+    return [autoprefixer];
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(true)
