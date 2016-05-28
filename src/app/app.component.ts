@@ -61,6 +61,8 @@ export class App {
   constructor(public http: Http) { }
 
   ngOnInit() {
+    console.log(ENV);
+    // alert(process.env.ENV);
     setTimeout(() => {
       this.server = 'This was rendered from the server!';
     }, 10);

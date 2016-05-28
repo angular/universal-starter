@@ -2,6 +2,8 @@ var webpack = require('webpack');
 var path = require('path');
 var autoprefixer = require('autoprefixer');
 
+process.env.ENV = process.env.ENV || 'dev';
+
 var commonConfig = {
   resolve: {
     extensions: ['', '.ts', '.js']
@@ -18,10 +20,13 @@ var commonConfig = {
     return [autoprefixer];
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(true)
-  ]
+    new webpack.optimize.OccurenceOrderPlugin(true),
+    new webpack.DefinePlugin({
+      ENV: JSON.stringify(process.env.ENV)
+    }),
+  ],
+  devtool: process.env.ENV == 'dev'? 'source-map' : null
 };
-
 
 var clientConfig = {
   target: 'web',
