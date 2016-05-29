@@ -11,10 +11,23 @@ var commonConfig = {
   module: {
     loaders: [
       // TypeScript
-      { test: /\.ts$/, loader: 'ts-loader' },
-      { test: /\.html/, loaders: ['html'] },
+      { test: /\.ts$/, loaders: ['ts-loader'] },
+      {
+        test: /\.html/,
+        loader: 'html',
+        query: {
+          minimize: true,
+          caseSensitive: true,
+          // Teach html-minifier about Angular 2 syntax
+          customAttrSurround: [ [/#/, /(?:)/], [/\*/, /(?:)/], [/\[?\(?/, /(?:)/] ],
+          customAttrAssign: [ /\)?\]?=/ ],
+        }
+      },
       { test: /\.scss$/, loaders: ['to-string', 'css', 'postcss', 'sass'] }
     ]
+  },
+  'uglify-loader': {
+    mangle: false
   },
   postcss: function () {
     return [autoprefixer];
@@ -23,7 +36,7 @@ var commonConfig = {
     new webpack.optimize.OccurenceOrderPlugin(true),
     new webpack.DefinePlugin({
       ENV: JSON.stringify(process.env.ENV)
-    }),
+    })
   ],
   devtool: process.env.ENV == 'dev'? 'source-map' : null
 };
@@ -40,7 +53,8 @@ var clientConfig = {
     __filename: true,
     process: true,
     Buffer: false
-  }
+  },
+  plugins: []
 };
 
 
@@ -78,9 +92,23 @@ var defaultConfig = {
     publicPath: path.resolve(__dirname),
     filename: 'bundle.js'
   }
+};
+
+if(process.env.ENV == 'prod'){
+  commonConfig.plugins = commonConfig.plugins || [];
+  commonConfig.plugins.push(
+    new webpack.optimize.UglifyJsPlugin({
+      mangle: {
+        compress: {
+          caseSensitive: true,
+          warnings: true,
+          drop_console: true,
+          unsafe: false
+        }
+      }
+    })
+  );
 }
-
-
 
 var webpackMerge = require('webpack-merge');
 module.exports = [
@@ -89,7 +117,7 @@ module.exports = [
 
   // Server
   webpackMerge({}, defaultConfig, commonConfig, serverConfig)
-]
+];
 
 // Helpers
 function checkNodeImport(context, request, cb) {
