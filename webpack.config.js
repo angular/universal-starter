@@ -23,7 +23,7 @@ var commonConfig = {
           customAttrAssign: [ /\)?\]?=/ ],
         }
       },
-      { test: /\.scss$/, loaders: ['to-string', 'css', 'postcss', 'sass'] }
+      { test: /\.scss$/, loaders: ['to-string', 'css', 'postcss', 'resolve-url', 'sass?sourceMap'] }
     ]
   },
   'uglify-loader': {
