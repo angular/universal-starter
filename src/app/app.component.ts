@@ -31,7 +31,7 @@ export class Home { }
 @Component({
   selector: 'about',
   template: `
-  <div>This is the "About" page</div>
+    <div>This is the "About" page</div>
   `
 })
 export class About { }
