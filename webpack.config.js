@@ -17,10 +17,15 @@ var commonConfig = {
         loader: 'html',
         query: {
           minimize: true,
+          removeAttributeQuotes: false,
           caseSensitive: true,
           // Teach html-minifier about Angular 2 syntax
-          customAttrSurround: [ [/#/, /(?:)/], [/\*/, /(?:)/], [/\[?\(?/, /(?:)/] ],
-          customAttrAssign: [ /\)?\]?=/ ],
+          customAttrSurround: [
+            [/#/, /(?:)/],
+            [/\*/, /(?:)/],
+            [/\[?\(?/, /(?:)/]
+          ],
+          customAttrAssign: [/\)?\]?=/]
         }
       },
       { test: /\.scss$/, loaders: ['to-string', 'css', 'postcss', 'resolve-url', 'sass?sourceMap'] }
