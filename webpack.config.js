@@ -98,6 +98,7 @@ if(process.env.ENV == 'prod'){
   commonConfig.plugins = commonConfig.plugins || [];
   commonConfig.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
+      beautify: false,
       mangle: {
         compress: {
           caseSensitive: true,
