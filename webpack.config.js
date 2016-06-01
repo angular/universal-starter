@@ -1,5 +1,8 @@
 var webpack = require('webpack');
 var path = require('path');
+var autoprefixer = require('autoprefixer');
+
+process.env.ENV = process.env.ENV || 'dev';
 
 var commonConfig = {
   resolve: {
@@ -8,14 +11,40 @@ var commonConfig = {
   module: {
     loaders: [
       // TypeScript
-      { test: /\.ts$/, loader: 'ts-loader' }
+      { test: /\.ts$/, loaders: ['ts-loader'] },
+      {
+        test: /\.html/,
+        loader: 'html',
+        query: {
+          minimize: true,
+          removeAttributeQuotes: false,
+          caseSensitive: true,
+          // Teach html-minifier about Angular 2 syntax
+          customAttrSurround: [
+            [/#/, /(?:)/],
+            [/\*/, /(?:)/],
+            [/\[?\(?/, /(?:)/]
+          ],
+          customAttrAssign: [/\)?\]?=/]
+        }
+      },
+      { test: /\.scss$/, loaders: ['to-string', 'css', 'postcss', 'resolve-url', 'sass?sourceMap'] }
     ]
   },
+  'uglify-loader': {
+    mangle: false
+  },
+  postcss: function () {
+    return [autoprefixer];
+  },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(true)
-  ]
+    new webpack.optimize.OccurenceOrderPlugin(true),
+    new webpack.DefinePlugin({
+      ENV: JSON.stringify(process.env.ENV)
+    })
+  ],
+  devtool: process.env.ENV == 'dev'? 'source-map' : null
 };
-
 
 var clientConfig = {
   target: 'web',
@@ -29,7 +58,8 @@ var clientConfig = {
     __filename: true,
     process: true,
     Buffer: false
-  }
+  },
+  plugins: []
 };
 
 
@@ -67,9 +97,24 @@ var defaultConfig = {
     publicPath: path.resolve(__dirname),
     filename: 'bundle.js'
   }
+};
+
+if(process.env.ENV == 'prod'){
+  commonConfig.plugins = commonConfig.plugins || [];
+  commonConfig.plugins.push(
+    new webpack.optimize.UglifyJsPlugin({
+      beautify: false,
+      mangle: {
+        compress: {
+          caseSensitive: true,
+          warnings: true,
+          drop_console: true,
+          unsafe: false
+        }
+      }
+    })
+  );
 }
-
-
 
 var webpackMerge = require('webpack-merge');
 module.exports = [
@@ -78,7 +123,7 @@ module.exports = [
 
   // Server
   webpackMerge({}, defaultConfig, commonConfig, serverConfig)
-]
+];
 
 // Helpers
 function checkNodeImport(context, request, cb) {
