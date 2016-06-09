@@ -6,6 +6,8 @@ import {App} from './app/app.component';
 
 enableProdMode();
 
+// use `bootstrap` or `prebootComplete` callback from universal repo
+// to ensure preboot completes after bootstraps
 bootstrap(App, [
   ...BROWSER_ROUTER_PROVIDERS,
   ...BROWSER_HTTP_PROVIDERS
