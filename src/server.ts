@@ -63,10 +63,29 @@ function indexFile(req, res) {
 app.use(express.static(ROOT, {index: false}));
 
 // Our API for demos only
+var USER_ID = 'f9d98cf1-1b96-464e-8755-bcc2a5c09077'; // hardcoded as an example
+var fakeDemoRedisCache = {
+  [USER_ID]: {"data": "This fake data came from the server."}
+};
+// Our API for demos only
+var fakeDataBase = {
+  get() {
+    let res = { data: 'This fake data came from the server.' };
+    return Promise.resolve(res);
+  }
+}
+// Our API for demos only
 app.get('/data.json', (req, res) => {
-  res.json({
-    data: 'This fake data came from the server.'
-  });
+  if (fakeDemoRedisCache[USER_ID]) {
+    return res.json(fakeDemoRedisCache[USER_ID]);
+  }
+  
+  fakeDataBase.get()
+    .then(data => {
+      fakeDemoRedisCache[USER_ID] = data
+      return data;
+    })
+    .then(data => res.json(data));
 });
 
 // Routes with html5pushstate
