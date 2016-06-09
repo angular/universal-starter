@@ -8,9 +8,6 @@ import * as bodyParser from 'body-parser';
 // Angular 2 Universal
 import {enableProdMode, expressEngine} from 'angular2-universal';
 
-// Application
-import {App} from './app/app.component';
-
 const app = express();
 const ROOT = path.join(path.resolve(__dirname, '..'));
 
