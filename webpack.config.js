@@ -8,20 +8,30 @@ var commonConfig = {
   module: {
     loaders: [
       // TypeScript
-      { test: /\.ts$/, loader: 'ts-loader' }
-    ]
+      { test: /\.ts$/, loader: 'ts-loader' },
+      { test: /\.json$/, loader: 'raw-loader' }
+    ],
+    preLoaders: [
+      // needed to lower the filesize of angular due to inline source-maps
+      { test: /\.js$/, loader: 'source-map-loader', exclude: [
+        // these packages have problems with their sourcemaps
+        root('node_modules/rxjs'),
+        root('node_modules/@angular'),
+      ]}
+    ],
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(true)
   ]
+
 };
 
 
 var clientConfig = {
   target: 'web',
-  entry: './src/client',
+  entry: './src/main.browser',
   output: {
-    path: path.join(__dirname, 'dist', 'client')
+    path: root('dist/client')
   },
   node: {
     global: true,
@@ -35,9 +45,9 @@ var clientConfig = {
 
 var serverConfig = {
   target: 'node',
-  entry: './src/server',
+  entry: './src/server', // use the entry file of the node server if everything is ts rather than es5
   output: {
-    path: path.join(__dirname, 'dist', 'server')
+    path: root('dist/server')
   },
   externals: checkNodeImport,
   node: {
@@ -53,15 +63,9 @@ var serverConfig = {
 
 // Default config
 var defaultConfig = {
-  module: {
-    noParse: [
-      path.join(__dirname, 'zone.js', 'dist'),
-      path.join(__dirname, 'angular2', 'bundles')
-    ]
-  },
   context: __dirname,
   resolve: {
-    root: path.join(__dirname, '/src')
+    root: root('/src')
   },
   output: {
     publicPath: path.resolve(__dirname),
@@ -86,4 +90,9 @@ function checkNodeImport(context, request, cb) {
     cb(null, 'commonjs ' + request); return;
   }
   cb();
+}
+
+function root(args) {
+  args = Array.prototype.slice.call(arguments, 0);
+  return path.join.apply(path, [__dirname].concat(args));
 }
