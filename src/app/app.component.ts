@@ -100,10 +100,12 @@ export class App {
   constructor(public http: Http) { }
 
   ngOnInit() {
+    // limit the use of setTimeouts
     setTimeout(() => {
       this.server = 'This was rendered from the server!';
     }, 10);
 
+    // use services for http calls
     this.http.get('/data.json')
       .subscribe(res => {
         this.data = res.json();
