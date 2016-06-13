@@ -1,6 +1,6 @@
-import {Component, Directive, ElementRef, Renderer} from '@angular/core';
-import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
-import {Http} from '@angular/http';
+import { Component, Directive, ElementRef, Renderer } from '@angular/core';
+import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import { Http } from '@angular/http';
 
 // templateUrl example
 // import {Home} from './home';
