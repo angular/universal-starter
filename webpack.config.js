@@ -47,7 +47,8 @@ var serverConfig = {
   target: 'node',
   entry: './src/server', // use the entry file of the node server if everything is ts rather than es5
   output: {
-    path: root('dist/server')
+    path: root('dist/server'),
+    libraryTarget: 'commonjs2'
   },
   externals: checkNodeImport,
   node: {
