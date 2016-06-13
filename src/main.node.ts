@@ -8,6 +8,8 @@ import {
   ExpressEngineConfig
 } from 'angular2-universal';
 
+import { APP_BASE_HREF } from '@angular/common';
+
 // Application
 import {App} from './app/app.component';
 
@@ -21,7 +23,7 @@ export function ngApp(req, res) {
     ],
     platformProviders: [
       {provide: ORIGIN_URL, useValue: 'http://localhost:3000'},
-      {provide: BASE_URL, useValue: baseUrl},
+      {provide: APP_BASE_HREF, useValue: baseUrl},
     ],
     providers: [
       {provide: REQUEST_URL, useValue: url},

@@ -6,9 +6,9 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 
 // Angular 2
-import {enableProdMode} from '@angular/core';
+import { enableProdMode } from '@angular/core';
 // Angular 2 Universal
-import {expressEngine} from 'angular2-universal';
+import { expressEngine } from 'angular2-universal';
 
 // enable prod for faster renders
 enableProdMode();
@@ -26,11 +26,11 @@ app.use(bodyParser.json());
 // Serve static files
 app.use(express.static(ROOT, {index: false}));
 
-import {serverApi} from './backend/api';
+import { serverApi } from './backend/api';
 // Our API for demos only
 app.get('/data.json', serverApi);
 
-import {ngApp} from './main.node';
+import { ngApp } from './main.node';
 // Routes with html5pushstate
 app.use('/', ngApp);
 app.use('/about', ngApp);
