@@ -29,7 +29,7 @@ var commonConfig = {
 
 var clientConfig = {
   target: 'web',
-  entry: './src/main.browser',
+  entry: './src/client',
   output: {
     path: root('dist/client')
   },
@@ -70,7 +70,7 @@ var defaultConfig = {
   },
   output: {
     publicPath: path.resolve(__dirname),
-    filename: 'bundle.js'
+    filename: 'index.js'
   }
 }
 
