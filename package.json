@@ -46,7 +46,7 @@
     "source-map-loader": "^0.1.5",
     "ts-loader": "^0.8.2",
     "typescript": "^1.8.9",
-    "typings": "~0.8.1",
+    "typings": "~1.0.5",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.0",
     "webpack-merge": "^0.13.0"
