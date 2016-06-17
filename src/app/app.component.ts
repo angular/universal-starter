@@ -1,10 +1,14 @@
-import {Component, Directive, ElementRef, Renderer} from '@angular/core';
-import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
-import {Http} from '@angular/http';
+import { Component, Directive, ElementRef, Renderer } from '@angular/core';
+import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import { Http } from '@angular/http';
 
+// templateUrl example
+// import {Home} from './home';
+//
 /////////////////////////
 // ** Example Directive
 // Notice we don't touch the Element directly
+
 @Directive({
   selector: '[x-large]'
 })
@@ -100,10 +104,12 @@ export class App {
   constructor(public http: Http) { }
 
   ngOnInit() {
+    // limit the use of setTimeouts
     setTimeout(() => {
       this.server = 'This was rendered from the server!';
     }, 10);
 
+    // use services for http calls
     this.http.get('/data.json')
       .subscribe(res => {
         this.data = res.json();

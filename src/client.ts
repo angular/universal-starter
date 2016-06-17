@@ -1,12 +1,20 @@
+// the polyfills must be the first thing imported
 import 'angular2-universal/polyfills';
 
-import {bootstrap, enableProdMode, BROWSER_ROUTER_PROVIDERS, BROWSER_HTTP_PROVIDERS} from 'angular2-universal';
+// Angular 2
+import {enableProdMode} from '@angular/core';
+// Angular 2 Universal
+import {prebootComplete} from 'angular2-universal';
 
-import {App} from './app/app.component';
-
+// enable prod for faster renders
 enableProdMode();
 
-bootstrap(App, [
-  ...BROWSER_ROUTER_PROVIDERS,
-  ...BROWSER_HTTP_PROVIDERS
-]);
+import {ngApp} from './main.browser';
+
+// on document ready bootstrap Angular 2
+document.addEventListener('DOMContentLoaded', () => {
+
+  ngApp()
+    .then(prebootComplete);
+
+});
