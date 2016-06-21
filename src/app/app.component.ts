@@ -3,7 +3,7 @@ import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { Http } from '@angular/http';
 
 // templateUrl example
-// import {Home} from './home';
+import { Home } from './home';
 //
 /////////////////////////
 // ** Example Directive
@@ -24,14 +24,6 @@ export class XLarge {
 
 /////////////////////////
 // ** Example Components
-@Component({
-  selector: 'home',
-  template: `
-    <div>This is the "Home" page</div>
-  `
-})
-export class Home { }
-
 @Component({
   selector: 'about',
   template: `
