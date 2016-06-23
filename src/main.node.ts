@@ -1,3 +1,7 @@
+// the polyfills must be the first thing imported in node.js
+// import 'angular2-universal/polyfills'; // polyfills are moved to server.ts
+
+
 // Angular 2 Universal
 import {
   REQUEST_URL,
