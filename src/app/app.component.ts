@@ -1,5 +1,5 @@
 import { Component, Directive, ElementRef, Renderer } from '@angular/core';
-import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 import { Http } from '@angular/http';
 
 // templateUrl example
@@ -57,8 +57,8 @@ export class About { }
   template: `
   <h3 id="universal">Angular2 Universal</h3>
   <nav>
-    <a [routerLink]=" ['./Home'] ">Home</a>
-    <a [routerLink]=" ['./About'] ">About</a>
+    <a [routerLinkActive]="['active', 'router-link-active']" [routerLink]=" ['./home'] ">Home</a>
+    <a [routerLinkActive]="['active', 'router-link-active']" [routerLink]=" ['./about'] ">About</a>
   </nav>
   <div class="hero-universal">
     <div class="inner-hero">
@@ -82,12 +82,6 @@ export class About { }
   </div>
   `
 })
-@RouteConfig([
-  { path: '/', component: Home, name: 'Home', useAsDefault: true },
-  { path: '/home', component: Home, name: 'Home' },
-  { path: '/about', component: About, name: 'About' },
-  { path: '/**', redirectTo: ['Home'] }
-])
 export class App {
   title: string = 'ftw';
   data = {};

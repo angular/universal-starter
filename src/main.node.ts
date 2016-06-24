@@ -6,16 +6,17 @@
 import {
   REQUEST_URL,
   ORIGIN_URL,
-  BASE_URL,
-  NODE_ROUTER_PROVIDERS,
+  NODE_LOCATION_PROVIDERS,
   NODE_HTTP_PROVIDERS,
   ExpressEngineConfig
 } from 'angular2-universal';
 
+import { provideRouter } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
 
 // Application
 import {App} from './app/app.component';
+import {routes} from './app/app.routes';
 
 export function ngApp(req, res) {
   let baseUrl = '/';
@@ -31,8 +32,9 @@ export function ngApp(req, res) {
     ],
     providers: [
       {provide: REQUEST_URL, useValue: url},
-      NODE_ROUTER_PROVIDERS,
       NODE_HTTP_PROVIDERS,
+      provideRouter(routes),
+      NODE_LOCATION_PROVIDERS
     ],
     async: true,
     preboot: false // { appRoot: 'app' } // your top level app component selector
