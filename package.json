@@ -34,7 +34,7 @@
     "@angular/platform-browser-dynamic": "2.0.0-rc.3",
     "@angular/platform-server": "2.0.0-rc.3",
     "@angular/router": "3.0.0-alpha.8",
-    "angular2-universal": "~0.104.0",
+    "angular2-universal": "~0.104.1",
     "parse5": "^1.5.0",
 
     "body-parser": "^1.15.1",
