@@ -3,7 +3,7 @@ var path = require('path');
 
 var commonConfig = {
   resolve: {
-    extensions: ['', '.ts', '.js']
+    extensions: ['', '.ts', '.js', '.json']
   },
   module: {
     loaders: [
