@@ -4,6 +4,7 @@ import 'angular2-universal/polyfills';
 import * as path from 'path';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
+import * as cookieParser from 'cookie-parser';
 
 // Angular 2
 import { enableProdMode } from '@angular/core';
@@ -21,6 +22,7 @@ app.engine('.html', expressEngine);
 app.set('views', __dirname);
 app.set('view engine', 'html');
 
+app.use(cookieParser());
 app.use(bodyParser.json());
 
 // Serve static files
