@@ -1,5 +1,5 @@
 import { Component, Directive, ElementRef, Renderer } from '@angular/core';
-import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 import { Http } from '@angular/http';
 
 // templateUrl example
@@ -46,7 +46,7 @@ export class About { }
     nav { background:#158126; min-height:40px; border-bottom:5px #046923 solid; }
     nav a { font-weight:bold; text-decoration:none; color:#fff; padding:20px; display:inline-block; }
     nav a:hover { background:#00AF36; }
-    .hero-universal { min-height:500px; display:block; padding:20px; background: url('/src/logo.png') no-repeat center center; }
+    .hero-universal { min-height:500px; display:block; padding:20px; background: url('/assets/logo.png') no-repeat center center; }
     .inner-hero { background: rgba(255, 255, 255, 0.75); border:5px #ccc solid; padding:25px; }
     .router-link-active { background-color: #00AF36; }
     blockquote { border-left:5px #158126 solid; background:#fff; padding:20px 20px 20px 40px; }
@@ -57,8 +57,8 @@ export class About { }
   template: `
   <h3 id="universal">Angular2 Universal</h3>
   <nav>
-    <a [routerLink]=" ['./Home'] ">Home</a>
-    <a [routerLink]=" ['./About'] ">About</a>
+    <a [routerLinkActive]="['active', 'router-link-active']" [routerLink]=" ['./home'] ">Home</a>
+    <a [routerLinkActive]="['active', 'router-link-active']" [routerLink]=" ['./about'] ">About</a>
   </nav>
   <div class="hero-universal">
     <div class="inner-hero">
@@ -82,12 +82,6 @@ export class About { }
   </div>
   `
 })
-@RouteConfig([
-  { path: '/', component: Home, name: 'Home', useAsDefault: true },
-  { path: '/home', component: Home, name: 'Home' },
-  { path: '/about', component: About, name: 'About' },
-  { path: '/**', redirectTo: ['Home'] }
-])
 export class App {
   title: string = 'ftw';
   data = {};
