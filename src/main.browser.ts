@@ -6,7 +6,7 @@ import { HTTP_PROVIDERS } from '@angular/http';
 // Application
 import {App} from './app/app.component';
 import {routes} from './app/app.routes';
-
+import './environment';
 // you must return bootstrap for client.ts
 export function ngApp() {
   return bootstrap(App, [

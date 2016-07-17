@@ -8,12 +8,13 @@ import {
   ORIGIN_URL,
   NODE_LOCATION_PROVIDERS,
   NODE_HTTP_PROVIDERS,
-  ExpressEngineConfig
+  ExpressEngineConfig,
+  Bootloader
 } from 'angular2-universal';
 
 import { provideRouter } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
-
+import './environment';
 // Application
 import {App} from './app/app.component';
 import {routes} from './app/app.routes';

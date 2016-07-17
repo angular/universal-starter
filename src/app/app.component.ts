@@ -9,18 +9,18 @@ import { Home } from './home';
 // ** Example Directive
 // Notice we don't touch the Element directly
 
-@Directive({
-  selector: '[x-large]'
-})
-export class XLarge {
-  constructor(element: ElementRef, renderer: Renderer) {
-    // ** IMPORTANT **
-    // we must interact with the dom through -Renderer-
-    // for webworker/server to see the changes
-    renderer.setElementStyle(element.nativeElement, 'fontSize', 'x-large');
-    // ^^
-  }
-}
+// @Directive({
+//   selector: '[x-large]'
+// })
+// export class XLarge {
+//   constructor(element: ElementRef, renderer: Renderer) {
+//     // ** IMPORTANT **
+//     // we must interact with the dom through -Renderer-
+//     // for webworker/server to see the changes
+//     renderer.setElementStyle(element.nativeElement, 'fontSize', 'x-large');
+//     // ^^
+//   }
+// }
 
 /////////////////////////
 // ** Example Components
@@ -38,7 +38,7 @@ export class About { }
   selector: 'app', // <app></app>
   directives: [
     ...ROUTER_DIRECTIVES,
-    XLarge
+    // XLarge
   ],
   styles: [`
     * { padding:0; margin:0; }
@@ -87,19 +87,52 @@ export class App {
   data = {};
   server: string;
 
-  constructor(public http: Http) { }
+  constructor(
+    // public http: Http
+    ) { }
 
   ngOnInit() {
     // limit the use of setTimeouts
-    setTimeout(() => {
-      this.server = 'This was rendered from the server!';
-    }, 10);
+    // setTimeout(() => {
+    //   this.server = 'This was rendered from the server!';
+    // }, 10);
 
     // use services for http calls
-    this.http.get('/data.json')
-      .subscribe(res => {
-        this.data = res.json();
-      });
+    // this.http.get('/data.json')
+    //   .subscribe(res => {
+    //     this.data = res.json();
+    //   });
   }
 
 }
+
+@Component({
+  selector: 'parent',
+  directives: [
+    ...ROUTER_DIRECTIVES,
+    // XLarge
+  ],
+  template: `
+    <div>This is the "Parent" page</div>
+    <router-outlet></router-outlet>
+  `
+})
+export class Parent { }
+
+
+@Component({
+  selector: 'child',
+  template: `
+    <div>This is the "child" page</div>
+  `
+})
+export class Child { }
+
+
+ @Component({
+  selector: 'another-child',
+  template: `
+    <div>This is the "AnotherChild" page</div>
+  `
+})
+export class AnotherChild { }

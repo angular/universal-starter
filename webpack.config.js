@@ -1,5 +1,11 @@
+require('angular2-universal-polyfills');
+
 var webpack = require('webpack');
 var path = require('path');
+var EnvPlugin = require('./env_plugin');
+var UniversalPagesPlugin = require('./universal_pages_plugin');
+
+
 
 var commonConfig = {
   resolve: {
@@ -19,7 +25,8 @@ var commonConfig = {
     ],
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(true)
+    new webpack.optimize.OccurenceOrderPlugin(true),
+    new EnvPlugin('production'),
   ]
 
 };
@@ -29,7 +36,7 @@ var clientConfig = {
   target: 'web',
   entry: './src/client',
   output: {
-    path: root('dist/client')
+    path: root('dist/public')
   },
   node: {
     global: true,
@@ -43,12 +50,27 @@ var clientConfig = {
 
 var serverConfig = {
   target: 'node',
-  entry: './src/server', // use the entry file of the node server if everything is ts rather than es5
+  // entry: './src/server', // use the entry file of the node server if everything is ts rather than es5
+  entry: {
+    'server/prerender': './src/main.prerender',
+    'server/index': './src/server'
+  },
   output: {
-    path: root('dist/server'),
+    path: root('dist'),
+    filename: '[name].js',
     libraryTarget: 'commonjs2'
   },
   externals: checkNodeImport,
+  plugins: [
+    new UniversalPagesPlugin({
+      chunk: 'server/prerender',
+      publicPath: 'public',
+      locals: {
+        origin: 'http://localhost:3000',
+        baseUrl: '/'
+      }
+    })
+  ],
   node: {
     global: true,
     __dirname: true,

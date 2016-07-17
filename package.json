@@ -9,14 +9,19 @@
   "scripts": {
     "postinstall": "typings install",
     "watch": "webpack --watch",
-    "prebuild": "rimraf dist",
+    "prebuild": "rimraf dist && npm run copy:assets",
     "build": "webpack",
     "build:prod": "webpack --progress -p",
+    "build:static": "npm run build -- --static",
     "prestart": "npm run build",
     "server": "nodemon dist/server/index.js",
+    "server:static": "http-server dist/public --cors",
+    "copy:assets": "cpy 'assets/**/*' '../dist/public' --cwd=src --parents",
     "start": "npm run server",
+    "start:static": "npm run build:static && npm run server:static",
     "predebug": "npm run build",
-    "debug": "node --debug-brk dist/server/index.js"
+    "debug": "node-nightly --inspect --debug-brk dist/server/index.js",
+    "debug:build": "node-nightly --inspect --debug-brk node_modules/.bin/webpack"
   },
   "license": "MIT",
   "contributors": [
@@ -45,6 +50,8 @@
   "devDependencies": {
     "angular2-template-loader": "^0.4.0",
     "cookie-parser": "^1.4.3",
+    "cpy-cli": "^1.0.1",
+    "js.clone": "0.0.3",
     "nodemon": "^1.9.2",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.5.2",
