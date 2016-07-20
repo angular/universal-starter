@@ -9,18 +9,18 @@ import { Home } from './home';
 // ** Example Directive
 // Notice we don't touch the Element directly
 
-// @Directive({
-//   selector: '[x-large]'
-// })
-// export class XLarge {
-//   constructor(element: ElementRef, renderer: Renderer) {
-//     // ** IMPORTANT **
-//     // we must interact with the dom through -Renderer-
-//     // for webworker/server to see the changes
-//     renderer.setElementStyle(element.nativeElement, 'fontSize', 'x-large');
-//     // ^^
-//   }
-// }
+@Directive({
+  selector: '[x-large]'
+})
+export class XLarge {
+  constructor(element: ElementRef, renderer: Renderer) {
+    // ** IMPORTANT **
+    // we must interact with the dom through -Renderer-
+    // for webworker/server to see the changes
+    renderer.setElementStyle(element.nativeElement, 'fontSize', 'x-large');
+    // ^^
+  }
+}
 
 /////////////////////////
 // ** Example Components
@@ -38,7 +38,7 @@ export class About { }
   selector: 'app', // <app></app>
   directives: [
     ...ROUTER_DIRECTIVES,
-    // XLarge
+    XLarge
   ],
   styles: [`
     * { padding:0; margin:0; }

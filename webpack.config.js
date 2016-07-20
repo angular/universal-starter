@@ -1,9 +1,11 @@
-require('angular2-universal-polyfills');
+// require('angular2-universal-polyfills');
+// require('ts-helpers');
 
 var webpack = require('webpack');
 var path = require('path');
 var EnvPlugin = require('./env_plugin');
 var UniversalPagesPlugin = require('./universal_pages_plugin');
+var UniversalPrerenderPlugin = require('./universal_prerender_plugin');
 
 
 
@@ -62,7 +64,7 @@ var serverConfig = {
   },
   externals: checkNodeImport,
   plugins: [
-    new UniversalPagesPlugin({
+    new UniversalPrerenderPlugin({
       chunk: 'server/prerender',
       publicPath: 'public',
       locals: {
@@ -70,6 +72,14 @@ var serverConfig = {
         baseUrl: '/'
       }
     })
+    // new UniversalPagesPlugin({
+    //   chunk: 'server/prerender',
+    //   publicPath: 'public',
+    //   locals: {
+    //     origin: 'http://localhost:3000',
+    //     baseUrl: '/'
+    //   }
+    // })
   ],
   node: {
     global: true,
