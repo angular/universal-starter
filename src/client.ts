@@ -12,9 +12,12 @@ enableProdMode();
 import {ngApp} from './main.browser';
 
 // on document ready bootstrap Angular 2
-document.addEventListener('DOMContentLoaded', () => {
+
+export function bootstrap() {
 
   ngApp()
     .then(prebootComplete);
 
-});
+}
+
+// document.addEventListener('DOMContentLoaded', () => bootstrap());

@@ -19,7 +19,6 @@ var commonConfig = {
     ],
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(true)
   ]
 
 };
@@ -29,7 +28,9 @@ var clientConfig = {
   target: 'web',
   entry: './src/client',
   output: {
-    path: root('dist/client')
+    path: root('dist/client'),
+    library: 'APP',
+    libraryTarget: 'var',
   },
   node: {
     global: true,

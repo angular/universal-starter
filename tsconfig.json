@@ -5,13 +5,31 @@
     "target": "es5",
     "module": "commonjs",
     "removeComments": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "lib": ["es5", "dom"],
+    "strictNullChecks": false,
+    "baseUrl": "./src",
+    "paths": [
+    ],
+    "types": [
+      "core-js",
+      "hammerjs",
+      "jasmine",
+      "node",
+      "protractor",
+      "selenium-webdriver",
+      "source-map",
+      "uglify-js",
+      "webpack"
+    ]
   },
   "exclude": [
-    "typings/main.d.ts",
-    "typings/main",
     "node_modules"
   ],
+  "awesomeTypescriptLoaderOptions": {
+    "forkChecker": true,
+    "useWebpackText": true
+  },
   "compileOnSave": false,
   "buildOnSave": false,
   "atom": { "rewriteTsconfig": false }
