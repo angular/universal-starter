@@ -64,15 +64,7 @@ var serverConfig = {
   },
   externals: checkNodeImport,
   plugins: [
-    new UniversalPrerenderPlugin({
-      chunk: 'server/prerender',
-      publicPath: 'public',
-      locals: {
-        origin: 'http://localhost:3000',
-        baseUrl: '/'
-      }
-    })
-    // new UniversalPagesPlugin({
+    // new UniversalPrerenderPlugin({
     //   chunk: 'server/prerender',
     //   publicPath: 'public',
     //   locals: {
@@ -80,6 +72,14 @@ var serverConfig = {
     //     baseUrl: '/'
     //   }
     // })
+    new UniversalPagesPlugin({
+      chunk: 'server/prerender',
+      publicPath: 'public',
+      locals: {
+        origin: 'http://localhost:3000',
+        baseUrl: '/'
+      }
+    })
   ],
   node: {
     global: true,

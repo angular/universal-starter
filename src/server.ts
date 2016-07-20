@@ -42,12 +42,6 @@ app.get('/about/*', ngApp);
 app.get('/home', ngApp);
 app.get('/home/*', ngApp);
 
-// use indexFile over ngApp only when there is too much load on the server
-function indexFile(req, res) {
-  // when there is too much load on the server just send
-  // the index.html without prerendering for client-only
-  res.sendFile('/index.html', {root: __dirname});
-}
 
 app.get('*', function(req, res) {
   res.setHeader('Content-Type', 'application/json');

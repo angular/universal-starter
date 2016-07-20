@@ -109,8 +109,8 @@ UniversalPagesWebpackPlugin.prototype.apply = function(compiler) {
         }
 
         return Promise
-          .resolve(bootloader(locals))
-          // .resolve(render.main(BOOTLOADER, locals))
+          // .resolve(bootloader(locals))
+          .resolve(render.main(BOOTLOADER, locals))
           .then(function(output) {
             if (isPresent(self.publicPath)) {
               outputFileName = path.join(self.publicPath, outputFileName);
