@@ -58,6 +58,6 @@ app.get('*', function(req, res) {
 });
 
 // Server
-app.listen(3000, () => {
-  console.log('Listening on: http://localhost:3000');
+let server = app.listen(process.env.PORT || 3000, () => {
+  console.log(`Listening on: http://localhost:${server.address().port}`);
 });
