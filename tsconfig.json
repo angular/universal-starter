@@ -7,9 +7,11 @@
     "removeComments": true,
     "sourceMap": true
   },
+  "include": [
+    "node_modules/@types/**/*.d.ts",
+    "src/**/*.ts"
+  ],
   "exclude": [
-    "typings/main.d.ts",
-    "typings/main",
     "node_modules"
   ],
   "compileOnSave": false,
