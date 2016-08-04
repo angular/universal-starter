@@ -23,7 +23,8 @@
     "AngularClass <hello@angularclass.com>",
     "PatrickJS <patrick@angularclass.com>",
     "Jeff Whelpley <jeff@gethuman.com>",
-    "Jeff Cross <crossj@google.com>"
+    "Jeff Cross <crossj@google.com>",
+    "Mark Pieszak <mpieszak84@gmail.com>"
   ],
   "dependencies": {
     "@angular/common": "2.0.0-rc.4",
@@ -33,10 +34,10 @@
     "@angular/platform-browser": "2.0.0-rc.4",
     "@angular/platform-browser-dynamic": "2.0.0-rc.4",
     "@angular/platform-server": "2.0.0-rc.4",
-    "@angular/router": "3.0.0-alpha.8",
+    "@angular/router": "3.0.0-beta.2",
     "angular2-universal": "~0.104.5",
     "parse5": "^1.5.0",
-    "body-parser": "^1.15.1",
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "methods": "~1.1.2",
     "preboot": "^2.1.2",
@@ -45,15 +46,15 @@
   "devDependencies": {
     "angular2-template-loader": "^0.4.0",
     "cookie-parser": "^1.4.3",
-    "nodemon": "^1.9.2",
+    "nodemon": "^1.10.0",
     "raw-loader": "^0.5.1",
-    "rimraf": "^2.5.2",
+    "rimraf": "^2.5.4",
     "source-map-loader": "^0.1.5",
     "ts-loader": "^0.8.2",
-    "typescript": "^1.8.9",
+    "typescript": "^1.8.10",
     "typings": "~1.0.5",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.0",
-    "webpack-merge": "^0.13.0"
+    "webpack-merge": "^0.14.1"
   }
 }
