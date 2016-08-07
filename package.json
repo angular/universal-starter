@@ -15,6 +15,7 @@
     "server": "nodemon dist/server/index.js",
     "start": "npm run server",
     "predebug": "npm run build",
+    "debug:build": "node-nightly --inspect --debug-brk node_modules/webpack/bin/webpack.js",
     "debug": "node --debug-brk dist/server/index.js"
   },
   "license": "MIT",
@@ -56,9 +57,8 @@
     "nodemon": "^1.9.2",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.5.2",
-    "source-map-loader": "^0.1.5",
     "ts-loader": "^0.8.2",
-    "typescript": "^2.0.0",
+    "typescript": "^2.0.0-beta",
     "webpack": "^2.1.0-beta.20",
     "webpack-dev-server": "^2.1.0-beta.0",
     "webpack-merge": "^0.13.0"

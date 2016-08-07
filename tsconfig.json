@@ -5,14 +5,12 @@
     "target": "es5",
     "module": "commonjs",
     "removeComments": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "lib": ["es6", "dom"]
   },
-  "include": [
-    "node_modules/@types/**/*.d.ts",
-    "src/**/*.ts"
-  ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "!node_modules/@types/**/*.d.ts"
   ],
   "compileOnSave": false,
   "buildOnSave": false,

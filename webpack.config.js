@@ -13,13 +13,8 @@ var commonConfig = {
       { test: /\.css$/, loader: 'raw-loader' },
       { test: /\.json$/, loader: 'raw-loader' }
     ],
-    preLoaders: [
-      // needed to lower the filesize of angular due to inline source-maps
-      { test: /\.js$/, loader: 'source-map-loader' }
-    ],
   },
   plugins: [
-    new webpack.optimize.OccurrenceOrderPlugin(true)
   ]
 
 };
