@@ -58,7 +58,6 @@
     "nodemon": "^1.10.0",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.5.4",
-    "source-map-loader": "^0.1.5",
     "ts-loader": "^0.8.2",
     "typescript": "^2.0.0-beta",
     "webpack": "^2.1.0-beta.20",
