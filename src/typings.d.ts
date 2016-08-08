@@ -52,7 +52,8 @@ interface WebpackRequire {
 
 
 interface ErrorStackTraceLimit {
-  stackTraceLimit: number;
+  //stackTraceLimit: number;
+  stackTraceLimit(limit: number): void
 }
 
 
