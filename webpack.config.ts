@@ -1,11 +1,15 @@
 var webpack = require('webpack');
 var path = require('path');
+var resolveNgRoute = require('@angularclass/resolve-angular-routes');
+
 
 var commonConfig = {
   resolve: {
     extensions: ['', '.ts', '.js', '.json']
   },
   module: {
+    preLoaders: [
+    ],
     loaders: [
       // TypeScript
       { test: /\.ts$/, loaders: ['ts-loader', 'angular2-template-loader'] },
@@ -15,6 +19,12 @@ var commonConfig = {
     ],
   },
   plugins: [
+    new webpack.ContextReplacementPlugin(
+      // The (\\|\/) piece accounts for path separators in *nix and Windows
+      /angular(\\|\/)core(\\|\/)src(\\|\/)linker/,
+      root('./src'),
+      resolveNgRoute(root('./src'))
+    )
   ]
 
 };
