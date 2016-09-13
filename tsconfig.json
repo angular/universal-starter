@@ -1,16 +1,18 @@
 {
   "compilerOptions": {
+    "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es5",
     "module": "commonjs",
-    "removeComments": true,
+    "moduleResolution": "node",
+    "outDir": "dist",
     "sourceMap": true,
+    "sourceRoot": "src",
+    "target": "es5",
     "lib": ["es6", "dom"]
   },
   "exclude": [
-    "node_modules",
-    "!node_modules/@types/**/*.d.ts"
+    "node_modules"
   ],
   "compileOnSave": false,
   "buildOnSave": false,
