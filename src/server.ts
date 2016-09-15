@@ -18,8 +18,8 @@ const app = express();
 const ROOT = path.join(path.resolve(__dirname, '..'));
 
 // Express View
-import { main } from './main.node';
-app.engine('.html', createEngine({ main }));
+import { MainModule } from './main.node';
+app.engine('.html', createEngine({}));
 app.set('views', __dirname);
 app.set('view engine', 'html');
 
@@ -35,13 +35,21 @@ import { serverApi } from './backend/api';
 // Our API for demos only
 app.get('/data.json', serverApi);
 
+function ngApp(req, res) {
+  res.render('index', {
+    req,
+    res,
+    ngModule: MainModule,
+    preboot: false
+  })
+}
 // Routes with html5pushstate
 // ensure routes match client-side-app
-app.get('/', (req, res) => res.render('index', {req, res}));
-app.get('/about', (req, res) => res.render('index', {req, res}));
-app.get('/about/*', (req, res) => res.render('index', {req, res}));
-app.get('/home', (req, res) => res.render('index', {req, res}));
-app.get('/home/*', (req, res) => res.render('index', {req, res}));
+app.get('/', ngApp);
+app.get('/about', ngApp);
+app.get('/about/*', ngApp);
+app.get('/home', ngApp);
+app.get('/home/*', ngApp);
 
 
 app.get('*', function(req, res) {
