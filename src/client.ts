@@ -10,9 +10,11 @@ enableProdMode();
 
 import { MainModule } from './main.browser';
 
+const platformRef = platformUniversalDynamic();
+
 // on document ready bootstrap Angular 2
 document.addEventListener('DOMContentLoaded', () => {
 
-  platformUniversalDynamic().bootstrapModule(MainModule);
+  platformRef.bootstrapModule(MainModule);
 
 });
