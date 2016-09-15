@@ -43,7 +43,7 @@ function ngApp(req, res) {
     res,
     ngModule: MainModule,
     preboot: false
-  })
+  });
 }
 // Routes with html5pushstate
 // ensure routes match client-side-app

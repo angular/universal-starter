@@ -75,7 +75,7 @@ var defaultConfig = {
     publicPath: path.resolve(__dirname),
     filename: 'index.js'
   }
-}
+};
 
 
 
@@ -86,7 +86,7 @@ module.exports = [
 
   // Server
   webpackMerge({}, defaultConfig, commonConfig, serverConfig)
-]
+];
 
 // Helpers
 function checkNodeImport(context, request, cb) {
