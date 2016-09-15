@@ -9,7 +9,17 @@
     "sourceMap": true,
     "sourceRoot": "src",
     "target": "es5",
-    "lib": ["es6", "dom"]
+    "lib": ["es6", "dom"],
+    "types": [
+      "body",
+      "compression",
+      "cookie",
+      "express",
+      "express",
+      "mime",
+      "node",
+      "serve"
+    ]
   },
   "exclude": [
     "node_modules"
