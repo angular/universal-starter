@@ -11,6 +11,9 @@ import { enableProdMode } from '@angular/core';
 // Angular 2 Universal
 import { createEngine } from 'angular2-express-engine';
 
+// App
+import { MainModule } from './main.node';
+
 // enable prod for faster renders
 enableProdMode();
 
@@ -18,7 +21,6 @@ const app = express();
 const ROOT = path.join(path.resolve(__dirname, '..'));
 
 // Express View
-import { MainModule } from './main.node';
 app.engine('.html', createEngine());
 app.set('views', __dirname);
 app.set('view engine', 'html');

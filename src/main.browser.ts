@@ -8,7 +8,7 @@ import { App } from './app/app';
   bootstrap: [ App ],
   declarations: [ App ],
   imports: [
-    UniversalModule,
+    UniversalModule, // BrowserModule, HttpModule, and JsonpModule are included
     FormsModule
   ]
 })
