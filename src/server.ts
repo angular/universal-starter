@@ -42,7 +42,10 @@ function ngApp(req, res) {
     req,
     res,
     ngModule: MainModule,
-    preboot: false
+    preboot: false,
+    baseUrl: '/',
+    requestUrl: req.originalUrl,
+    originUrl: req.hostname
   });
 }
 // Routes with html5pushstate
