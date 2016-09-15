@@ -11,14 +11,14 @@
     "target": "es5",
     "lib": ["es6", "dom"],
     "types": [
-      "body",
+      "body-parser",
       "compression",
-      "cookie",
+      "cookie-parser",
       "express",
       "express",
       "mime",
       "node",
-      "serve"
+      "serve-static"
     ]
   },
   "exclude": [
