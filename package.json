@@ -58,6 +58,7 @@
     "@types/serve-static": "^1.7.27",
     "angular2-template-loader": "^0.4.0",
     "cookie-parser": "^1.4.3",
+    "json-loader": "^0.5.4",
     "nodemon": "^1.10.0",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.5.4",
