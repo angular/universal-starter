@@ -3,8 +3,7 @@
 
 A minimal Angular 2 starter for Universal JavaScript using TypeScript and Webpack
 
-> If you're looking for the repo from the AngularConnect talk look in the [angular-connect branch](https://github.com/angular/universal-starter/tree/angular-connect)  
-If you're looking for a SystemJS version of the repo look in the [systemjs branch](https://github.com/angular/universal-starter/tree/systemjs)
+> If you're looking for the universal repo go to [angular/universal](github.com/angular/universal)  
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
