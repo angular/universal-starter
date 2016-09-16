@@ -15,7 +15,7 @@
       "compression",
       "cookie-parser",
       "express",
-      "express",
+      "express-serve-static-core",
       "mime",
       "node",
       "serve-static"
