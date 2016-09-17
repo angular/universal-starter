@@ -45,7 +45,7 @@ function ngApp(req, res) {
     preboot: false,
     baseUrl: '/',
     requestUrl: req.originalUrl,
-    originUrl: req.hostname
+    originUrl: 'http://localhost:3000'
   });
 }
 // Routes with html5pushstate
