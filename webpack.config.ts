@@ -8,8 +8,6 @@ var commonConfig = {
     extensions: ['', '.ts', '.js', '.json']
   },
   module: {
-    preLoaders: [
-    ],
     loaders: [
       // TypeScript
       { test: /\.ts$/, loaders: ['ts-loader', 'angular2-template-loader'] },
@@ -53,7 +51,16 @@ var serverConfig = {
     path: root('dist/server'),
     libraryTarget: 'commonjs2'
   },
-  externals: checkNodeImport,
+  module: {
+    preLoaders: [
+      { test: require.resolve('@angular2-material/card'), loader: "imports-loader?window=>global" },
+      { test: require.resolve('@angular2-material/core'), loader: "imports-loader?window=>global" }
+    ],
+  },
+  externals: excludeClientPackages([
+    '@angular2-material/card',
+    '@angular2-material/core'
+  ]),
   node: {
     global: true,
     __dirname: true,
@@ -88,6 +95,14 @@ module.exports = [
   webpackMerge({}, defaultConfig, commonConfig, serverConfig)
 ];
 
+function excludeClientPackages(packages) {
+  return function(context, request, cb) {
+    if (packages && packages.indexOf(request) !== -1) {
+      return cb();
+    }
+    return checkNodeImport(context, request, cb);
+  };
+}
 // Helpers
 function checkNodeImport(context, request, cb) {
   if (!path.isAbsolute(request) && request.charAt(0) !== '.') {
