@@ -18,7 +18,8 @@
       "express-serve-static-core",
       "mime",
       "node",
-      "serve-static"
+      "serve-static",
+      "hammerjs"
     ]
   },
   "exclude": [
