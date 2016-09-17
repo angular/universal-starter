@@ -47,9 +47,6 @@
     "zone.js": "~0.6.21"
   },
   "devDependencies": {
-    "@angular2-material/button": "^2.0.0-alpha.8-2",
-    "@angular2-material/card": "^2.0.0-alpha.8-2",
-    "@angular2-material/core": "^2.0.0-alpha.8-2",
     "@angularclass/resolve-angular-routes": "^1.0.9",
     "@types/body-parser": "0.0.29",
     "@types/compression": "0.0.29",
