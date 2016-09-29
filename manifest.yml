@@ -1,0 +1,5 @@
+applications:
+- name: universal-starter
+  random-route: true
+  env:
+    NPM_CONFIG_PRODUCTION: false
