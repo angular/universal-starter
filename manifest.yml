@@ -1,0 +1,4 @@
+applications:
+- name: universal-starter
+  env:
+    NPM_CONFIG_PRODUCTION: false
