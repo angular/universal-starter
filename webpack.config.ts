@@ -5,7 +5,7 @@ var resolveNgRoute = require('@angularclass/resolve-angular-routes');
 
 var commonConfig = {
   resolve: {
-    extensions: ['', '.ts', '.js', '.json']
+    extensions: ['.ts', '.js', '.json']
   },
   module: {
     loaders: [
@@ -52,7 +52,7 @@ var serverConfig = {
     libraryTarget: 'commonjs2'
   },
   module: {
-    preLoaders: [
+    loaders: [
       { test: /angular2-material/, loader: "imports-loader?window=>global" }
     ],
   },
@@ -92,9 +92,6 @@ var serverConfig = {
 // Default config
 var defaultConfig = {
   context: __dirname,
-  resolve: {
-    root: root('/src')
-  },
   output: {
     publicPath: path.resolve(__dirname),
     filename: 'index.js'
