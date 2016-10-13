@@ -1,6 +1,5 @@
 var webpack = require('webpack');
 var path = require('path');
-var resolveNgRoute = require('@angularclass/resolve-angular-routes');
 
 
 var commonConfig = {
@@ -21,7 +20,7 @@ var commonConfig = {
       // The (\\|\/) piece accounts for path separators in *nix and Windows
       /angular(\\|\/)core(\\|\/)src(\\|\/)linker/,
       root('./src'),
-      resolveNgRoute(root('./src'))
+      {}
     )
   ]
 
