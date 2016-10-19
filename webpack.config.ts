@@ -1,7 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
 
-
 var commonConfig = {
   resolve: {
     extensions: ['.ts', '.js', '.json']
@@ -22,6 +21,18 @@ var commonConfig = {
       root('./src'),
       {}
     )
+
+    // To use gzip, you can run 'npm install compression-webpack-plugin --save-dev'
+    // add 'var CompressionPlugin = require("compression-webpack-plugin");' on the top
+    // and comment out below codes
+    //
+    // new CompressionPlugin({
+    //   asset: "[path].gz[query]",
+    //   algorithm: "gzip",
+    //   test: /\.js$|\.css$|\.html$/,
+    //   threshold: 10240,
+    //   minRatio: 0.8
+    // })
   ]
 
 };
