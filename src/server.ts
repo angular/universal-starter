@@ -21,7 +21,10 @@ const app = express();
 const ROOT = path.join(path.resolve(__dirname, '..'));
 
 // Express View
-app.engine('.html', createEngine({}));
+app.engine('.html', createEngine({
+  precompile: true,
+  ngModule: MainModule
+}));
 app.set('views', __dirname);
 app.set('view engine', 'html');
 
@@ -41,7 +44,6 @@ function ngApp(req, res) {
   res.render('index', {
     req,
     res,
-    ngModule: MainModule,
     preboot: false,
     baseUrl: '/',
     requestUrl: req.originalUrl,
