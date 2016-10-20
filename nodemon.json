@@ -1,0 +1,7 @@
+{
+  "watch": [
+    "dist",
+    "src/index.html"
+  ],
+  "ext" : "js ts json html"
+}
