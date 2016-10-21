@@ -43,7 +43,6 @@
     "angular2-universal": "~2.1.0-rc.1",
     "angular2-universal-polyfills": "~2.1.0-rc.1",
     "body-parser": "^1.15.2",
-    "compression-webpack-plugin": "^0.3.2",
     "express": "^4.14.0",
     "methods": "~1.1.2",
     "preboot": "~4.5.2",

@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
-const CompressionPlugin = require("compression-webpack-plugin");
+
 var commonConfig = {
   resolve: {
     extensions: ['.ts', '.js', '.json']
@@ -44,29 +44,6 @@ var clientConfig = {
   output: {
     path: root('dist/client')
   },
-  plugins:[
-    new webpack.optimize.UglifyJsPlugin({
-      mangle: true,
-      compress: {
-        sequences: true,
-        dead_code: true,
-        conditionals: true,
-        booleans: true,
-        unused: true,
-        if_return: true,
-        join_vars: true,
-        drop_console: true,
-        warnings: false,
-      },
-    }),
-    new CompressionPlugin({
-      asset: "[file].gz",
-      algorithm: "gzip",
-      regExp: /\.js$|\.html$|\.css$/,
-      threshold: 1024,
-      minRatio: 0.9,
-    })
-  ],
   node: {
     global: true,
     __dirname: true,

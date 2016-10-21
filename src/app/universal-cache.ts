@@ -27,7 +27,7 @@ export class Cache {
     }
   }
   has(key: string): boolean {
-    return this._cache[key];
+    return this._cache.hasOwnProperty(key);
   }
   set(key: string, value: any): void {
     this._cache[key] = value;
