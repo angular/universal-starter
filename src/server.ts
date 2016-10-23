@@ -1,4 +1,6 @@
-// the polyfills must be the first thing imported in node.js
+// the polyfills must be one of the first things imported in node.js.
+// The only modules to be imported higher - node modules with es6-promise 3.x or other Promise polyfill dependency
+// (rule of thumb: do it if you have zone.js exception that it has been overwritten)
 import 'angular2-universal-polyfills';
 
 import * as path from 'path';
