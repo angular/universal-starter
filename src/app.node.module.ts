@@ -1,3 +1,6 @@
+import { About } from './app/about/about.component';
+import { HomeModule } from './app/home/home.module';
+import { AboutModule } from './app/about/about.module';
 // Fix Material Support
 import { __platform_browser_private__ } from '@angular/platform-browser';
 function universalMaterialSupports(eventName: string): boolean { return Boolean(this.isCustomEvent(eventName)); }
@@ -8,21 +11,25 @@ __platform_browser_private__.HammerGesturesPlugin.prototype.supports = universal
 
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { UniversalModule, isBrowser, isNode } from 'angular2-universal/node'; // for AoT we need to manually split universal packages
 
-import { App, Home } from './app/app';
+import { App } from './app/app';
+import { Home } from './app/home/home.component';
 import { Cache } from './app/universal-cache';
+const routes:Routes=[
+      {path: '', component: Home},
+      {path: 'about', component: About},
+      {path: 'home', component: Home}
+];
 
 @NgModule({
   bootstrap: [ App ],
-  declarations: [ App, Home ],
+  declarations: [ App ],
   imports: [
     UniversalModule, // NodeModule, NodeHttpModule, and NodeJsonpModule are included
-    FormsModule,
-    RouterModule.forRoot([
-      { path: '', component: Home, pathMatch: 'full' }
-    ])
+    FormsModule,AboutModule,HomeModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [
     { provide: 'isBrowser', useValue: isBrowser },
