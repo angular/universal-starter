@@ -1,7 +1,7 @@
-import { About } from './app/about/about.component';
-import { HomeModule } from './app/home/home.module';
-import { AboutModule } from './app/about/about.module';
-import { Home } from './app/home/home.component';
+import { About } from './about/about.component';
+import { HomeModule } from './home/home.module';
+import { AboutModule } from './about/about.module';
+import { Home } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';

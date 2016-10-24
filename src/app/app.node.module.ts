@@ -1,6 +1,6 @@
-import { About } from './app/about/about.component';
-import { HomeModule } from './app/home/home.module';
-import { AboutModule } from './app/about/about.module';
+import { About } from './about/about.component';
+import { HomeModule } from './home/home.module';
+import { AboutModule } from './about/about.module';
 // Fix Material Support
 import { __platform_browser_private__ } from '@angular/platform-browser';
 function universalMaterialSupports(eventName: string): boolean { return Boolean(this.isCustomEvent(eventName)); }
