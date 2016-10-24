@@ -18,7 +18,9 @@ import { Cache } from './universal-cache';
   declarations: [ AppComponent ],
   imports: [
     UniversalModule, // BrowserModule, HttpModule, and JsonpModule are included
-    FormsModule,HomeModule,AboutModule,
+    FormsModule,
+    HomeModule,
+    AboutModule,
     RouterModule.forRoot(routes)
   ],
   providers: [
