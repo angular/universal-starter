@@ -10,7 +10,6 @@ import { Component } from '@angular/core';
   <router-outlet></router-outlet>
   `
 })
-export class App {
+export class AppComponent {
 
 }
-

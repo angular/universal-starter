@@ -14,21 +14,17 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { UniversalModule, isBrowser, isNode } from 'angular2-universal/node'; // for AoT we need to manually split universal packages
 
-import { App } from './app/app';
-import { Home } from './app/home/home.component';
+import { AppComponent } from './app/app.component';
+import { HomeComponent } from './app/home.component';
+import { routes } from './app/app.routes';
 import { Cache } from './app/universal-cache';
-const routes:Routes=[
-      {path: '', component: Home},
-      {path: 'about', component: About},
-      {path: 'home', component: Home}
-];
 
 @NgModule({
-  bootstrap: [ App ],
-  declarations: [ App ],
+  bootstrap: [ AppComponent ],
+  declarations: [ AppComponent ],
   imports: [
     UniversalModule, // NodeModule, NodeHttpModule, and NodeJsonpModule are included
-    FormsModule,AboutModule,HomeModule,
+    FormsModule,HomeModule,AboutModule,
     RouterModule.forRoot(routes)
   ],
   providers: [

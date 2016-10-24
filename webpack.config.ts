@@ -20,7 +20,7 @@ var commonConfig = {
       /angular(\\|\/)core(\\|\/)src(\\|\/)linker/,
       root('./src'),
       {}
-    )
+    ),
 
     // To use gzip, you can run 'npm install compression-webpack-plugin --save-dev'
     // add 'var CompressionPlugin = require("compression-webpack-plugin");' on the top
