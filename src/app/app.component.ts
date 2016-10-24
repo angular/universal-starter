@@ -7,14 +7,6 @@ import { Component } from '@angular/core';
   <router-outlet></router-outlet>
   `
 })
-export class App {
-
-}
-
-@Component({
-  selector: 'home',
-  template: 'Home component'
-})
-export class Home {
+export class AppComponent {
 
 }
