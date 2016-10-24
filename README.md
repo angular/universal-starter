@@ -25,9 +25,9 @@ A minimal Angular 2 starter for Universal JavaScript using TypeScript 2 and Webp
  
 ## Upcoming Universal features
 
+ - SeoServices
  - Universal fixes for Angular Core 2.1.1
  - AoT funcionality is still a *work-in-progress*, but is available as of 2.1.0-rc1
- - Improved HtmlComponent Universal functionality
 
 ## Installation
 
