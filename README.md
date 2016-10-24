@@ -14,6 +14,21 @@ A minimal Angular 2 starter for Universal JavaScript using TypeScript 2 and Webp
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
+## Universal "Gotchas"
+
+ - To use `templateUrl` or `stylesUrl` you must use **`angular2-template-loader`** in your TS loaders.
+    - This is already setup within this starter repo. Look at the webpack.config file here for details & implementation.
+ - **`window`** & **`document`** do not exist on the server - so using them, or any library that uses them (jQuery for example) will not work.
+    - If you need to use them, consider limiting them to only your main.client and wrapping them situationally with the imported *isBrowser / isNode* features from Universal.  `import { isBrowser, isNode } from 'angular2-universal';
+ - The application runs XHR requests on the server & once again on the Client-side (when the application bootstraps)
+    - Use a [UniversalCache](https://github.com/angular/universal-starter/blob/master/src/app/universal-cache.ts) to save certain requests so they aren't re-ran again on the Client.
+ 
+## Upcoming Universal features
+
+ - SeoServices
+ - Universal fixes for Angular Core 2.1.1
+ - AoT funcionality is still a *work-in-progress*, but is available as of 2.1.0-rc1
+
 ## Installation
 
 * `npm install`
