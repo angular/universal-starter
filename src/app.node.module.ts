@@ -8,7 +8,6 @@ __platform_browser_private__.HammerGesturesPlugin.prototype.supports = universal
 // End Fix Material Support
 
 
-
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
