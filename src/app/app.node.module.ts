@@ -5,24 +5,27 @@ __platform_browser_private__.HammerGesturesPlugin.prototype.supports = universal
 // End Fix Material Support
 
 
-
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 import { UniversalModule, isBrowser, isNode } from 'angular2-universal/node'; // for AoT we need to manually split universal packages
 
-import { App, Home } from './app/app';
-import { Cache } from './app/universal-cache';
+import { HomeModule } from './home/home.module';
+import { AboutModule } from './about/about.module';
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { Cache } from './universal-cache';
 
 @NgModule({
-  bootstrap: [ App ],
-  declarations: [ App, Home ],
+  bootstrap: [ AppComponent ],
+  declarations: [ AppComponent ],
   imports: [
     UniversalModule, // NodeModule, NodeHttpModule, and NodeJsonpModule are included
     FormsModule,
-    RouterModule.forRoot([
-      { path: '', component: Home, pathMatch: 'full' }
-    ])
+
+    HomeModule,
+    AboutModule,
+
+    AppRoutingModule
   ],
   providers: [
     { provide: 'isBrowser', useValue: isBrowser },

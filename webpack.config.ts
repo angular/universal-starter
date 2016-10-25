@@ -8,7 +8,7 @@ var commonConfig = {
   module: {
     loaders: [
       // TypeScript
-      { test: /\.ts$/, loaders: ['ts-loader', 'angular2-template-loader'] },
+      { test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader'] },
       { test: /\.html$/, loader: 'raw-loader' },
       { test: /\.css$/, loader: 'raw-loader' },
       { test: /\.json$/, loader: 'json-loader' }
@@ -20,7 +20,7 @@ var commonConfig = {
       /angular(\\|\/)core(\\|\/)src(\\|\/)linker/,
       root('./src'),
       {}
-    )
+    ),
 
     // To use gzip, you can run 'npm install compression-webpack-plugin --save-dev'
     // add 'var CompressionPlugin = require("compression-webpack-plugin");' on the top
