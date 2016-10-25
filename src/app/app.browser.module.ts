@@ -1,17 +1,13 @@
-import { About } from './about/about.component';
-import { HomeModule } from './home/home.module';
-import { AboutModule } from './about/about.module';
-import { Home } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { UniversalModule, isBrowser, isNode } from 'angular2-universal/browser'; // for AoT we need to manually split universal packages
 
+import { HomeModule } from './home/home.module';
+import { AboutModule } from './about/about.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home.component';
-import { routes } from './app.routes';
+import { AppRoutingModule } from './app-routing.module';
 import { Cache } from './universal-cache';
-
 
 @NgModule({
   bootstrap: [ AppComponent ],
@@ -21,7 +17,9 @@ import { Cache } from './universal-cache';
     FormsModule,
     HomeModule,
     AboutModule,
-    RouterModule.forRoot(routes)
+    RouterModule,
+
+    AppRoutingModule
   ],
   providers: [
     { provide: 'isBrowser', useValue: isBrowser },
