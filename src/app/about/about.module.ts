@@ -1,14 +1,14 @@
-import { About } from './about.component';
-
 import { NgModule } from '@angular/core';
-import { RouterModule ,Routes} from '@angular/router';
 
-const routes:Routes=[];
+import { AboutComponent } from './about.component';
+import { AboutRoutingModule } from './about-routing.module';
 
 @NgModule({
-  declarations: [ About ],
   imports: [
-    RouterModule.forChild(routes)
+    AboutRoutingModule
+  ],
+  declarations: [
+    AboutComponent
   ]
 })
-export class AboutModule {}
+export class AboutModule { }
