@@ -3,7 +3,7 @@ var path = require('path');
 
 var commonConfig = {
   resolve: {
-    extensions: ['.ts', '.js', '.json']
+    extensions: ['', '.webpack.js', '.web.js', '.ts', '.js']
   },
   module: {
     loaders: [
@@ -25,7 +25,6 @@ var commonConfig = {
     // To use gzip, you can run 'npm install compression-webpack-plugin --save-dev'
     // add 'var CompressionPlugin = require("compression-webpack-plugin");' on the top
     // and comment out below codes
-    //
     // new CompressionPlugin({
     //   asset: "[path].gz[query]",
     //   algorithm: "gzip",
@@ -68,16 +67,6 @@ var serverConfig = {
   },
   externals: includeClientPackages([
     // include these client packages so we can transform their source with webpack loaders
-    '@angular/common',
-    '@angular/compiler',
-    '@angular/core',
-    '@angular/forms',
-    '@angular/http',
-    '@angular/platform-browser',
-    '@angular/platform-browser-dynamic',
-    '@angular/platform-server',
-    '@angular/router',
-
     '@angular2-material/button',
     '@angular2-material/button',
     '@angular2-material/card',
