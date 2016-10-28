@@ -68,15 +68,16 @@ var serverConfig = {
   },
   externals: includeClientPackages([
     // include these client packages so we can transform their source with webpack loaders
-    '@angular/common',
-    '@angular/compiler',
-    '@angular/core',
-    '@angular/forms',
-    '@angular/http',
-    '@angular/platform-browser',
-    '@angular/platform-browser-dynamic',
-    '@angular/platform-server',
-    '@angular/router',
+
+    // '@angular/common',
+    // '@angular/compiler',
+    // '@angular/core',
+    // '@angular/forms',
+    // '@angular/http',
+    // '@angular/platform-browser',
+    // '@angular/platform-browser-dynamic',
+    // '@angular/platform-server',
+    // '@angular/router',
 
     '@angular2-material/button',
     '@angular2-material/button',
