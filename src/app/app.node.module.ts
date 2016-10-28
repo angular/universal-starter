@@ -16,8 +16,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { Cache } from './universal-cache';
 
 @NgModule({
-  bootstrap: [ AppComponent ],
-  declarations: [ AppComponent ],
+  bootstrap: [AppComponent],
+  declarations: [AppComponent],
   imports: [
     UniversalModule, // NodeModule, NodeHttpModule, and NodeJsonpModule are included
     FormsModule,
