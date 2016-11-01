@@ -5,7 +5,7 @@ import 'angular2-universal-polyfills';
 
 // Fix Universal Style
 import { NodeDomRootRenderer, NodeDomRenderer } from 'angular2-universal/node';
-NodeDomRootRenderer.prototype.renderComponent = function renderComponentFix(componentProto: RenderComponentType) {
+NodeDomRootRenderer.prototype.renderComponent = function renderComponentFix(componentProto: any) {
   return new NodeDomRenderer(this, componentProto, this._animationDriver);
 };
 // End Fix Universal Style
