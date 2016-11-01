@@ -19,7 +19,9 @@ var commonConfig = {
       // The (\\|\/) piece accounts for path separators in *nix and Windows
       /angular(\\|\/)core(\\|\/)src(\\|\/)linker/,
       root('./src'),
-      {}
+      {
+        // your Angular Async Route paths relative to this root directory
+      }
     ),
 
     // To use gzip, you can run 'npm install compression-webpack-plugin --save-dev'
@@ -104,7 +106,7 @@ var serverConfig = {
     __dirname: true,
     __filename: true,
     process: true,
-    Buffer: true
+    Buffer: false
   }
 };
 
