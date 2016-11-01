@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const MODULES = [
+  // Do NOT include UniversalModule or HttpModule here
   CommonModule,
   RouterModule,
   FormsModule,
@@ -20,18 +21,18 @@ const COMPONENTS = [
 
 @NgModule({
   imports: [
-    MODULES
+    ...MODULES
   ],
   declarations: [
-    PIPES,
-    COMPONENTS
+    ...PIPES,
+    ...COMPONENTS
   ],
   providers: [
   ],
   exports: [
-    MODULES,
-    PIPES,
-    COMPONENTS
+    ...MODULES,
+    ...PIPES,
+    ...COMPONENTS
   ]
 })
 export class SharedModule { }
