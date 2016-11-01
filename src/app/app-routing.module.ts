@@ -7,8 +7,5 @@ import { RouterModule } from '@angular/router';
       { path: '', redirectTo: '/home', pathMatch: 'full' }
     ])
   ],
-  exports: [
-    RouterModule
-  ]
 })
 export class AppRoutingModule { }
