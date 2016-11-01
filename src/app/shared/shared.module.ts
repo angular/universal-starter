@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const MODULES = [
-  // Do NOT include UniversalModule or HttpModule here
+  // Do NOT include UniversalModule, HttpModule, or JsonpModule here
   CommonModule,
   RouterModule,
   FormsModule,
