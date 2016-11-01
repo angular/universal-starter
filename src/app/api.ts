@@ -44,7 +44,7 @@ export class ApiService {
 @Injectable()
 export class ModelService {
 
-  constructor(public _api: ApiService, public _cache: Cache) {
+  constructor(public _api: ApiService, public _cache: CacheService) {
 
   }
 
