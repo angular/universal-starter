@@ -3,6 +3,13 @@
 // (rule of thumb: do it if you have zone.js exception that it has been overwritten)
 import 'angular2-universal-polyfills';
 
+// Fix Universal Style
+import { NodeDomRootRenderer, NodeDomRenderer } from 'angular2-universal/node';
+NodeDomRootRenderer.prototype.renderComponent = function renderComponentFix(componentProto: RenderComponentType) {
+  return new NodeDomRenderer(this, componentProto, this._animationDriver);
+};
+// End Fix Universal Style
+
 import * as path from 'path';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
