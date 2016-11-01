@@ -1,59 +1,85 @@
-import { Injectable, Inject } from '@angular/core';
-
-export function rehydrateCache(defaultValue) {
-  const win: any = window;
-  if (win['UNIVERSAL_CACHE'] && win['UNIVERSAL_CACHE']['Cache']) {
-    let serverCache = defaultValue;
-    try {
-      serverCache = JSON.parse(win['UNIVERSAL_CACHE']['Cache']);
-      if (typeof serverCache !== typeof defaultValue) {
-        serverCache = defaultValue;
-      }
-    } catch (e) {
-      serverCache = defaultValue;
-    }
-    return serverCache;
-  }
-  return defaultValue;
-}
+import { Injectable, isDevMode } from '@angular/core';
 
 @Injectable()
-export class Cache {
-  _cache = {};
-  constructor(@Inject('isBrowser') isBrowser: boolean) {
-    if (isBrowser) {
-      let serverCache = rehydrateCache(this._cache);
-      this.rehydrate(serverCache);
-    }
+export class CacheService {
+  static KEY = 'CacheService';
+  _cache = new Map();
+
+  /**
+   * check if there is a value in our store
+   */
+  has(key: string | number): boolean {
+    let _key = this.normalizeKey(key);
+    return this._cache.has(_key);
   }
-  has(key: string): boolean {
-    return key in this._cache;
+
+  /**
+   * store our state
+   */
+  set(key: string | number, value: any): void {
+    let _key = this.normalizeKey(key);
+    this._cache.set(_key, value);
   }
-  set(key: string, value: any): void {
-    this._cache[key] = value;
+
+  /**
+   * get our cached value
+   */
+  get(key: string | number): any {
+    let _key = this.normalizeKey(key);
+    return this._cache.get(_key);
   }
-  get(key: string): any {
-    return this._cache[key];
-  }
+
+  /**
+   * release memory refs
+   */
   clear(): void {
-    Object.keys(this._cache).forEach((key) => {
-      delete this._cache[key];
-    });
+    this._cache.clear();
   }
-  dehydrate() {
+
+  /**
+   * convert to json for the client
+   */
+  dehydrate(): any {
     let json = {};
-    Object.keys(this._cache).forEach((key: string) => {
-      json[key] = this._cache[key];
-    });
+    this._cache.forEach((value: any, key: string) => json[key] = value);
     return json;
   }
-  rehydrate(json) {
+
+  /**
+   * convert server json into out initial state
+   */
+  rehydrate(json: any): void {
     Object.keys(json).forEach((key: string) => {
-      this._cache[key] = json[key];
+      let _key = this.normalizeKey(key);
+      let value = json[_key];
+      this._cache.set(_key, value);
     });
   }
 
-  toJSON() {
+  /**
+   * allow JSON.stringify to work
+   */
+  toJSON(): any {
     return this.dehydrate();
+  }
+
+  /**
+   * convert numbers into strings
+   */
+  normalizeKey(key: string | number): string {
+    if (isDevMode() && this._isInvalidValue(key)) {
+      throw new Error('Please provide a valid key to save in the CacheService');
+    }
+
+    return key + '';
+  }
+
+  _isInvalidValue(key): boolean {
+    return key === null ||
+      key === undefined ||
+      key === 0 ||
+      key === '' ||
+      typeof key === 'boolean' ||
+      Number.isNaN(<number>key);
   }
 }
