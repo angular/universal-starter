@@ -3,6 +3,8 @@ import { CommonModule }   from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { ModelService, ApiService } from './api.service';
+
 const MODULES = [
   // Do NOT include UniversalModule, HttpModule, or JsonpModule here
   CommonModule,
@@ -19,6 +21,11 @@ const COMPONENTS = [
   // put shared components here
 ];
 
+const PROVIDERS = [
+  ModelService,
+  ApiService
+]
+
 @NgModule({
   imports: [
     ...MODULES
@@ -28,6 +35,7 @@ const COMPONENTS = [
     ...COMPONENTS
   ],
   providers: [
+    ...PROVIDERS
   ],
   exports: [
     ...MODULES,

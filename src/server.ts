@@ -36,6 +36,9 @@ app.engine('.html', createEngine({
   precompile: true,
   ngModule: MainModule,
   providers: [
+    // use only if you have shared state between users
+    // { provide: 'LRU', useFactory: () => new LRU(10) }
+
     // stateless providers only since it's shared
   ]
 }));

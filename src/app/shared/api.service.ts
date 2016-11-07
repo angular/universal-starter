@@ -3,10 +3,12 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/share';
 
-import { CacheService  } from './universal-cache';
+import { CacheService  } from './cache.service';
 
 export function hashCode(str) {
   let hash = 0;

@@ -4,7 +4,7 @@ function universalMaterialSupports(eventName: string): boolean { return Boolean(
 __platform_browser_private__.HammerGesturesPlugin.prototype.supports = universalMaterialSupports;
 // End Fix Material Support
 
-import { NgModule } from '@angular/core';
+import { NgModule, Inject, Optional, SkipSelf } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UniversalModule, isBrowser, isNode } from 'angular2-universal/node'; // for AoT we need to manually split universal packages
 
@@ -13,7 +13,14 @@ import { HomeModule } from './home/home.module';
 import { AboutModule } from './about/about.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { CacheService } from './universal-cache';
+import { CacheService } from './shared/cache.service';
+
+import * as LRU from 'modern-lru';
+
+export function getLRU(lru?: any) {
+  // use LRU for node
+  return lru || new LRU(10);
+}
 
 @NgModule({
   bootstrap: [ AppComponent ],
@@ -31,6 +38,14 @@ import { CacheService } from './universal-cache';
   providers: [
     { provide: 'isBrowser', useValue: isBrowser },
     { provide: 'isNode', useValue: isNode },
+
+    {
+      provide: 'LRU',
+      useFactory: getLRU,
+      deps: [
+        [new Inject('LRU'), new Optional(), new SkipSelf()]
+      ]
+    },
     CacheService
   ]
 })
@@ -51,6 +66,7 @@ export class MainModule {
   * Clear the cache after it's rendered
   */
   universalAfterDehydrate = () => {
+    // comment out if LRU provided at platform level to be shared between each user
     this.cache.clear();
   }
 }

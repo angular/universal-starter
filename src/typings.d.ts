@@ -21,6 +21,11 @@ import * as _ from 'lodash'
  *
  */
 
+// for lehacy tslint etc to understand
+declare module 'modern-lru' {
+  let x: any;
+  export = x;
+}
 
 // Extra variables that live on Global that will be replaced by webpack DefinePlugin
 declare var ENV: string;
