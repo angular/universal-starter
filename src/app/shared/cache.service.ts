@@ -4,7 +4,7 @@ import { Inject, Injectable, isDevMode } from '@angular/core';
 export class CacheService {
   static KEY = 'CacheService';
 
-  constructor(@Inject('LRU') public _cache: Map) {
+  constructor(@Inject('LRU') public _cache: Map<string, any>) {
 
   }
 
