@@ -21,7 +21,11 @@ import * as _ from 'lodash'
  *
  */
 
-// for lehacy tslint etc to understand
+// declare module '*'; // default type definitions for any for modules that are not found.
+// caveat: if this is enabled and you do not have the proper module there may not be an error.
+// suggestion: follow the pattern below with modern-lru which provides an alternative way to create an 'any' module.
+
+// for legacy tslint etc to understand
 declare module 'modern-lru' {
   let x: any;
   export = x;
