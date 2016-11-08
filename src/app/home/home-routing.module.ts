@@ -8,9 +8,6 @@ import { HomeComponent } from './home.component';
     RouterModule.forChild([
       { path: 'home', component: HomeComponent }
     ])
-  ],
-  exports: [
-    RouterModule
   ]
 })
 export class HomeRoutingModule { }

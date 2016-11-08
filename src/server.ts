@@ -1,7 +1,16 @@
 // the polyfills must be one of the first things imported in node.js.
 // The only modules to be imported higher - node modules with es6-promise 3.x or other Promise polyfill dependency
 // (rule of thumb: do it if you have zone.js exception that it has been overwritten)
+// if you are including modules that modify Promise, such as NewRelic,, you must include them before polyfills
 import 'angular2-universal-polyfills';
+
+// Fix Universal Style
+import { NodeDomRootRenderer, NodeDomRenderer } from 'angular2-universal/node';
+function renderComponentFix(componentProto: any) {
+  return new NodeDomRenderer(this, componentProto, this._animationDriver);
+}
+NodeDomRootRenderer.prototype.renderComponent = renderComponentFix;
+// End Fix Universal Style
 
 import * as path from 'path';
 import * as express from 'express';
@@ -25,8 +34,15 @@ const ROOT = path.join(path.resolve(__dirname, '..'));
 // Express View
 app.engine('.html', createEngine({
   precompile: true,
-  ngModule: MainModule
+  ngModule: MainModule,
+  providers: [
+    // use only if you have shared state between users
+    // { provide: 'LRU', useFactory: () => new LRU(10) }
+
+    // stateless providers only since it's shared
+  ]
 }));
+app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname);
 app.set('view engine', 'html');
 
@@ -69,6 +85,6 @@ app.get('*', function(req, res) {
 });
 
 // Server
-let server = app.listen(process.env.PORT || 3000, () => {
+let server = app.listen(app.get('port'), () => {
   console.log(`Listening on: http://localhost:${server.address().port}`);
 });
