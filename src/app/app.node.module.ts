@@ -15,11 +15,12 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CacheService } from './shared/cache.service';
 
-import * as LRU from 'modern-lru';
+// import * as LRU from 'modern-lru';
 
 export function getLRU(lru?: any) {
   // use LRU for node
-  return lru || new LRU(10);
+  // return lru || new LRU(10);
+  return lru || new Map();
 }
 
 @NgModule({
