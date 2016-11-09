@@ -45,7 +45,7 @@ var commonConfig = {
     ],
   },
   plugins: [
-    // Use commonPlugins. 
+    // Use commonPlugins.
   ]
 
 };
@@ -85,7 +85,7 @@ var serverConfig = {
   },
   module: {
     loaders: [
-      { test: /angular2-material/, loader: "imports-loader?window=>global" }
+      { test: /@angular(\\|\/)material/, loader: "imports-loader?window=>global" }
     ],
   },
   externals: includeClientPackages([
@@ -101,25 +101,7 @@ var serverConfig = {
     // '@angular/platform-server',
     // '@angular/router',
 
-    '@angular2-material/button',
-    '@angular2-material/button',
-    '@angular2-material/card',
-    '@angular2-material/checkbox',
-    '@angular2-material/core',
-    '@angular2-material/grid',
-    '@angular2-material/icon',
-    '@angular2-material/input',
-    '@angular2-material/list',
-    '@angular2-material/menu',
-    '@angular2-material/progress',
-    '@angular2-material/progress',
-    '@angular2-material/radio',
-    '@angular2-material/sidenav',
-    '@angular2-material/slider',
-    '@angular2-material/slide',
-    '@angular2-material/tabs',
-    '@angular2-material/toolbar',
-    '@angular2-material/tooltip'
+    '@angular/material'
   ]),
   node: {
     global: true,
