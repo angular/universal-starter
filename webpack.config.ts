@@ -1,9 +1,39 @@
 var webpack = require('webpack');
 var path = require('path');
+var clone = require('js.clone');
+var webpackMerge = require('webpack-merge');
+
+var commonPlugins = [
+  new webpack.ContextReplacementPlugin(
+    // The (\\|\/) piece accounts for path separators in *nix and Windows
+    /angular(\\|\/)core(\\|\/)src(\\|\/)linker/,
+    root('./src'),
+    {
+      // your Angular Async Route paths relative to this root directory
+    }
+  ),
+
+  // To use gzip, you can run 'npm install compression-webpack-plugin --save-dev'
+  // add 'var CompressionPlugin = require("compression-webpack-plugin");' on the top
+  // and comment out below codes
+  //
+  // new CompressionPlugin({
+  //   asset: "[path].gz[query]",
+  //   algorithm: "gzip",
+  //   test: /\.js$|\.css$|\.html$/,
+  //   threshold: 10240,
+  //   minRatio: 0.8
+  // })
+];
 
 var commonConfig = {
   resolve: {
     extensions: ['.ts', '.js', '.json']
+  },
+  context: __dirname,
+  output: {
+    publicPath: path.resolve(__dirname),
+    filename: 'index.js'
   },
   module: {
     loaders: [
@@ -15,28 +45,15 @@ var commonConfig = {
     ],
   },
   plugins: [
-    new webpack.ContextReplacementPlugin(
-      // The (\\|\/) piece accounts for path separators in *nix and Windows
-      /angular(\\|\/)core(\\|\/)src(\\|\/)linker/,
-      root('./src'),
-      {}
-    ),
-
-    // To use gzip, you can run 'npm install compression-webpack-plugin --save-dev'
-    // add 'var CompressionPlugin = require("compression-webpack-plugin");' on the top
-    // and comment out below codes
-    //
-    // new CompressionPlugin({
-    //   asset: "[path].gz[query]",
-    //   algorithm: "gzip",
-    //   test: /\.js$|\.css$|\.html$/,
-    //   threshold: 10240,
-    //   minRatio: 0.8
-    // })
+    // Use commonPlugins.
   ]
 
 };
 
+// Client.
+var clientPlugins = [
+
+];
 
 var clientConfig = {
   target: 'web',
@@ -54,6 +71,11 @@ var clientConfig = {
 };
 
 
+// Server.
+var serverPlugins = [
+
+];
+
 var serverConfig = {
   target: 'node',
   entry: './src/server', // use the entry file of the node server if everything is ts rather than es5
@@ -63,7 +85,7 @@ var serverConfig = {
   },
   module: {
     loaders: [
-      { test: /angular2-material/, loader: "imports-loader?window=>global" }
+      { test: /@angular(\\|\/)material/, loader: "imports-loader?window=>global" }
     ],
   },
   externals: includeClientPackages([
@@ -79,55 +101,23 @@ var serverConfig = {
     // '@angular/platform-server',
     // '@angular/router',
 
-    '@angular2-material/button',
-    '@angular2-material/button',
-    '@angular2-material/card',
-    '@angular2-material/checkbox',
-    '@angular2-material/core',
-    '@angular2-material/grid',
-    '@angular2-material/icon',
-    '@angular2-material/input',
-    '@angular2-material/list',
-    '@angular2-material/menu',
-    '@angular2-material/progress',
-    '@angular2-material/progress',
-    '@angular2-material/radio',
-    '@angular2-material/sidenav',
-    '@angular2-material/slider',
-    '@angular2-material/slide',
-    '@angular2-material/tabs',
-    '@angular2-material/toolbar',
-    '@angular2-material/tooltip'
+    '@angular/material'
   ]),
   node: {
     global: true,
     __dirname: true,
     __filename: true,
     process: true,
-    Buffer: true
+    Buffer: false
   }
 };
 
-
-
-// Default config
-var defaultConfig = {
-  context: __dirname,
-  output: {
-    publicPath: path.resolve(__dirname),
-    filename: 'index.js'
-  }
-};
-
-
-
-var webpackMerge = require('webpack-merge');
 module.exports = [
   // Client
-  webpackMerge({}, defaultConfig, commonConfig, clientConfig),
+  webpackMerge(clone(commonConfig), clientConfig, { plugins: clientPlugins.concat(commonPlugins) }),
 
   // Server
-  webpackMerge({}, defaultConfig, commonConfig, serverConfig)
+  webpackMerge(clone(commonConfig), serverConfig, { plugins: serverPlugins.concat(commonPlugins) })
 ];
 
 function includeClientPackages(packages) {
