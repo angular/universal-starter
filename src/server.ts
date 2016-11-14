@@ -62,6 +62,7 @@ function ngApp(req, res) {
   res.render('index', {
     req,
     res,
+    // time: true, // use this to determine what part of your app is slow only in development
     preboot: false,
     baseUrl: '/',
     requestUrl: req.originalUrl,

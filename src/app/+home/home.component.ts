@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { ModelService } from '../shared/api.service';
+import { ModelService } from '../shared/model/model.service';
 
 @Component({
   selector: 'home',

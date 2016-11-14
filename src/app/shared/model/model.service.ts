@@ -4,13 +4,13 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/share';
 
-import { CacheService  } from './cache.service';
-import { ApiService  } from './api.service';
+import { CacheService  } from '../cache.service';
+import { ApiService  } from '../api.service';
 
 export function hashCodeString(str: string): string {
   let hash = 0;
   if (str.length === 0) {
-    return hash;
+    return hash + '';
   }
   for (let i = 0; i < str.length; i++) {
     let char = str.charCodeAt(i);
