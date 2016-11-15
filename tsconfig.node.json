@@ -6,24 +6,12 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "dist",
-    "sourceMap": true,
-    "sourceRoot": "src",
+    "sourceMap": false,
     "target": "es5",
-    "lib": ["es6", "dom"],
-    "types": [
-      "body-parser",
-      "compression",
-      "cookie-parser",
-      "express",
-      "express-serve-static-core",
-      "mime",
-      "node",
-      "serve-static",
-      "hammerjs"
-    ]
+    "lib": ["es6", "dom"]
   },
-  "exclude": [
-    "node_modules"
+  "files": [
+    "./src/app/app.node.module.ts"
   ],
   "compileOnSave": false,
   "buildOnSave": false,
