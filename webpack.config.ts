@@ -63,6 +63,7 @@ var clientConfig = {
   },
   node: {
     global: true,
+    crypto: 'empty',
     __dirname: true,
     __filename: true,
     process: true,
@@ -88,23 +89,10 @@ var serverConfig = {
       { test: /@angular(\\|\/)material/, loader: "imports-loader?window=>global" }
     ],
   },
-  externals: includeClientPackages([
-    // include these client packages so we can transform their source with webpack loaders
-
-    // '@angular/common',
-    // '@angular/compiler',
-    // '@angular/core',
-    // '@angular/forms',
-    // '@angular/http',
-    // '@angular/platform-browser',
-    // '@angular/platform-browser-dynamic',
-    // '@angular/platform-server',
-    // '@angular/router',
-
-    '@angular/material'
-  ]),
+  externals: includeClientPackages(/@angular|angular2-|ng2-|ng-|angular-|@ngrx|@angular2|ionic|-angular2|-ng2|-ng/),
   node: {
     global: true,
+    crypto: true,
     __dirname: true,
     __filename: true,
     process: true,
@@ -122,8 +110,12 @@ module.exports = [
 
 function includeClientPackages(packages) {
   return function(context, request, cb) {
-    if (packages && packages.indexOf(request) !== -1) {
-      return cb();
+    if (packages) {
+      if (packages instanceof RegExp && packages.test(request)) {
+        return cb();
+      } else if (typeof packages === 'string' && packages.indexOf(request) !== -1) {
+        return cb();
+      }
     }
     return checkNodeImport(context, request, cb);
   };
