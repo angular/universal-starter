@@ -8,5 +8,6 @@ npm-debug.log
 /dist/
 
 .idea
+*.ngfactory.ts
 
 .DS_Store
