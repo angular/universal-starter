@@ -8,6 +8,7 @@
   },
   "scripts": {
     "watch": "webpack --watch",
+    "watch:dev": "npm run server & npm run watch",
     "prebuild": "rimraf dist",
     "build": "webpack",
     "build:prod": "webpack --progress -p",
