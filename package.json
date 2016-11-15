@@ -8,9 +8,16 @@
   },
   "scripts": {
     "watch": "webpack --watch",
+    "watch:dev": "npm run server & npm run watch",
+    "clean:dist": "rimraf dist",
+    "clean:ngc": "rimraf **/*.ngfactory.ts",
     "prebuild": "rimraf dist",
-    "build": "webpack",
-    "build:prod": "webpack --progress -p",
+    "build": "webpack  --progress",
+    "build:prod:ngc": "npm run ngc && npm run build:prod",
+    "build:prod": "webpack",
+    "ngc": "npm run ngc:browser && npm run ngc:node",
+    "ngc:browser": "ngc -p tsconfig.browser.json",
+    "ngc:node": "ngc -p tsconfig.node.json",
     "prestart": "npm run build",
     "server": "nodemon dist/server/index.js",
     "debug:server": "node-nightly --inspect --debug-brk dist/server/index.js",
@@ -74,9 +81,9 @@
     "string-replace-loader": "^1.0.5",
     "ts-node": "^1.3.0",
     "typescript": "2.0.2",
-    "webpack": "2.1.0-beta.25",
-    "webpack-dev-middleware": "^1.6.1",
-    "webpack-dev-server": "2.1.0-beta.9",
-    "webpack-merge": "^0.15.0"
+    "webpack": "2.1.0-beta.27",
+    "webpack-dev-middleware": "^1.8.4",
+    "webpack-dev-server": "2.1.0-beta.11",
+    "webpack-merge": "~0.16.0"
   }
 }

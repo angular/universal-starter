@@ -12,6 +12,11 @@ var commonPlugins = [
       // your Angular Async Route paths relative to this root directory
     }
   ),
+  // new webpack.IgnorePlugin(/@angular(\\|\/)compiler/), // problem with platformUniversalDynamic
+  new webpack.optimize.UglifyJsPlugin({
+    // beautify: true,
+    // mangle: false
+  })
 
   // To use gzip, you can run 'npm install compression-webpack-plugin --save-dev'
   // add 'var CompressionPlugin = require("compression-webpack-plugin");' on the top
@@ -32,8 +37,9 @@ var commonConfig = {
   },
   context: __dirname,
   output: {
-    publicPath: path.resolve(__dirname),
-    filename: 'index.js'
+    publicPath: '',
+    filename: 'index.js',
+    chunkFilename: '[id].bundle.js'
   },
   module: {
     loaders: [
@@ -57,7 +63,7 @@ var clientPlugins = [
 
 var clientConfig = {
   target: 'web',
-  entry: './src/client',
+  entry: './src/client.aot',
   output: {
     path: root('dist/client')
   },
@@ -79,7 +85,7 @@ var serverPlugins = [
 
 var serverConfig = {
   target: 'node',
-  entry: './src/server', // use the entry file of the node server if everything is ts rather than es5
+  entry: './src/server.aot', // use the entry file of the node server if everything is ts rather than es5
   output: {
     path: root('dist/server'),
     libraryTarget: 'commonjs2'
@@ -89,6 +95,8 @@ var serverConfig = {
       { test: /@angular(\\|\/)material/, loader: "imports-loader?window=>global" }
     ],
   },
+  // make sure every Angular2 package is bundled together to ensure that
+  // the packages are pointing to the correct code
   externals: includeClientPackages(/@angular|angular2-|ng2-|ng-|angular-|@ngrx|@angular2|ionic|-angular2|-ng2|-ng/),
   node: {
     global: true,
