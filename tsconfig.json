@@ -9,6 +9,9 @@
     "sourceMap": true,
     "sourceRoot": "src",
     "target": "es5",
+    "types": [
+      "node"
+    ],
     "lib": ["es6", "dom"]
   },
   "exclude": [
