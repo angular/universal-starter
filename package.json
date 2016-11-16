@@ -86,5 +86,8 @@
     "webpack-dev-middleware": "^1.8.4",
     "webpack-dev-server": "2.1.0-beta.11",
     "webpack-merge": "~0.16.0"
+  },
+  "optionalDependencies": {
+    "compression-webpack-plugin": "^0.3.2"
   }
 }

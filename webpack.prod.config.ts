@@ -2,6 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 var clone = require('js.clone');
 var webpackMerge = require('webpack-merge');
+var CompressionPlugin = optionalRequire('compression-webpack-plugin');
 
 import webpackConfig, { root, checkNodeImport, includeClientPackages } from './webpack.config';
 
@@ -58,3 +59,12 @@ export default [
   // Server
   webpackMerge(webpackConfig[1], clone(commonConfig), serverConfig, {plugins: webpackConfig[1].plugins.concat(commonPlugins, serverPlugins) })
 ];
+
+
+function optionalRequire(mod) {
+  try {
+    return require(mod);
+  } catch (e) {
+    return function () {};
+  }
+}
