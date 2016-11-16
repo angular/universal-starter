@@ -66,7 +66,7 @@ function ngApp(req, res) {
     preboot: false,
     baseUrl: '/',
     requestUrl: req.originalUrl,
-    originUrl: 'http://localhost:3000'
+    originUrl: `http://localhost:${ app.get('port') }`
   });
 }
 // Routes with html5pushstate
