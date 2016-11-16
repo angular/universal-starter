@@ -13,6 +13,11 @@ export var commonPlugins = [
     }
   ),
 
+  // Loader options
+  new webpack.LoaderOptionsPlugin({
+
+  }),
+
 ];
 
 export var commonConfig = {

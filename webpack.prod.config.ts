@@ -10,7 +10,12 @@ export var commonPlugins = [
   new webpack.optimize.UglifyJsPlugin({
     // beautify: true,
     // mangle: false
-  })
+  }),
+
+  // Loader options
+  new webpack.LoaderOptionsPlugin({
+
+  }),
 
   // To use gzip, you can run 'npm install compression-webpack-plugin --save-dev'
   // add 'var CompressionPlugin = require("compression-webpack-plugin");' on the top
