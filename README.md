@@ -40,7 +40,6 @@ constructor(element: ElementRef, renderer: Renderer) {
 
  - SeoServices
  - Universal fixes for Angular Core 2.1.1
- - AoT funcionality is still a *work-in-progress*, but is available as of 2.1.0-rc1
 
 ## Installation
 
@@ -56,6 +55,9 @@ constructor(element: ElementRef, renderer: Renderer) {
 
 ## Watch files
 * `npm run watch` to build your client app and start a web server
+
+## AoT and Prod
+* `npm run build:prod:ngc` to compile the ngfactory files and build prod
 
 ## Edge case of server compatibility with Promise polyfills
 
