@@ -6,7 +6,7 @@ var webpackMerge = require('webpack-merge');
 import webpackConfig, { root, checkNodeImport, includeClientPackages } from './webpack.config';
 
 export var commonPlugins = [
-  // new webpack.IgnorePlugin(/@angular(\\|\/)compiler/), // problem with platformUniversalDynamic
+
   new webpack.optimize.UglifyJsPlugin({
     // beautify: true,
     // mangle: false
@@ -34,7 +34,8 @@ export var commonConfig = {
 
 // Client.
 export var clientPlugins = [
-
+  // problem with platformUniversalDynamic on the server/client
+  new webpack.IgnorePlugin(/@angular(\\|\/)compiler/),
 ];
 export var clientConfig = {
   entry: './src/client.aot',
