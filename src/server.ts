@@ -26,7 +26,7 @@ import { createEngine } from 'angular2-express-engine';
 import { MainModule } from './app/app.node.module';
 
 // enable prod for faster renders
-// enableProdMode();
+enableProdMode();
 
 const app = express();
 const ROOT = path.join(path.resolve(__dirname, '..'));
