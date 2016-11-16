@@ -37,6 +37,7 @@ export var clientPlugins = [
 
 ];
 export var clientConfig = {
+  entry: './src/client.aot',
 
 };
 
@@ -45,6 +46,7 @@ export var serverPlugins = [
 
 ];
 export var serverConfig = {
+  entry: './src/server.aot',
 
 };
 
