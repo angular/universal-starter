@@ -33,7 +33,6 @@ const ROOT = path.join(path.resolve(__dirname, '..'));
 
 // Express View
 app.engine('.html', createEngine({
-  precompile: true,
   ngModule: MainModule,
   providers: [
     // use only if you have shared state between users
