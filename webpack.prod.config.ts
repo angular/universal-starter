@@ -52,8 +52,8 @@ export var serverConfig = {
 
 export default [
   // Client
-  webpackMerge(clone(commonConfig), clientConfig, webpackConfig[0], {plugins: webpackConfig[0].plugins.concat(commonPlugins, clientPlugins) }),
+  webpackMerge(webpackConfig[0], clone(commonConfig), clientConfig, {plugins: webpackConfig[0].plugins.concat(commonPlugins, clientPlugins) }),
 
   // Server
-  webpackMerge(clone(commonConfig), serverConfig, webpackConfig[1], {plugins: webpackConfig[1].plugins.concat(commonPlugins, serverPlugins) })
+  webpackMerge(webpackConfig[1], clone(commonConfig), serverConfig, {plugins: webpackConfig[1].plugins.concat(commonPlugins, serverPlugins) })
 ];
