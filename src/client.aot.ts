@@ -3,7 +3,7 @@ import 'angular2-universal-polyfills';
 
 // Angular 2
 import { enableProdMode} from '@angular/core';
-import { platformUniversalDynamic } from 'angular2-universal';
+import { platformUniversalDynamic } from 'angular2-universal/browser';
 
 // enable prod for faster renders
 enableProdMode();
