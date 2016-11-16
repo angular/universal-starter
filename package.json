@@ -25,6 +25,7 @@
     "debug:start": "npm run build && npm run debug:server",
     "predebug": "npm run build",
     "debug:build": "node-nightly --inspect --debug-brk node_modules/webpack/bin/webpack.js",
+    "debug:build:prod": "node-nightly --inspect --debug-brk node_modules/webpack/bin/webpack.js  --config webpack.prod.config.ts",
     "debug": "node --debug-brk dist/server/index.js"
   },
   "license": "MIT",
