@@ -28,7 +28,28 @@ export var commonPlugins = [
   //   test: /\.js$|\.css$|\.html$/,
   //   threshold: 10240,
   //   minRatio: 0.8
-  // })
+  // }),
+
+   new webpack.NormalModuleReplacementPlugin(
+    /facade\/async/,
+    root('node_modules/@angular/core/src/facade/async.js')
+  ),
+  new webpack.NormalModuleReplacementPlugin(
+    /facade\/collection/,
+    root('node_modules/@angular/core/src/facade/collection.js')
+  ),
+  new webpack.NormalModuleReplacementPlugin(
+    /facade\/errors/,
+    root('node_modules/@angular/core/src/facade/errors.js')
+  ),
+  new webpack.NormalModuleReplacementPlugin(
+    /facade\/lang/,
+    root('node_modules/@angular/core/src/facade/lang.js')
+  ),
+  new webpack.NormalModuleReplacementPlugin(
+    /facade\/math/,
+    root('node_modules/@angular/core/src/facade/math.js')
+  ),
 ];
 export var commonConfig = {
 };
@@ -37,6 +58,8 @@ export var commonConfig = {
 export var clientPlugins = [
   // problem with platformUniversalDynamic on the server/client
   new webpack.IgnorePlugin(/@angular(\\|\/)compiler/),
+  new webpack.IgnorePlugin(/dom(\\|\/)debug(\\|\/)ng_probe/),
+  new webpack.IgnorePlugin(/dom(\\|\/)debug(\\|\/)by/),
 ];
 export var clientConfig = {
   entry: './src/client.aot',
