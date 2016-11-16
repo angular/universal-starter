@@ -102,6 +102,11 @@ export default [
   webpackMerge(clone(commonConfig), serverConfig, { plugins: serverPlugins.concat(commonPlugins) })
 ];
 
+
+
+
+// Helpers
+
 export function includeClientPackages(packages) {
   return function(context, request, cb) {
     if (packages) {
@@ -114,7 +119,7 @@ export function includeClientPackages(packages) {
     return checkNodeImport(context, request, cb);
   };
 }
-// Helpers
+
 export function checkNodeImport(context, request, cb) {
   if (!path.isAbsolute(request) && request.charAt(0) !== '.') {
     cb(null, 'commonjs ' + request); return;
