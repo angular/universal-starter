@@ -11,6 +11,7 @@ export var commonPlugins = [
   new webpack.optimize.UglifyJsPlugin({
     // beautify: true,
     // mangle: false
+    sourceMap: true
   }),
 
   // Loader options
@@ -22,13 +23,13 @@ export var commonPlugins = [
   // add 'var CompressionPlugin = require("compression-webpack-plugin");' on the top
   // and comment out below codes
   //
-  new CompressionPlugin({
-    asset: "[path].gz[query]",
-    algorithm: "gzip",
-    test: /\.js$|\.css$|\.html$/,
-    threshold: 10240,
-    minRatio: 0.8
-  }),
+  // new CompressionPlugin({
+  //   asset: "[path].gz[query]",
+  //   algorithm: "gzip",
+  //   test: /\.js$|\.css$|\.html$/,
+  //   threshold: 10240,
+  //   minRatio: 0.8
+  // }),
 
    new webpack.NormalModuleReplacementPlugin(
     /facade\/async/,
@@ -57,7 +58,14 @@ export var commonConfig = {
 // Client.
 export var clientPlugins = [
   // problem with platformUniversalDynamic on the server/client
-  new webpack.IgnorePlugin(/@angular(\\|\/)compiler/)
+  new webpack.NormalModuleReplacementPlugin(
+    /@angular(\\|\/)compiler/,
+    root('empty.js')
+  ),
+  new webpack.NormalModuleReplacementPlugin(
+    /@angular(\\|\/)platform-browser-dynamic/,
+    root('empty.js')
+  )
 ];
 export var clientConfig = {
   entry: './src/client.aot',
