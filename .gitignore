@@ -11,3 +11,5 @@ npm-debug.log
 *.ngfactory.ts
 
 .DS_Store
+
+webpack.records.json

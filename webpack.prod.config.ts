@@ -76,7 +76,7 @@ export var commonPlugins = [
 ];
 export var commonConfig = {
   output: {
-    filename: '[name].[chunkhash].bundle.js',
+    filename: '[name].bundle.js',
     chunkFilename: '[chunkhash].js'
   },
 };
@@ -132,7 +132,9 @@ export var serverPlugins = [
 ];
 export var serverConfig = {
   entry: './src/server.aot',
-
+  output: {
+    filename: 'index.js'
+  },
 };
 
 export default [
