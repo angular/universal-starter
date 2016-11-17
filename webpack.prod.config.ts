@@ -16,7 +16,8 @@ export var commonPlugins = [
 
   // Loader options
   new webpack.LoaderOptionsPlugin({
-
+    minimize: true,
+    debug: false
   }),
 
   // To use gzip, you can run 'npm install compression-webpack-plugin --save-dev'
