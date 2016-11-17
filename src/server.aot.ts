@@ -33,7 +33,7 @@ const ROOT = path.join(path.resolve(__dirname, '..'));
 
 // Express View
 app.engine('.html', createEngine({
-  precompile: false,
+  precompile: false, // this needs to be false when using ngFactory
   ngModule: MainModuleNgFactory,
   providers: [
     // use only if you have shared state between users
@@ -66,7 +66,7 @@ function ngApp(req, res) {
     preboot: false,
     baseUrl: '/',
     requestUrl: req.originalUrl,
-    originUrl: 'http://localhost:3000'
+    originUrl: `http://localhost:${ app.get('port') }`
   });
 }
 // Routes with html5pushstate

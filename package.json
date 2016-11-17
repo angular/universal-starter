@@ -25,6 +25,7 @@
     "debug:start": "npm run build && npm run debug:server",
     "predebug": "npm run build",
     "debug:build": "node-nightly --inspect --debug-brk node_modules/webpack/bin/webpack.js",
+    "debug:build:prod": "node-nightly --inspect --debug-brk node_modules/webpack/bin/webpack.js  --config webpack.prod.config.ts",
     "debug": "node --debug-brk dist/server/index.js"
   },
   "license": "MIT",
@@ -85,5 +86,8 @@
     "webpack-dev-middleware": "^1.8.4",
     "webpack-dev-server": "2.1.0-beta.11",
     "webpack-merge": "~0.16.0"
+  },
+  "optionalDependencies": {
+    "compression-webpack-plugin": "^0.3.2"
   }
 }

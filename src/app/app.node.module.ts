@@ -22,6 +22,12 @@ export function getLRU(lru?: any) {
   // return lru || new LRU(10);
   return lru || new Map();
 }
+export function getRequest() {
+  return Zone.current.get('req') || {};
+}
+export function getResponse() {
+  return Zone.current.get('res') || {};
+}
 
 @NgModule({
   bootstrap: [ AppComponent ],
@@ -40,13 +46,15 @@ export function getLRU(lru?: any) {
     { provide: 'isBrowser', useValue: isBrowser },
     { provide: 'isNode', useValue: isNode },
 
+    { provide: 'req', useFactory: getRequest },
+    { provide: 'res', useFactory: getResponse },
+
     {
       provide: 'LRU',
       useFactory: getLRU,
-      deps: [
-        [new Inject('LRU'), new Optional(), new SkipSelf()]
-      ]
+      deps: [ [new Inject('LRU'), new Optional(), new SkipSelf()] ]
     },
+
     CacheService
   ]
 })

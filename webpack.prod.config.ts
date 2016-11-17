@@ -2,21 +2,23 @@ var webpack = require('webpack');
 var path = require('path');
 var clone = require('js.clone');
 var webpackMerge = require('webpack-merge');
+var CompressionPlugin = optionalRequire('compression-webpack-plugin');
 
-var commonPlugins = [
-  new webpack.ContextReplacementPlugin(
-    // The (\\|\/) piece accounts for path separators in *nix and Windows
-    /angular(\\|\/)core(\\|\/)src(\\|\/)linker/,
-    root('./src'),
-    {
-      // your Angular Async Route paths relative to this root directory
-    }
-  ),
-  // new webpack.IgnorePlugin(/@angular(\\|\/)compiler/), // problem with platformUniversalDynamic
+import webpackConfig, { root, checkNodeImport, includeClientPackages } from './webpack.config';
+
+export var commonPlugins = [
+
   new webpack.optimize.UglifyJsPlugin({
     // beautify: true,
     // mangle: false
-  })
+    sourceMap: true
+  }),
+
+  // Loader options
+  new webpack.LoaderOptionsPlugin({
+    minimize: true,
+    debug: false
+  }),
 
   // To use gzip, you can run 'npm install compression-webpack-plugin --save-dev'
   // add 'var CompressionPlugin = require("compression-webpack-plugin");' on the top
@@ -28,115 +30,71 @@ var commonPlugins = [
   //   test: /\.js$|\.css$|\.html$/,
   //   threshold: 10240,
   //   minRatio: 0.8
-  // })
+  // }),
+
+   new webpack.NormalModuleReplacementPlugin(
+    /facade\/async/,
+    root('node_modules/@angular/core/src/facade/async.js')
+  ),
+  new webpack.NormalModuleReplacementPlugin(
+    /facade\/collection/,
+    root('node_modules/@angular/core/src/facade/collection.js')
+  ),
+  new webpack.NormalModuleReplacementPlugin(
+    /facade\/errors/,
+    root('node_modules/@angular/core/src/facade/errors.js')
+  ),
+  new webpack.NormalModuleReplacementPlugin(
+    /facade\/lang/,
+    root('node_modules/@angular/core/src/facade/lang.js')
+  ),
+  new webpack.NormalModuleReplacementPlugin(
+    /facade\/math/,
+    root('node_modules/@angular/core/src/facade/math.js')
+  ),
 ];
-
-var commonConfig = {
-  resolve: {
-    extensions: ['.ts', '.js', '.json']
-  },
-  context: __dirname,
-  output: {
-    publicPath: '',
-    filename: 'index.js',
-    chunkFilename: '[id].bundle.js'
-  },
-  module: {
-    loaders: [
-      // TypeScript
-      { test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader'] },
-      { test: /\.html$/, loader: 'raw-loader' },
-      { test: /\.css$/, loader: 'raw-loader' },
-      { test: /\.json$/, loader: 'json-loader' }
-    ],
-  },
-  plugins: [
-    // Use commonPlugins.
-  ]
-
+export var commonConfig = {
 };
 
 // Client.
-var clientPlugins = [
-
+export var clientPlugins = [
+  // problem with platformUniversalDynamic on the server/client
+  new webpack.NormalModuleReplacementPlugin(
+    /@angular(\\|\/)compiler/,
+    root('empty.js')
+  ),
+  new webpack.NormalModuleReplacementPlugin(
+    /@angular(\\|\/)platform-browser-dynamic/,
+    root('empty.js')
+  )
 ];
-
-var clientConfig = {
-  target: 'web',
+export var clientConfig = {
   entry: './src/client.aot',
-  output: {
-    path: root('dist/client')
-  },
-  node: {
-    global: true,
-    crypto: 'empty',
-    __dirname: true,
-    __filename: true,
-    process: true,
-    Buffer: false
-  }
-};
 
+};
 
 // Server.
-var serverPlugins = [
+export var serverPlugins = [
 
 ];
+export var serverConfig = {
+  entry: './src/server.aot',
 
-var serverConfig = {
-  target: 'node',
-  entry: './src/server.aot', // use the entry file of the node server if everything is ts rather than es5
-  output: {
-    path: root('dist/server'),
-    libraryTarget: 'commonjs2'
-  },
-  module: {
-    loaders: [
-      { test: /@angular(\\|\/)material/, loader: "imports-loader?window=>global" }
-    ],
-  },
-  // make sure every Angular2 package is bundled together to ensure that
-  // the packages are pointing to the correct code
-  externals: includeClientPackages(/@angular|angular2-|ng2-|ng-|angular-|@ngrx|@angular2|ionic|-angular2|-ng2|-ng/),
-  node: {
-    global: true,
-    crypto: true,
-    __dirname: true,
-    __filename: true,
-    process: true,
-    Buffer: false
-  }
 };
 
-module.exports = [
+export default [
   // Client
-  webpackMerge(clone(commonConfig), clientConfig, { plugins: clientPlugins.concat(commonPlugins) }),
+  webpackMerge(webpackConfig[0], clone(commonConfig), clientConfig, {plugins: webpackConfig[0].plugins.concat(commonPlugins, clientPlugins) }),
 
   // Server
-  webpackMerge(clone(commonConfig), serverConfig, { plugins: serverPlugins.concat(commonPlugins) })
+  webpackMerge(webpackConfig[1], clone(commonConfig), serverConfig, {plugins: webpackConfig[1].plugins.concat(commonPlugins, serverPlugins) })
 ];
 
-function includeClientPackages(packages) {
-  return function(context, request, cb) {
-    if (packages) {
-      if (packages instanceof RegExp && packages.test(request)) {
-        return cb();
-      } else if (typeof packages === 'string' && packages.indexOf(request) !== -1) {
-        return cb();
-      }
-    }
-    return checkNodeImport(context, request, cb);
-  };
-}
-// Helpers
-function checkNodeImport(context, request, cb) {
-  if (!path.isAbsolute(request) && request.charAt(0) !== '.') {
-    cb(null, 'commonjs ' + request); return;
-  }
-  cb();
-}
 
-function root(args) {
-  args = Array.prototype.slice.call(arguments, 0);
-  return path.join.apply(path, [__dirname].concat(args));
+function optionalRequire(mod) {
+  try {
+    return require(mod);
+  } catch (e) {
+    return function () {};
+  }
 }
