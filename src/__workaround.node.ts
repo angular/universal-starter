@@ -29,3 +29,16 @@ if (patch) {
     __universal__.CssSelector = __universal__.CssSelector || __compiler__.CssSelector;
     __universal__.SelectorMatcher = __universal__.SelectorMatcher || __compiler__.SelectorMatcher;
 }
+
+// Fix Material Support
+function universalMaterialSupports(eventName: string): boolean { return Boolean(this.isCustomEvent(eventName)); }
+__platform_browser_private__.HammerGesturesPlugin.prototype.supports = universalMaterialSupports;
+// End Fix Material Support
+
+// Fix Universal Style
+import { NodeDomRootRenderer, NodeDomRenderer } from 'angular2-universal/node';
+function renderComponentFix(componentProto: any) {
+  return new NodeDomRenderer(this, componentProto, this._animationDriver);
+}
+NodeDomRootRenderer.prototype.renderComponent = renderComponentFix;
+// End Fix Universal Style

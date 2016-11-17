@@ -1,9 +1,3 @@
-// Fix Material Support
-import { __platform_browser_private__ } from '@angular/platform-browser';
-function universalMaterialSupports(eventName: string): boolean { return Boolean(this.isCustomEvent(eventName)); }
-__platform_browser_private__.HammerGesturesPlugin.prototype.supports = universalMaterialSupports;
-// End Fix Material Support
-
 import { NgModule, Inject, Optional, SkipSelf } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UniversalModule, isBrowser, isNode } from 'angular2-universal/node'; // for AoT we need to manually split universal packages
