@@ -22,13 +22,13 @@ export var commonPlugins = [
   // add 'var CompressionPlugin = require("compression-webpack-plugin");' on the top
   // and comment out below codes
   //
-  // new CompressionPlugin({
-  //   asset: "[path].gz[query]",
-  //   algorithm: "gzip",
-  //   test: /\.js$|\.css$|\.html$/,
-  //   threshold: 10240,
-  //   minRatio: 0.8
-  // }),
+  new CompressionPlugin({
+    asset: "[path].gz[query]",
+    algorithm: "gzip",
+    test: /\.js$|\.css$|\.html$/,
+    threshold: 10240,
+    minRatio: 0.8
+  }),
 
    new webpack.NormalModuleReplacementPlugin(
     /facade\/async/,
