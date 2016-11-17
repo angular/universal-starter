@@ -17,6 +17,9 @@
     "./src/app/app.node.module.ts",
     "./src/typings.d.ts"
   ],
+  "angularCompilerOptions": {
+    "debug": false
+  },
   "compileOnSave": false,
   "buildOnSave": false,
   "atom": { "rewriteTsconfig": false }

@@ -66,7 +66,24 @@ export var clientPlugins = [
   new webpack.NormalModuleReplacementPlugin(
     /@angular(\\|\/)platform-browser-dynamic/,
     root('empty.js')
-  )
+  ),
+  new webpack.NormalModuleReplacementPlugin(
+    /dom(\\|\/)debug(\\|\/)ng_probe/,
+    root('empty.js')
+  ),
+  new webpack.NormalModuleReplacementPlugin(
+    /dom(\\|\/)debug(\\|\/)by/,
+    root('empty.js')
+  ),
+  new webpack.NormalModuleReplacementPlugin(
+    /src(\\|\/)debug(\\|\/)debug_node/,
+    root('empty.js')
+  ),
+  new webpack.NormalModuleReplacementPlugin(
+    /src(\\|\/)debug(\\|\/)debug_renderer/,
+    root('empty.js')
+  ),
+
 ];
 export var clientConfig = {
   entry: './src/client.aot',
