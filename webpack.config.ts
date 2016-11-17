@@ -22,7 +22,7 @@ export var commonPlugins = [
 
 export var commonConfig = {
   // https://webpack.github.io/docs/configuration.html#devtool
-  devtool: 'source-maps',
+  devtool: 'source-map',
   resolve: {
     extensions: ['.ts', '.js', '.json']
   },
