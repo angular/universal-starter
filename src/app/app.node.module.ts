@@ -30,7 +30,7 @@ export function getResponse() {
     UniversalModule, // NodeModule, NodeHttpModule, and NodeJsonpModule are included
     FormsModule,
 
-    SharedModule,
+    SharedModule.forRoot(),
     HomeModule,
     AboutModule,
 
