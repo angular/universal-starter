@@ -57,9 +57,7 @@ export var commonConfig = {
 // Client.
 export var clientPlugins = [
   // problem with platformUniversalDynamic on the server/client
-  new webpack.IgnorePlugin(/@angular(\\|\/)compiler/),
-  new webpack.IgnorePlugin(/dom(\\|\/)debug(\\|\/)ng_probe/),
-  new webpack.IgnorePlugin(/dom(\\|\/)debug(\\|\/)by/),
+  new webpack.IgnorePlugin(/@angular(\\|\/)compiler/)
 ];
 export var clientConfig = {
   entry: './src/client.aot',
