@@ -3,15 +3,35 @@ var path = require('path');
 var clone = require('js.clone');
 var webpackMerge = require('webpack-merge');
 var CompressionPlugin = optionalRequire('compression-webpack-plugin');
+var V8LazyParseWebpackPlugin = require('v8-lazy-parse-webpack-plugin');
 
 import webpackConfig, { root, checkNodeImport, includeClientPackages } from './webpack.config';
 
 export var commonPlugins = [
+  new V8LazyParseWebpackPlugin(),
+
+  new webpack.DefinePlugin({
+    'process.env.NODE_ENV': JSON.stringify('production'),
+  }),
 
   new webpack.optimize.UglifyJsPlugin({
     // beautify: true,
     // mangle: false
-    sourceMap: true
+    output: {
+      comments: false
+    },
+    compress: {
+      warnings: false,
+      conditionals: true,
+      unused: true,
+      comparisons: true,
+      sequences: true,
+      dead_code: true,
+      evaluate: true,
+      if_return: true,
+      join_vars: true,
+      negate_iife: false
+    }
   }),
 
   // Loader options
@@ -24,15 +44,15 @@ export var commonPlugins = [
   // add 'var CompressionPlugin = require("compression-webpack-plugin");' on the top
   // and comment out below codes
   //
-  // new CompressionPlugin({
-  //   asset: "[path].gz[query]",
-  //   algorithm: "gzip",
-  //   test: /\.js$|\.css$|\.html$/,
-  //   threshold: 10240,
-  //   minRatio: 0.8
-  // }),
+  new CompressionPlugin({
+    asset: "[path].gz[query]",
+    algorithm: "gzip",
+    test: /\.js$|\.css$|\.html$/,
+    threshold: 10240,
+    minRatio: 0.8
+  }),
 
-   new webpack.NormalModuleReplacementPlugin(
+  new webpack.NormalModuleReplacementPlugin(
     /facade\/async/,
     root('node_modules/@angular/core/src/facade/async.js')
   ),
@@ -52,12 +72,22 @@ export var commonPlugins = [
     /facade\/math/,
     root('node_modules/@angular/core/src/facade/math.js')
   ),
+
 ];
 export var commonConfig = {
+  output: {
+    filename: '[name].[chunkhash].bundle.js',
+    chunkFilename: '[chunkhash].js'
+  },
 };
 
 // Client.
 export var clientPlugins = [
+
+  new webpack.NormalModuleReplacementPlugin(
+    /@angular(\\|\/)upgrade/,
+    root('empty.js')
+  ),
   // problem with platformUniversalDynamic on the server/client
   new webpack.NormalModuleReplacementPlugin(
     /@angular(\\|\/)compiler/,
@@ -84,10 +114,16 @@ export var clientPlugins = [
     root('empty.js')
   ),
 
+  // Waiting for https://github.com/ampedandwired/html-webpack-plugin/issues/446
+  // new webpack.optimize.AggressiveSplittingPlugin({
+  //   minSize: 30000,
+  //   maxSize: 250000
+  // }),
+
 ];
 export var clientConfig = {
   entry: './src/client.aot',
-
+  recordsOutputPath: root('webpack.records.json')
 };
 
 // Server.

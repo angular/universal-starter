@@ -29,7 +29,7 @@ export var commonConfig = {
   context: __dirname,
   output: {
     publicPath: path.resolve(__dirname),
-    filename: 'index.js'
+    filename: '[name].bundle.js'
   },
   module: {
     loaders: [

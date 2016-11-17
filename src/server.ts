@@ -4,6 +4,8 @@ import './__2.1.1.workaround.ts'; // temporary until 2.1.1 things are patched in
 // (rule of thumb: do it if you have zone.js exception that it has been overwritten)
 // if you are including modules that modify Promise, such as NewRelic,, you must include them before polyfills
 import 'angular2-universal-polyfills';
+import 'ts-helpers';
+import './__workaround';
 
 // Fix Universal Style
 import { NodeDomRootRenderer, NodeDomRenderer } from 'angular2-universal/node';
