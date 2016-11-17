@@ -4,7 +4,7 @@
 // if you are including modules that modify Promise, such as NewRelic,, you must include them before polyfills
 import 'angular2-universal-polyfills';
 import 'ts-helpers';
-import './__workaround'; // temporary until 2.1.1 things are patched in Core
+import './__workaround.node'; // temporary until 2.1.1 things are patched in Core
 
 // Fix Universal Style
 import { NodeDomRootRenderer, NodeDomRenderer } from 'angular2-universal/node';

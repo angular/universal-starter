@@ -23,9 +23,9 @@ if (__compiler__ && __compiler__.SelectorMatcher && __compiler__.CssSelector) {
     }
 }
 
-var __universal__ = require('angular2-platform-node/__private_imports__');
 if (patch) {
+    var __universal__ = require('angular2-platform-node/__private_imports__');
     __universal__.ViewUtils = __core_private__['view_utils'];
-    __universal__.CssSelector = __compiler__.CssSelector
-    __universal__.SelectorMatcher = __compiler__.SelectorMatcher
+    __universal__.CssSelector = __universal__.CssSelector || __compiler__.CssSelector;
+    __universal__.SelectorMatcher = __universal__.SelectorMatcher || __compiler__.SelectorMatcher;
 }

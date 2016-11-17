@@ -16,7 +16,7 @@ export var commonPlugins = [
 
   new webpack.optimize.UglifyJsPlugin({
     // beautify: true,
-    // mangle: false
+    // mangle: false,
     output: {
       comments: false
     },
