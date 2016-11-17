@@ -1,8 +1,7 @@
-import './__2.1.1.workaround.ts'; // temporary until 2.1.1 things are patched in Core
 // the polyfills must be the first thing imported
 import 'angular2-universal-polyfills';
 import 'ts-helpers';
-import './__workaround';
+import './__workaround'; // temporary until 2.1.1 things are patched in Core
 
 // Angular 2
 import { enableProdMode} from '@angular/core';
