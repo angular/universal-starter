@@ -14,26 +14,6 @@ export var commonPlugins = [
     'process.env.NODE_ENV': JSON.stringify('production'),
   }),
 
-  new webpack.optimize.UglifyJsPlugin({
-    // beautify: true,
-    // mangle: false,
-    output: {
-      comments: false
-    },
-    compress: {
-      warnings: false,
-      conditionals: true,
-      unused: true,
-      comparisons: true,
-      sequences: true,
-      dead_code: true,
-      evaluate: true,
-      if_return: true,
-      join_vars: true,
-      negate_iife: false
-    }
-  }),
-
   // Loader options
   new webpack.LoaderOptionsPlugin({
     minimize: true,
@@ -83,6 +63,25 @@ export var commonConfig = {
 
 // Client.
 export var clientPlugins = [
+  new webpack.optimize.UglifyJsPlugin({
+    // beautify: true,
+    // mangle: false,
+    output: {
+      comments: false
+    },
+    compress: {
+      warnings: false,
+      conditionals: true,
+      unused: true,
+      comparisons: true,
+      sequences: true,
+      dead_code: true,
+      evaluate: true,
+      if_return: true,
+      join_vars: true,
+      negate_iife: false // we need this for lazy v8
+    }
+  }),
 
   new webpack.NormalModuleReplacementPlugin(
     /@angular(\\|\/)upgrade/,
