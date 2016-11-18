@@ -1,9 +1,12 @@
-import { Injectable, isDevMode } from '@angular/core';
+import { Inject, Injectable, isDevMode } from '@angular/core';
 
 @Injectable()
 export class CacheService {
   static KEY = 'CacheService';
-  _cache = new Map();
+
+  constructor(@Inject('LRU') public _cache: Map<string, any>) {
+
+  }
 
   /**
    * check if there is a value in our store

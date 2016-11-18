@@ -21,10 +21,20 @@ import * as _ from 'lodash'
  *
  */
 
+// declare module '*'; // default type definitions for any for modules that are not found.
+// caveat: if this is enabled and you do not have the proper module there may not be an error.
+// suggestion: follow the pattern below with modern-lru which provides an alternative way to create an 'any' module.
+
+// for legacy tslint etc to understand
+declare module 'modern-lru' {
+  let x: any;
+  export = x;
+}
 
 // Extra variables that live on Global that will be replaced by webpack DefinePlugin
 declare var ENV: string;
 declare var HMR: boolean;
+declare var Zone: {current: any};
 interface GlobalEnvironment {
   ENV;
   HMR;

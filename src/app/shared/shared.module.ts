@@ -1,7 +1,9 @@
-import { NgModule } from '@angular/core';
-import { CommonModule }   from '@angular/common';
+import { NgModule, ModuleWithProviders } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ApiService } from './api.service';
+import { ModelService } from './model/model.service';
 
 const MODULES = [
   // Do NOT include UniversalModule, HttpModule, or JsonpModule here
@@ -19,6 +21,11 @@ const COMPONENTS = [
   // put shared components here
 ];
 
+const PROVIDERS = [
+  ModelService,
+  ApiService
+]
+
 @NgModule({
   imports: [
     ...MODULES
@@ -27,12 +34,19 @@ const COMPONENTS = [
     ...PIPES,
     ...COMPONENTS
   ],
-  providers: [
-  ],
   exports: [
     ...MODULES,
     ...PIPES,
     ...COMPONENTS
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [
+        ...PROVIDERS
+      ]
+    };
+  }
+}
