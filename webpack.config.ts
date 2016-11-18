@@ -24,7 +24,8 @@ export var commonConfig = {
   // https://webpack.github.io/docs/configuration.html#devtool
   devtool: 'source-map',
   resolve: {
-    extensions: ['.ts', '.js', '.json']
+    extensions: ['.ts', '.js', '.json'],
+    modules: [ root('node_modules') ]
   },
   context: __dirname,
   output: {
