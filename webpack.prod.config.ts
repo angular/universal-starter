@@ -20,18 +20,6 @@ export var commonPlugins = [
     debug: false
   }),
 
-  // To use gzip, you can run 'npm install compression-webpack-plugin --save-dev'
-  // add 'var CompressionPlugin = require("compression-webpack-plugin");' on the top
-  // and comment out below codes
-  //
-  new CompressionPlugin({
-    asset: "[path].gz[query]",
-    algorithm: "gzip",
-    test: /\.js$|\.css$|\.html$/,
-    threshold: 10240,
-    minRatio: 0.8
-  }),
-
   new webpack.NormalModuleReplacementPlugin(
     /facade\/async/,
     root('node_modules/@angular/core/src/facade/async.js')
@@ -63,6 +51,18 @@ export var commonConfig = {
 
 // Client.
 export var clientPlugins = [
+  // To use gzip, you can run 'npm install compression-webpack-plugin --save-dev'
+  // add 'var CompressionPlugin = require("compression-webpack-plugin");' on the top
+  // and comment out below codes
+  //
+  new CompressionPlugin({
+    asset: "[path].gz[query]",
+    algorithm: "gzip",
+    test: /\.js$|\.css$|\.html$/,
+    threshold: 10240,
+    minRatio: 0.8
+  }),
+
   new webpack.optimize.UglifyJsPlugin({
     // beautify: true,
     // mangle: false,
