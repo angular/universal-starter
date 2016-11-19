@@ -39,6 +39,7 @@ app.engine('.html', createEngine({
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname);
 app.set('view engine', 'html');
+app.set('json spaces', 2);
 
 app.use(cookieParser('Angular 2 Universal'));
 app.use(bodyParser.json());
@@ -48,9 +49,14 @@ app.use('/assets', express.static(path.join(__dirname, 'assets'), {maxAge: 30}))
 app.use(express.static(path.join(ROOT, 'dist/client'), {index: false}));
 
 
-import { serverApi } from './backend/api';
+//
+/////////////////////////
+// ** Example API
+// Notice API should be in aseparate process
+import { serverApi createTodoApi} from './backend/api';
 // Our API for demos only
 app.get('/data.json', serverApi);
+app.use('/api', createTodoApi());
 
 function ngApp(req, res) {
   res.render('index', {
@@ -70,6 +76,8 @@ app.get('/about', ngApp);
 app.get('/about/*', ngApp);
 app.get('/home', ngApp);
 app.get('/home/*', ngApp);
+app.get('/todo', ngApp);
+app.get('/todo/*', ngApp);
 
 
 app.get('*', function(req, res) {
