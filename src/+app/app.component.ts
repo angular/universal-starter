@@ -39,6 +39,7 @@ export class XLargeDirective {
   <nav>
     <a routerLinkActive="router-link-active" routerLink="home">Home</a>
     <a routerLinkActive="router-link-active" routerLink="about">About</a>
+    <a routerLinkActive="router-link-active" routerLink="todo">Todo</a>
   </nav>
   <div class="hero-universal">
     <div class="inner-hero">
