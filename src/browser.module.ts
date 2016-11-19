@@ -29,7 +29,7 @@ export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
   bootstrap: [ AppComponent ],
   imports: [
     UniversalModule, // BrowserModule, HttpModule, and JsonpModule are included
-    FormsModule,
+    FormsModule,AppModule,
     RouterModule.forRoot([], {}),
     SharedModule.forRoot(),
   ],
