@@ -14,11 +14,20 @@ enableProdMode();
 
 import { MainModuleNgFactory } from './browser.module.ngfactory';
 
-const platformRef = platformBrowser();
+export const platformRef = platformBrowser();
 
 // on document ready bootstrap Angular 2
-document.addEventListener('DOMContentLoaded', () => {
+export function main() {
+  return platformRef.bootstrapModuleFactory(MainModuleNgFactory);
+}
 
-  platformRef.bootstrapModuleFactory(MainModuleNgFactory);
-
-});
+// support async tag or hmr
+switch (document.readyState) {
+  case 'interactive':
+  case 'complete':
+    main();
+    break;
+  case 'loading':
+  default:
+    document.addEventListener('DOMContentLoaded', () => main());
+}
