@@ -15,7 +15,8 @@
     "lib": ["es6", "dom"]
   },
   "files": [
-    "./src/app/app.node.module.ts",
+    "./src/browser.module.ts",
+    "./src/node.module.ts",
     "./src/typings.d.ts"
   ],
   "angularCompilerOptions": {
