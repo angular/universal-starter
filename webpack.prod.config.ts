@@ -52,7 +52,7 @@ export var commonConfig = {
 // Client.
 export var clientPlugins = [
   new BundleAnalyzerPlugin({
-    analyzerMode: 'disabled', // change it to `server` to view bundle stats
+    analyzerMode: 'disabled', // change it to `server` to view bundle stats 
     reportFilename: 'report.html',
     generateStatsFile: true,
     statsFilename: 'stats.json',
