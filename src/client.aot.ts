@@ -12,7 +12,7 @@ import { platformBrowser } from '@angular/platform-browser';
 // enable prod for faster renders
 enableProdMode();
 
-import { MainModuleNgFactory } from './app/app.browser.module.ngfactory';
+import { MainModuleNgFactory } from './browser.module.ngfactory';
 
 const platformRef = platformBrowser();
 
