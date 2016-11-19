@@ -23,7 +23,7 @@ export class XLargeDirective {
   encapsulation: ViewEncapsulation.Emulated,
   selector: 'app',
   styles: [`
-    * { padding:0; margin:0; }
+    * { padding:0; margin:0; font-family: 'Droid Sans', sans-serif; }
     #universal { text-align:center; font-weight:bold; padding:15px 0; }
     nav { background:#158126; min-height:40px; border-bottom:5px #046923 solid; }
     nav a { font-weight:bold; text-decoration:none; color:#fff; padding:20px; display:inline-block; }
