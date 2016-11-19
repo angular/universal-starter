@@ -57,7 +57,6 @@
     "express": "^4.14.0",
     "js.clone": "0.0.3",
     "methods": "~1.1.2",
-    "modern-lru": "^1.0.8",
     "preboot": "~4.5.2",
     "rxjs": "5.0.0-beta.12",
     "zone.js": "~0.6.26"
