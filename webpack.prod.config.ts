@@ -3,14 +3,10 @@ var path = require('path');
 var clone = require('js.clone');
 var webpackMerge = require('webpack-merge');
 var V8LazyParseWebpackPlugin = require('v8-lazy-parse-webpack-plugin');
-<<<<<<< HEAD
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 import webpackConfig, { root, checkNodeImport, includeClientPackages } from './webpack.config';
-=======
 // var CompressionPlugin = require('compression-webpack-plugin');
 
-import webpackConfig, { root, includeClientPackages } from './webpack.config';
->>>>>>> 58f024efd95f822026224bda36e062a1f2c88438
 
 export var commonPlugins = [
   new V8LazyParseWebpackPlugin(),
