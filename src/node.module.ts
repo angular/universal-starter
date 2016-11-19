@@ -7,6 +7,9 @@ import { AppModule, AppComponent } from './+app/app.module';
 import { SharedModule } from './+app/shared/shared.module';
 import { CacheService } from './+app/shared/cache.service';
 
+// Will be merged into @angular/platform-browser in a later release
+import { Meta } from './angular2-meta';
+
 export function getLRU() {
   return new Map();
 }
@@ -40,6 +43,8 @@ export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
     { provide: 'LRU', useFactory: getLRU, deps: [] },
 
     CacheService,
+
+    Meta,
   ]
 })
 export class MainModule {
