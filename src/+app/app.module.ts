@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 
 import { HomeModule } from './+home/home.module';
 import { AboutModule } from './+about/about.module';
-import { AppRoutingModule } from './app-routing.module';
+import { TodoModule } from './+todo/todo.module';
 
 import { SharedModule } from './shared/shared.module';
 
@@ -17,6 +17,7 @@ import { AppComponent, XLargeDirective } from './app.component';
     SharedModule,
     HomeModule,
     AboutModule,
+    TodoModule,
     AppRoutingModule
   ]
 })
