@@ -17,7 +17,7 @@ import { enableProdMode } from '@angular/core';
 import { createEngine } from 'angular2-express-engine';
 
 // App
-import { MainModule } from './app/app.node.module';
+import { MainModule } from './node.module';
 
 // enable prod for faster renders
 enableProdMode();
