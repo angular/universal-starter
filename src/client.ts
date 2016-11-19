@@ -12,11 +12,20 @@ import { platformUniversalDynamic } from 'angular2-universal/browser';
 
 import { MainModule } from './browser.module';
 
-const platformRef = platformUniversalDynamic();
+export const platformRef = platformUniversalDynamic();
 
 // on document ready bootstrap Angular 2
-document.addEventListener('DOMContentLoaded', () => {
+export function main() {
+  return platformRef.bootstrapModule(MainModule);
+}
 
-  platformRef.bootstrapModule(MainModule);
-
-});
+// support async tag or hmr
+switch (document.readyState) {
+  case 'interactive':
+  case 'complete':
+    main();
+    break;
+  case 'loading':
+  default:
+    document.addEventListener('DOMContentLoaded', () => main());
+}
