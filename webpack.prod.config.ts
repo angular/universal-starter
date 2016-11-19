@@ -21,23 +21,23 @@ export var commonPlugins = [
   }),
 
   new webpack.NormalModuleReplacementPlugin(
-    /facade\/async/,
+    /facade(\\|\/)async/,
     root('node_modules/@angular/core/src/facade/async.js')
   ),
   new webpack.NormalModuleReplacementPlugin(
-    /facade\/collection/,
+    /facade(\\|\/)collection/,
     root('node_modules/@angular/core/src/facade/collection.js')
   ),
   new webpack.NormalModuleReplacementPlugin(
-    /facade\/errors/,
+    /facade(\\|\/)errors/,
     root('node_modules/@angular/core/src/facade/errors.js')
   ),
   new webpack.NormalModuleReplacementPlugin(
-    /facade\/lang/,
+    /facade(\\|\/)lang/,
     root('node_modules/@angular/core/src/facade/lang.js')
   ),
   new webpack.NormalModuleReplacementPlugin(
-    /facade\/math/,
+    /facade(\\|\/)math/,
     root('node_modules/@angular/core/src/facade/math.js')
   ),
 
