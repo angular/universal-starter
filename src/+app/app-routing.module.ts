@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
-    RouterModule.forRoot([
+    RouterModule.forChild([
       { path: '', redirectTo: '/home', pathMatch: 'full' }
     ])
   ],
