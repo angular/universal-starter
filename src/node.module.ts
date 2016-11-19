@@ -1,40 +1,32 @@
-import { NgModule, Inject, Optional, SkipSelf } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { UniversalModule, isBrowser, isNode } from 'angular2-universal/node'; // for AoT we need to manually split universal packages
 
-import { HomeModule } from './+home/home.module';
-import { AboutModule } from './+about/about.module';
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { SharedModule } from './shared/shared.module';
-import { CacheService } from './shared/cache.service';
+import { AppModule, AppComponent } from './+app/app.module';
+import { SharedModule } from './+app/shared/shared.module';
+import { CacheService } from './+app/shared/cache.service';
 
-// import * as LRU from 'modern-lru';
-
-export function getLRU(lru?: any) {
-  // use LRU for node
-  // return lru || new LRU(10);
-  return lru || new Map();
+export function getLRU() {
+  return new Map();
 }
 export function getRequest() {
-  return Zone.current.get('req') || {};
+  return {};
 }
 export function getResponse() {
-  return Zone.current.get('res') || {};
+  return {};
 }
+
+// TODO(gdi2290): refactor into Universal
+export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
 
 @NgModule({
   bootstrap: [ AppComponent ],
-  declarations: [ AppComponent ],
   imports: [
-    UniversalModule, // NodeModule, NodeHttpModule, and NodeJsonpModule are included
+    UniversalModule, // BrowserModule, HttpModule, and JsonpModule are included
     FormsModule,
-
+    RouterModule.forRoot([], {}),
     SharedModule.forRoot(),
-    HomeModule,
-    AboutModule,
-
-    AppRoutingModule
   ],
   providers: [
     { provide: 'isBrowser', useValue: isBrowser },
@@ -43,18 +35,13 @@ export function getResponse() {
     { provide: 'req', useFactory: getRequest },
     { provide: 'res', useFactory: getResponse },
 
-    {
-      provide: 'LRU',
-      useFactory: getLRU,
-      deps: [ [new Inject('LRU'), new Optional(), new SkipSelf()] ]
-    },
+    { provide: 'LRU', useFactory: getLRU, deps: [] },
 
-    CacheService
+    CacheService,
   ]
 })
 export class MainModule {
   constructor(public cache: CacheService) {
-
   }
 
   /**
