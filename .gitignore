@@ -13,3 +13,5 @@ npm-debug.log
 .DS_Store
 
 webpack.records.json
+
+/npm-debug.log.*

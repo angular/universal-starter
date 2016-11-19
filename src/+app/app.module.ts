@@ -4,14 +4,13 @@ import { UniversalModule, isBrowser, isNode, AUTO_PREBOOT } from 'angular2-unive
 
 import { HomeModule } from './+home/home.module';
 import { AboutModule } from './+about/about.module';
-import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
+import { AppComponent, XLargeDirective } from './app.component';
 
-export { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [ AppComponent ],
+  declarations: [ AppComponent, XLargeDirective ],
   imports: [
     SharedModule,
     HomeModule,
@@ -21,3 +20,5 @@ export { AppComponent } from './app.component';
 })
 export class AppModule {
 }
+
+export { AppComponent } from './app.component';
