@@ -6,18 +6,8 @@ import { ModelService } from '../shared/model/model.service';
   changeDetection: ChangeDetectionStrategy.Default,
   encapsulation: ViewEncapsulation.Emulated,
   selector: 'home',
-  styles: [`
-    blockquote { border-left:5px #158126 solid; background:#fff; padding:20px 20px 20px 40px; }
-    blockquote::before { left: 1em; }
-  `],
-  template: `
-    <div class="home">
-      Home component
-      <strong>Async data call return value:</strong>
-      <pre>{{ data | json }}</pre>
-      <blockquote>{{ data.data }}</blockquote>
-    </div>
-  `
+  styleUrls: [ './home.component.css' ],
+  templateUrl: './home.component.html'
 })
 export class HomeComponent {
   data = {};
