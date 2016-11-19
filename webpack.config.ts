@@ -112,7 +112,7 @@ export default [
 
 
 // Helpers
-function includeClientPackages(packages, localModule) {
+export function includeClientPackages(packages, localModule) {
   return function(context, request, cb) {
     if (localModule instanceof RegExp && localModule.test(request)) {
       return cb();

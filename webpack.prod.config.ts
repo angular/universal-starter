@@ -5,7 +5,7 @@ var webpackMerge = require('webpack-merge');
 var V8LazyParseWebpackPlugin = require('v8-lazy-parse-webpack-plugin');
 // var CompressionPlugin = require('compression-webpack-plugin');
 
-import webpackConfig, { root, checkNodeImport, includeClientPackages } from './webpack.config';
+import webpackConfig, { root, includeClientPackages } from './webpack.config';
 
 export var commonPlugins = [
   new V8LazyParseWebpackPlugin(),
