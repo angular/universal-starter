@@ -88,7 +88,7 @@ export var serverConfig = {
     ],
   },
   externals: includeClientPackages(
-    /@angularclass|@angular|angular2-|ng2-|ng-|@ng-|angular-|@ngrx|ngrx-|@angular2|ionic|-angular2|-ng2|-ng/
+    /@angularclass|@angular|angular2-|ng2-|ng-|@ng-|angular-|@ngrx|ngrx-|@angular2|ionic|@ionic|-angular2|-ng2|-ng/
   ),
   node: {
     global: true,
@@ -112,25 +112,22 @@ export default [
 
 
 // Helpers
-
-export function includeClientPackages(packages) {
+export function includeClientPackages(packages, localModule) {
   return function(context, request, cb) {
-    if (packages) {
-      if (packages instanceof RegExp && packages.test(request)) {
-        return cb();
-      } else if (typeof packages === 'string' && packages.indexOf(request) !== -1) {
-        return cb();
-      }
+    if (localModule instanceof RegExp && localModule.test(request)) {
+      return cb();
     }
-    return checkNodeImport(context, request, cb);
+    if (packages instanceof RegExp && packages.test(request)) {
+      return cb();
+    }
+    if (Array.isArray(packages) && packages.indexOf(request) !== -1) {
+      return cb();
+    }
+    if (!path.isAbsolute(request) && request.charAt(0) !== '.') {
+      return cb(null, 'commonjs ' + request);
+    }
+    return cb();
   };
-}
-
-export function checkNodeImport(context, request, cb) {
-  if (!path.isAbsolute(request) && request.charAt(0) !== '.') {
-    cb(null, 'commonjs ' + request); return;
-  }
-  cb();
 }
 
 export function root(args) {

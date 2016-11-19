@@ -13,8 +13,8 @@
     "clean:ngc": "rimraf **/*.ngfactory.ts",
     "prebuild": "npm run clean:dist",
     "build": "webpack  --progress",
-    "build:prod:ngc": "npm run ngc && npm run clean:dist && npm run build:prod",
-    "build:prod:ngc:json": "npm run ngc && npm run clean:dist && npm run build:prod:json",
+    "build:prod:ngc": "npm run clean:ngc && npm run ngc && npm run clean:dist && npm run build:prod",
+    "build:prod:ngc:json": "npm run clean:ngc && npm run ngc && npm run clean:dist && npm run build:prod:json",
     "build:prod": "webpack --config webpack.prod.config.ts",
     "build:prod:json": "webpack --config webpack.prod.config.ts --json | webpack-bundle-size-analyzer",
     "ngc": "ngc -p tsconfig.aot.json",
@@ -37,18 +37,18 @@
     "Mark Pieszak <mpieszak84@gmail.com>"
   ],
   "dependencies": {
-    "@angular/common": "~2.2.0",
-    "@angular/compiler": "~2.2.0",
-    "@angular/compiler-cli": "~2.2.0",
-    "@angular/core": "~2.2.0",
-    "@angular/forms": "~2.2.0",
-    "@angular/http": "~2.2.0",
-    "@angular/upgrade": "~2.2.0",
-    "@angular/platform-browser": "~2.2.0",
-    "@angular/platform-browser-dynamic": "~2.2.0",
-    "@angular/platform-server": "~2.2.0",
-    "@angular/router": "~3.2.0",
-    "@ngtools/webpack": "^1.1.4",
+    "@angular/common": "~2.2.1",
+    "@angular/compiler": "~2.2.1",
+    "@angular/compiler-cli": "~2.2.1",
+    "@angular/core": "~2.2.1",
+    "@angular/forms": "~2.2.1",
+    "@angular/http": "~2.2.1",
+    "@angular/platform-browser": "~2.2.1",
+    "@angular/platform-browser-dynamic": "~2.2.1",
+    "@angular/platform-server": "~2.2.1",
+    "@angular/router": "~3.2.1",
+    "@angular/upgrade": "~2.2.1",
+    "@ngtools/webpack": "~1.1.7",
     "angular2-express-engine": "~2.1.0-rc.1",
     "angular2-platform-node": "~2.1.0-rc.1",
     "angular2-universal": "~2.1.0-rc.1",
@@ -57,9 +57,9 @@
     "express": "^4.14.0",
     "js.clone": "0.0.3",
     "methods": "~1.1.2",
-    "modern-lru": "^1.0.8",
     "preboot": "~4.5.2",
     "rxjs": "5.0.0-beta.12",
+    "webfontloader": "^1.6.26",
     "zone.js": "~0.6.26"
   },
   "devDependencies": {
@@ -72,6 +72,7 @@
     "@types/mime": "0.0.28",
     "@types/node": "^6.0.38",
     "@types/serve-static": "^1.7.27",
+    "@types/webfontloader": "^1.6.27",
     "angular2-template-loader": "^0.4.0",
     "awesome-typescript-loader": "^2.2.4",
     "cookie-parser": "^1.4.3",
@@ -90,8 +91,5 @@
     "webpack-dev-middleware": "^1.8.4",
     "webpack-dev-server": "2.1.0-beta.11",
     "webpack-merge": "~0.16.0"
-  },
-  "optionalDependencies": {
-    "compression-webpack-plugin": "^0.3.2"
   }
 }
