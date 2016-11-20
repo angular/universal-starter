@@ -19,7 +19,6 @@ export var commonPlugins = [
   }),
 
 ];
-
 export var commonConfig = {
   // https://webpack.github.io/docs/configuration.html#devtool
   devtool: 'source-map',
@@ -33,12 +32,12 @@ export var commonConfig = {
     filename: '[name].bundle.js'
   },
   module: {
-    loaders: [
+    rules: [
       // TypeScript
-      { test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader'] },
-      { test: /\.html$/, loader: 'raw-loader' },
-      { test: /\.css$/, loader: 'raw-loader' },
-      { test: /\.json$/, loader: 'json-loader' }
+      { test: /\.ts$/,   use: ['awesome-typescript-loader', 'angular2-template-loader'] },
+      { test: /\.html$/, use: 'raw-loader' },
+      { test: /\.css$/,  use: 'raw-loader' },
+      { test: /\.json$/, use: 'json-loader' }
     ],
   },
   plugins: [
@@ -51,7 +50,6 @@ export var commonConfig = {
 export var clientPlugins = [
 
 ];
-
 export var clientConfig = {
   target: 'web',
   entry: './src/client',
@@ -73,7 +71,6 @@ export var clientConfig = {
 export var serverPlugins = [
 
 ];
-
 export var serverConfig = {
   target: 'node',
   entry: './src/server', // use the entry file of the node server if everything is ts rather than es5
@@ -83,8 +80,8 @@ export var serverConfig = {
     libraryTarget: 'commonjs2'
   },
   module: {
-    loaders: [
-      { test: /@angular(\\|\/)material/, loader: "imports-loader?window=>global" }
+    rules: [
+      { test: /@angular(\\|\/)material/, use: "imports-loader?window=>global" }
     ],
   },
   externals: includeClientPackages(

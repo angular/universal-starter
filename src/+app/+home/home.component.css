@@ -1,0 +1,8 @@
+blockquote {
+  border-left:5px #158126 solid;
+  background:#fff;
+  padding:20px 20px 20px 40px;
+}
+blockquote::before {
+  left: 1em;
+}

@@ -7,6 +7,10 @@ import { AppModule, AppComponent } from './+app/app.module';
 import { SharedModule } from './+app/shared/shared.module';
 import { CacheService } from './+app/shared/cache.service';
 
+// Will be merged into @angular/platform-browser in a later release
+// see https://github.com/angular/angular/pull/12322
+import { Meta } from './angular2-meta';
+
 // import * as LRU from 'modern-lru';
 
 export function getLRU(lru?: any) {
@@ -46,6 +50,8 @@ export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
     { provide: 'LRU', useFactory: getLRU, deps: [] },
 
     CacheService,
+
+    Meta,
 
     // { provide: AUTO_PREBOOT, useValue: false } // turn off auto preboot complete
   ]
