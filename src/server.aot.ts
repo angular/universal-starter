@@ -19,6 +19,9 @@ import { createEngine } from 'angular2-express-engine';
 // App
 import { MainModuleNgFactory } from './node.module.ngfactory';
 
+// Routes
+import { routes } from './server.routes';
+
 // enable prod for faster renders
 enableProdMode();
 
@@ -69,15 +72,15 @@ function ngApp(req, res) {
     originUrl: `http://localhost:${ app.get('port') }`
   });
 }
-// Routes with html5pushstate
-// ensure routes match client-side-app
+
+/**
+ * use universal for specific routes
+ */
 app.get('/', ngApp);
-app.get('/about', ngApp);
-app.get('/about/*', ngApp);
-app.get('/home', ngApp);
-app.get('/home/*', ngApp);
-app.get('/todo', ngApp);
-app.get('/todo/*', ngApp);
+routes.forEach(route => {
+  app.get(`/${route}`, ngApp);
+  app.get(`/${route}/*`, ngApp);
+});
 
 
 app.get('*', function(req, res) {
