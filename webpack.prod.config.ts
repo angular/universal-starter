@@ -3,9 +3,10 @@ var path = require('path');
 var clone = require('js.clone');
 var webpackMerge = require('webpack-merge');
 var V8LazyParseWebpackPlugin = require('v8-lazy-parse-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+import webpackConfig, { root,  includeClientPackages } from './webpack.config';
 // var CompressionPlugin = require('compression-webpack-plugin');
 
-import webpackConfig, { root, includeClientPackages } from './webpack.config';
 
 export var commonPlugins = [
   new V8LazyParseWebpackPlugin(),
@@ -51,6 +52,12 @@ export var commonConfig = {
 
 // Client.
 export var clientPlugins = [
+  new BundleAnalyzerPlugin({
+    analyzerMode: 'disabled', // change it to `server` to view bundle stats 
+    reportFilename: 'report.html',
+    generateStatsFile: true,
+    statsFilename: 'stats.json',
+  }),
   // To use gzip, you can run 'npm install compression-webpack-plugin --save-dev'
   // add 'var CompressionPlugin = require("compression-webpack-plugin");' on the top
   // and comment out below codes
