@@ -10,7 +10,7 @@
     "watch": "webpack --watch",
     "watch:dev": "npm run server & npm run watch",
     "clean:dist": "rimraf dist",
-    "clean:ngc": "rimraf **/*.ngfactory.ts",
+    "clean:ngc": "rimraf **/*.ngfactory.ts **/*.css.shim.ts",
     "prebuild": "npm run clean:dist",
     "build": "webpack  --progress",
     "build:prod:ngc": "npm run clean:ngc && npm run ngc && npm run clean:dist && npm run build:prod",
