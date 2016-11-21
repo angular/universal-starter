@@ -90,7 +90,8 @@ export const clientPlugins = [
       if_return: true,
       join_vars: true,
       negate_iife: false // we need this for lazy v8
-    }
+    },
+    sourceMap: true
   }),
 
   new webpack.NormalModuleReplacementPlugin(
@@ -131,13 +132,33 @@ export const clientPlugins = [
 
 ];
 export const clientConfig = {
-  entry: './src/client',
+  entry: './src/client.aot',
   recordsOutputPath: root('webpack.records.json')
 };
 
 // Server.
 
 export const serverPlugins = [
+  new webpack.optimize.UglifyJsPlugin({
+    // beautify: true,
+    mangle: false, // to ensure process.env still works
+    output: {
+      comments: false
+    },
+    compress: {
+      warnings: false,
+      conditionals: true,
+      unused: true,
+      comparisons: true,
+      sequences: true,
+      dead_code: true,
+      evaluate: true,
+      if_return: true,
+      join_vars: true,
+      negate_iife: false // we need this for lazy v8
+    },
+    sourceMap: true
+  }),
 ];
 export const serverConfig = {
   entry: './src/server.aot',
