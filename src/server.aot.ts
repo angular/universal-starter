@@ -10,6 +10,7 @@ import * as path from 'path';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
+import * as compression from 'compression';
 
 // Angular 2
 import { enableProdMode } from '@angular/core';
@@ -46,6 +47,7 @@ app.set('json spaces', 2);
 
 app.use(cookieParser('Angular 2 Universal'));
 app.use(bodyParser.json());
+app.use(compression());
 
 // Serve static files
 app.use('/assets', express.static(path.join(__dirname, 'assets'), {maxAge: 30}));
