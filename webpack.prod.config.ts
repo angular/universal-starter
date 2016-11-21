@@ -51,12 +51,12 @@ export const commonConfig = {
 };
 
 // Client.
+export const clientPlugins = [
   new BundleAnalyzerPlugin({
-    analyzerMode: 'disabled', // change it to `server` to view bundle stats 
+    analyzerMode: 'disabled', // change it to `server` to view bundle stats
     reportFilename: 'report.html',
     generateStatsFile: true,
     statsFilename: 'stats.json',
-export const clientPlugins = [
   }),
   // To use gzip, you can run 'npm install compression-webpack-plugin --save-dev'
   // add 'var CompressionPlugin = require("compression-webpack-plugin");' on the top
@@ -136,8 +136,8 @@ export const clientConfig = {
 
 export const serverPlugins = [
 ];
-  entry: './src/server.aot',
 export const serverConfig = {
+  entry: './src/server.aot',
   output: {
     filename: 'index.js'
   },
