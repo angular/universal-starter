@@ -33,11 +33,11 @@ export function main() {
 
 // support async tag or hmr
 switch (document.readyState) {
+  case 'loading':
+    document.addEventListener('DOMContentLoaded', () => main());
+    break;
   case 'interactive':
   case 'complete':
-    main();
-    break;
-  case 'loading':
   default:
-    document.addEventListener('DOMContentLoaded', () => main());
+    main();
 }
