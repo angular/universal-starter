@@ -18,7 +18,6 @@ export const platformRef = platformUniversalDynamic();
 
 // on document ready bootstrap Angular 2
 export function main() {
-  return platformRef.bootstrapModule(MainModule);
   // Load fonts async
   // https://github.com/typekit/webfontloader#configuration
   loadWebFont({
@@ -27,6 +26,7 @@ export function main() {
     }
   });
 
+  return platformRef.bootstrapModule(MainModule);
 }
 
 // support async tag or hmr
