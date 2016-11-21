@@ -6,6 +6,7 @@ import 'angular2-universal-polyfills';
 import 'ts-helpers';
 import './__workaround.node'; // temporary until 2.1.1 things are patched in Core
 
+import * as fs from 'fs';
 import * as path from 'path';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
@@ -48,7 +49,12 @@ app.set('json spaces', 2);
 app.use(cookieParser('Angular 2 Universal'));
 app.use(bodyParser.json());
 
-app.use(morgan('dev'));
+const accessLogStream = fs.createWriteStream(ROOT + '/morgan.log', {flags: 'a'})
+
+app.use(morgan('common', {
+  skip: (req, res) => res.statusCode < 400,
+  stream: accessLogStream
+}));
 
 // Serve static files
 app.use('/assets', express.static(path.join(__dirname, 'assets'), {maxAge: 30}));
