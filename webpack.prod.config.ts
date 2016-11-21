@@ -1,14 +1,14 @@
-var webpack = require('webpack');
-var path = require('path');
-var clone = require('js.clone');
-var webpackMerge = require('webpack-merge');
-var V8LazyParseWebpackPlugin = require('v8-lazy-parse-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
+const clone = require('js.clone');
+const webpackMerge = require('webpack-merge');
+const V8LazyParseWebpackPlugin = require('v8-lazy-parse-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 import webpackConfig, { root,  includeClientPackages } from './webpack.config';
-// var CompressionPlugin = require('compression-webpack-plugin');
+// const CompressionPlugin = require('compression-webpack-plugin');
 
 
-export var commonPlugins = [
+export const commonPlugins = [
   new V8LazyParseWebpackPlugin(),
 
   new webpack.DefinePlugin({
@@ -43,7 +43,7 @@ export var commonPlugins = [
   ),
 
 ];
-export var commonConfig = {
+export const commonConfig = {
   output: {
     filename: '[name].bundle.js',
     chunkFilename: '[chunkhash].js'
@@ -51,12 +51,12 @@ export var commonConfig = {
 };
 
 // Client.
-export var clientPlugins = [
   new BundleAnalyzerPlugin({
     analyzerMode: 'disabled', // change it to `server` to view bundle stats 
     reportFilename: 'report.html',
     generateStatsFile: true,
     statsFilename: 'stats.json',
+export const clientPlugins = [
   }),
   // To use gzip, you can run 'npm install compression-webpack-plugin --save-dev'
   // add 'var CompressionPlugin = require("compression-webpack-plugin");' on the top
@@ -127,17 +127,17 @@ export var clientPlugins = [
   // }),
 
 ];
-export var clientConfig = {
-  entry: './src/client.aot',
+export const clientConfig = {
+  entry: './src/client',
   recordsOutputPath: root('webpack.records.json')
 };
 
 // Server.
-export var serverPlugins = [
 
+export const serverPlugins = [
 ];
-export var serverConfig = {
   entry: './src/server.aot',
+export const serverConfig = {
   output: {
     filename: 'index.js'
   },
