@@ -28,7 +28,7 @@ export var commonConfig = {
   },
   context: __dirname,
   output: {
-    publicPath: path.resolve(__dirname),
+    publicPath: '',
     filename: '[name].bundle.js'
   },
   module: {
