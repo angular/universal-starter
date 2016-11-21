@@ -164,7 +164,8 @@ export const serverConfig = {
   entry: './src/server.aot',
   output: {
     filename: 'index.js',
-    chunkFilename: '[id].bundle.js'
+    chunkFilename: '[id].bundle.js',
+    crossOriginLoading: false
   },
 };
 
