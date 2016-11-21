@@ -49,10 +49,14 @@ app.use(cookieParser('Angular 2 Universal'));
 app.use(bodyParser.json());
 app.use(compression());
 
+function cacheControl(req, res, next) {
+  // instruct browser to revalidate in 60 seconds
+  res.header('Cache-Control', 'max-age=60');
+  next();
+}
 // Serve static files
-app.use('/assets', express.static(path.join(__dirname, 'assets'), {maxAge: 30}));
-app.use(express.static(path.join(ROOT, 'dist/client'), {index: false}));
-
+app.use('/assets', cacheControl, express.static(path.join(__dirname, 'assets'), {maxAge: 30}));
+app.use(cacheControl, express.static(path.join(ROOT, 'dist/client'), {index: false}));
 
 //
 /////////////////////////
