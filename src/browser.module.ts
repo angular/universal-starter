@@ -19,10 +19,12 @@ export function getLRU(lru?: any) {
   return lru || new Map();
 }
 export function getRequest() {
-  return Zone.current.get('req') || {};
+  // the request object only lives on the server
+  return { cookie: document.cookie };
 }
 export function getResponse() {
-  return Zone.current.get('res') || {};
+  // the response object is sent as the index.html and lives on the server
+  return {};
 }
 
 
@@ -32,6 +34,7 @@ export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
 @NgModule({
   bootstrap: [ AppComponent ],
   imports: [
+    // MaterialModule.forRoot() should be included first
     UniversalModule, // BrowserModule, HttpModule, and JsonpModule are included
 
     FormsModule,
