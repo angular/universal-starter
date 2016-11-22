@@ -15,10 +15,10 @@ export function getLRU() {
   return new Map();
 }
 export function getRequest() {
-  return {};
+  return Zone.current.get('req') || {};
 }
 export function getResponse() {
-  return {};
+  return Zone.current.get('res') || {};
 }
 
 // TODO(gdi2290): refactor into Universal
@@ -27,9 +27,12 @@ export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
 @NgModule({
   bootstrap: [ AppComponent ],
   imports: [
+    // MaterialModule.forRoot() should be included first
     UniversalModule, // BrowserModule, HttpModule, and JsonpModule are included
+
     FormsModule,
     RouterModule.forRoot([], { useHash: false }),
+
     SharedModule.forRoot(),
     AppModule,
   ],
@@ -49,6 +52,7 @@ export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
 })
 export class MainModule {
   constructor(public cache: CacheService) {
+
   }
 
   /**
