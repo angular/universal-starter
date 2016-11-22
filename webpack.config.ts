@@ -93,7 +93,7 @@ export var serverConfig = {
     __dirname: true,
     __filename: true,
     process: true,
-    Buffer: false
+    Buffer: true
   }
 };
 
