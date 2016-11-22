@@ -6,10 +6,12 @@ import 'angular2-universal-polyfills';
 import 'ts-helpers';
 import './__workaround.node'; // temporary until 2.1.1 things are patched in Core
 
+import * as fs from 'fs';
 import * as path from 'path';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
+import * as morgan from 'morgan';
 import * as compression from 'compression';
 
 // Angular 2
@@ -48,6 +50,13 @@ app.set('json spaces', 2);
 app.use(cookieParser('Angular 2 Universal'));
 app.use(bodyParser.json());
 app.use(compression());
+
+const accessLogStream = fs.createWriteStream(ROOT + '/morgan.log', {flags: 'a'})
+
+app.use(morgan('common', {
+  skip: (req, res) => res.statusCode < 400,
+  stream: accessLogStream
+}));
 
 function cacheControl(req, res, next) {
   // instruct browser to revalidate in 60 seconds
