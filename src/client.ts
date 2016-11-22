@@ -8,13 +8,6 @@ import { enableProdMode } from '@angular/core';
 import { platformUniversalDynamic } from 'angular2-universal/browser';
 
 import { load as loadWebFont } from 'webfontloader';
-// Load fonts async
-// https://github.com/typekit/webfontloader#configuration
-loadWebFont({
-  google: {
-    families: ['Droid Sans']
-  }
-});
 
 // enable prod for faster renders
 // enableProdMode();
@@ -25,16 +18,24 @@ export const platformRef = platformUniversalDynamic();
 
 // on document ready bootstrap Angular 2
 export function main() {
+  // Load fonts async
+  // https://github.com/typekit/webfontloader#configuration
+  loadWebFont({
+    google: {
+      families: ['Droid Sans']
+    }
+  });
+
   return platformRef.bootstrapModule(MainModule);
 }
 
 // support async tag or hmr
 switch (document.readyState) {
+  case 'loading':
+    document.addEventListener('DOMContentLoaded', () => main());
+    break;
   case 'interactive':
   case 'complete':
-    main();
-    break;
-  case 'loading':
   default:
-    document.addEventListener('DOMContentLoaded', () => main());
+    main();
 }

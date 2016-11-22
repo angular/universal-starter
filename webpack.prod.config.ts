@@ -1,18 +1,21 @@
-var webpack = require('webpack');
-var path = require('path');
-var clone = require('js.clone');
-var webpackMerge = require('webpack-merge');
-var V8LazyParseWebpackPlugin = require('v8-lazy-parse-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
+const clone = require('js.clone');
+const webpackMerge = require('webpack-merge');
+const V8LazyParseWebpackPlugin = require('v8-lazy-parse-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 import webpackConfig, { root,  includeClientPackages } from './webpack.config';
-// var CompressionPlugin = require('compression-webpack-plugin');
+// const CompressionPlugin = require('compression-webpack-plugin');
 
 
-export var commonPlugins = [
+export const commonPlugins = [
   new V8LazyParseWebpackPlugin(),
 
   new webpack.DefinePlugin({
-    'process.env.NODE_ENV': JSON.stringify('production'),
+    'process.env': {
+      'NODE_ENV': JSON.stringify('production'),
+      'AOT': true
+    }
   }),
 
   // Loader options
@@ -43,7 +46,7 @@ export var commonPlugins = [
   ),
 
 ];
-export var commonConfig = {
+export const commonConfig = {
   output: {
     filename: '[name].bundle.js',
     chunkFilename: '[chunkhash].js'
@@ -51,9 +54,9 @@ export var commonConfig = {
 };
 
 // Client.
-export var clientPlugins = [
+export const clientPlugins = [
   new BundleAnalyzerPlugin({
-    analyzerMode: 'disabled', // change it to `server` to view bundle stats 
+    analyzerMode: 'disabled', // change it to `server` to view bundle stats
     reportFilename: 'report.html',
     generateStatsFile: true,
     statsFilename: 'stats.json',
@@ -87,7 +90,8 @@ export var clientPlugins = [
       if_return: true,
       join_vars: true,
       negate_iife: false // we need this for lazy v8
-    }
+    },
+    sourceMap: true
   }),
 
   new webpack.NormalModuleReplacementPlugin(
@@ -127,19 +131,41 @@ export var clientPlugins = [
   // }),
 
 ];
-export var clientConfig = {
+export const clientConfig = {
   entry: './src/client.aot',
   recordsOutputPath: root('webpack.records.json')
 };
 
 // Server.
-export var serverPlugins = [
 
+export const serverPlugins = [
+  new webpack.optimize.UglifyJsPlugin({
+    // beautify: true,
+    mangle: false, // to ensure process.env still works
+    output: {
+      comments: false
+    },
+    compress: {
+      warnings: false,
+      conditionals: true,
+      unused: true,
+      comparisons: true,
+      sequences: true,
+      dead_code: true,
+      evaluate: true,
+      if_return: true,
+      join_vars: true,
+      negate_iife: false // we need this for lazy v8
+    },
+    sourceMap: true
+  }),
 ];
-export var serverConfig = {
+export const serverConfig = {
   entry: './src/server.aot',
   output: {
-    filename: 'index.js'
+    filename: 'index.js',
+    chunkFilename: '[id].bundle.js',
+    crossOriginLoading: false
   },
 };
 

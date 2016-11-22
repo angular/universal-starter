@@ -12,6 +12,7 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 import * as morgan from 'morgan';
+import * as compression from 'compression';
 
 // Angular 2
 import { enableProdMode } from '@angular/core';
@@ -48,6 +49,7 @@ app.set('json spaces', 2);
 
 app.use(cookieParser('Angular 2 Universal'));
 app.use(bodyParser.json());
+app.use(compression());
 
 const accessLogStream = fs.createWriteStream(ROOT + '/morgan.log', {flags: 'a'})
 
@@ -56,10 +58,14 @@ app.use(morgan('common', {
   stream: accessLogStream
 }));
 
+function cacheControl(req, res, next) {
+  // instruct browser to revalidate in 60 seconds
+  res.header('Cache-Control', 'max-age=60');
+  next();
+}
 // Serve static files
-app.use('/assets', express.static(path.join(__dirname, 'assets'), {maxAge: 30}));
-app.use(express.static(path.join(ROOT, 'dist/client'), {index: false}));
-
+app.use('/assets', cacheControl, express.static(path.join(__dirname, 'assets'), {maxAge: 30}));
+app.use(cacheControl, express.static(path.join(ROOT, 'dist/client'), {index: false}));
 
 //
 /////////////////////////
