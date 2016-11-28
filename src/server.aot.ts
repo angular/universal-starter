@@ -12,6 +12,7 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 import * as morgan from 'morgan';
+import * as mcache from 'memory-cache';
 
 const { gzipSync } = require('zlib');
 const accepts = require('accepts');
@@ -55,20 +56,32 @@ app.use(cookieParser('Angular 2 Universal'));
 app.use(bodyParser.json());
 
 app.use(interceptor((req, res)=>({
-  isInterceptable: () => true,
+  // don't compress responses with this request header 
+  isInterceptable: () => (!req.headers['x-no-compression']),
   intercept: ( body, send ) => {
     const encodings  = new Set(accepts(req).encodings());
-    const bodyBuffer = new Buffer(body, 'utf-8');
+    const bodyBuffer = new Buffer(body);
+    // url specific key for response cache
+    const key = '__response__' + req.originalUrl || req.url;
     let output = bodyBuffer;
-    // check for encoding support
-    if (encodings.has('br')) {
-      // brotli
-      res.setHeader('Content-Encoding', 'br');
-      output = compressSync(bodyBuffer);
-    } else if (encodings.has('gzip')) {
-      // gzip
-      res.setHeader('Content-Encoding', 'gzip');
-      output = gzipSync(bodyBuffer);
+    // check if cache exists
+    if (mcache.get(key) === null) {
+      // check for encoding support
+      if (encodings.has('br')) {
+        // brotli
+        res.setHeader('Content-Encoding', 'br');
+        output = compressSync(bodyBuffer);
+        mcache.put(key, {output, encoding: 'br'});
+      } else if (encodings.has('gzip')) {
+        // gzip
+        res.setHeader('Content-Encoding', 'gzip');
+        output = gzipSync(bodyBuffer);
+        mcache.put(key, {output, encoding: 'gzip'});
+      }
+    } else {
+      const { output, encoding } = mcache.get(key);
+      res.setHeader('Content-Encoding', encoding);
+      send(output);
     }
     send(output);
   }
