@@ -39,7 +39,6 @@ const ROOT = path.join(path.resolve(__dirname, '..'));
 app.engine('.html', createEngine({
   precompile: false, // this needs to be false when using ngFactory
   ngModule: MainModuleNgFactory,
-  preboot: true,
   providers: [
     // use only if you have shared state between users
     // { provide: 'LRU', useFactory: () => new LRU(10) }
