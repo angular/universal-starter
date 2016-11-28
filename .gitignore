@@ -16,3 +16,5 @@ npm-debug.log
 webpack.records.json
 
 /npm-debug.log.*
+
+morgan.log
