@@ -12,7 +12,11 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 import * as morgan from 'morgan';
-import * as compression from 'compression';
+
+const { gzipSync } = require('zlib');
+const accepts = require('accepts');
+const { compressSync } = require('iltorb');
+const interceptor = require('express-interceptor');
 
 // Angular 2
 import { enableProdMode } from '@angular/core';
@@ -50,7 +54,26 @@ app.set('json spaces', 2);
 
 app.use(cookieParser('Angular 2 Universal'));
 app.use(bodyParser.json());
-app.use(compression());
+
+app.use(interceptor((req, res)=>({
+  isInterceptable: () => true,
+  intercept: ( body, send ) => {
+    const encodings  = new Set(accepts(req).encodings());
+    const bodyBuffer = new Buffer(body, 'utf-8');
+    let output = bodyBuffer;
+    // check for encoding support
+    if (encodings.has('br')) {
+      // brotli
+      res.setHeader('Content-Encoding', 'br');
+      output = compressSync(bodyBuffer);
+    } else if (encodings.has('gzip')) {
+      // gzip
+      res.setHeader('Content-Encoding', 'gzip');
+      output = gzipSync(bodyBuffer);
+    }
+    send(output);
+  }
+})));
 
 const accessLogStream = fs.createWriteStream(ROOT + '/morgan.log', {flags: 'a'})
 
