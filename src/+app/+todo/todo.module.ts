@@ -5,12 +5,12 @@ import { TodoComponent } from './todo.component';
 import { TodoRoutingModule } from './todo-routing.module';
 
 @NgModule({
+  declarations: [
+    TodoComponent
+  ],
   imports: [
     SharedModule,
     TodoRoutingModule
-  ],
-  declarations: [
-    TodoComponent
   ]
 })
 export class TodoModule { }

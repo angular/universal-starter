@@ -33,6 +33,14 @@ declare module 'modern-lru' {
 
 declare var System: SystemJS;
 
+declare var requestIdleCallback: RequestIdleCallback
+interface RequestIdleCallback {
+  (callback): any;
+}
+interface IdleWindow {
+  requestIdleCallback: RequestIdleCallback;
+}
+
 interface SystemJS {
   import: (path?: string) => Promise<any>;
 }
@@ -71,3 +79,4 @@ interface WebpackRequire {
 interface NodeRequire extends WebpackRequire {}
 interface NodeModule extends WebpackModule {}
 interface Global extends GlobalEnvironment  {}
+interface Window extends IdleWindow {}

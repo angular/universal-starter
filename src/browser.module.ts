@@ -28,7 +28,6 @@ export function getResponse() {
   return {};
 }
 
-
 // TODO(gdi2290): refactor into Universal
 export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
 

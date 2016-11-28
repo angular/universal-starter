@@ -6,7 +6,7 @@ import { TodoComponent } from './todo.component';
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'todo', component: TodoComponent }
+      { path: '', component: TodoComponent }
     ])
   ]
 })

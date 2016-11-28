@@ -41,7 +41,7 @@ app.engine('.html', createEngine({
   ]
 }));
 app.set('port', process.env.PORT || 3000);
-app.set('views', __dirname);
+app.set('views', path.join(ROOT, 'dist', 'client'));
 app.set('view engine', 'html');
 app.set('json spaces', 2);
 
@@ -69,25 +69,27 @@ import { serverApi, createTodoApi } from './backend/api';
 app.get('/data.json', serverApi);
 app.use('/api', createTodoApi());
 
-function ngApp(req, res) {
-  res.render('index', {
-    req,
-    res,
-    // time: true, // use this to determine what part of your app is slow only in development
-    preboot: false,
-    baseUrl: '/',
-    requestUrl: req.originalUrl,
-    originUrl: `http://localhost:${ app.get('port') }`
-  });
+function wrap(page) {
+  return function ngApp(req, res) {
+    res.render(page, {
+      req,
+      res,
+      // time: true, // use this to determine what part of your app is slow only in development
+      preboot: false,
+      baseUrl: '/',
+      requestUrl: req.originalUrl,
+      originUrl: `http://localhost:${ app.get('port') }`
+    });
+  }
 }
 
 /**
  * use universal for specific routes
  */
-app.get('/', ngApp);
+app.get('/', wrap('home'));
 routes.forEach(route => {
-  app.get(`/${route}`, ngApp);
-  app.get(`/${route}/*`, ngApp);
+  app.get(`/${route}`, wrap('home'));
+  app.get(`/${route}/*`, wrap('home'));
 });
 
 app.get('*', function(req, res) {

@@ -4,7 +4,10 @@ const clone = require('js.clone');
 const webpackMerge = require('webpack-merge');
 const V8LazyParseWebpackPlugin = require('v8-lazy-parse-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 import webpackConfig, { root,  includeClientPackages } from './webpack.config';
+import { routes as ROUTES } from './src/server.routes';
 // const CompressionPlugin = require('compression-webpack-plugin');
 
 
@@ -14,7 +17,8 @@ export const commonPlugins = [
   new webpack.DefinePlugin({
     'process.env': {
       'NODE_ENV': JSON.stringify('production'),
-      'AOT': true
+      'AOT': true,
+      // 'PAGE': JSON.stringify('home') // see below
     }
   }),
 
@@ -80,6 +84,8 @@ export const clientPlugins = [
       comments: false
     },
     compress: {
+      // drop_debugger: false,
+
       warnings: false,
       conditionals: true,
       unused: true,
@@ -146,6 +152,8 @@ export const serverPlugins = [
       comments: false
     },
     compress: {
+      // drop_debugger: false,
+
       warnings: false,
       conditionals: true,
       unused: true,
@@ -159,6 +167,9 @@ export const serverPlugins = [
     },
     sourceMap: true
   }),
+  new webpack.DefinePlugin({
+    'process.env.PAGE': '"home"'
+  })
 ];
 export const serverConfig = {
   entry: './src/server.aot',
@@ -169,10 +180,38 @@ export const serverConfig = {
   },
 };
 
+
+var webpackDev = webpackConfig();
+var client = webpackMerge(webpackDev[0], clone(commonConfig), clientConfig, {plugins: [ ...commonPlugins, ...clientPlugins ] });
+
+var clientPages = ROUTES.map((page) => {
+  return webpackMerge(client, {
+    output: {
+      filename: page + '.[chunkhash].js',
+      chunkFilename: '[id].' + page + '.[chunkhash].js'
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: root('src/index.html'),
+        filename: page + '.html'
+      }),
+
+      new ScriptExtHtmlWebpackPlugin({
+        async: [new RegExp(page)]
+      }),
+
+      new webpack.DefinePlugin({
+        'process.env.PAGE': JSON.stringify(page)
+      })
+    ]
+  });
+});
+
 export default [
   // Client
-  webpackMerge(webpackConfig[0], clone(commonConfig), clientConfig, {plugins: webpackConfig[0].plugins.concat(commonPlugins, clientPlugins) }),
+  ...clientPages,
+  // webpackMerge(webpackConfig[0], clone(commonConfig), clientConfig, {plugins: webpackConfig[0].plugins.concat(commonPlugins, clientPlugins) }),
 
   // Server
-  webpackMerge(webpackConfig[1], clone(commonConfig), serverConfig, {plugins: webpackConfig[1].plugins.concat(commonPlugins, serverPlugins) })
+  webpackMerge(webpackDev[1], clone(commonConfig), serverConfig, {plugins: [ ...commonPlugins, ...serverPlugins ] })
 ];

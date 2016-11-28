@@ -1,7 +1,9 @@
-var webpack = require('webpack');
-var path = require('path');
-var clone = require('js.clone');
-var webpackMerge = require('webpack-merge');
+const webpack = require('webpack');
+const path = require('path');
+const clone = require('js.clone');
+const webpackMerge = require('webpack-merge');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 export var commonPlugins = [
   new webpack.ContextReplacementPlugin(
@@ -61,7 +63,7 @@ export var clientConfig = {
     crypto: 'empty',
     __dirname: true,
     __filename: true,
-    process: true,
+    process: false,
     Buffer: false
   }
 };
@@ -97,13 +99,36 @@ export var serverConfig = {
   }
 };
 
-export default [
-  // Client
-  webpackMerge(clone(commonConfig), clientConfig, { plugins: clientPlugins.concat(commonPlugins) }),
 
-  // Server
-  webpackMerge(clone(commonConfig), serverConfig, { plugins: serverPlugins.concat(commonPlugins) })
+
+var developmentClientPlugins = [
+  new HtmlWebpackPlugin({
+    template: root('src/index.html'),
+    filename: 'home.html'
+  }),
+
+  new ScriptExtHtmlWebpackPlugin({
+    async: [new RegExp('home')]
+  }),
 ];
+
+var developmentPlugins = [
+  new webpack.DefinePlugin({
+    'process.env': {
+      'PAGE': JSON.stringify('home'),
+      'AOT': false
+    }
+  }),
+];
+export default function(env: any = {}) {
+  return [
+    // Client
+    webpackMerge(clone(commonConfig), clientConfig, { plugins: [...clientPlugins, ...commonPlugins, ...(env.DEV ? developmentClientPlugins : []), ...(env.DEV ? developmentPlugins : [])] }),
+
+    // Server
+    webpackMerge(clone(commonConfig), serverConfig, { plugins: [...serverPlugins, ...commonPlugins, ...(env.DEV ? developmentPlugins: [])] })
+  ]
+};
 
 
 
