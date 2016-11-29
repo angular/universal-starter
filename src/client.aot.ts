@@ -6,6 +6,7 @@ import './__workaround.browser'; // temporary until 2.1.1 things are patched in 
 // Angular 2
 import { enableProdMode } from '@angular/core';
 import { platformBrowser } from '@angular/platform-browser';
+import { bootloader } from '@angularclass/bootloader';
 // for AoT use platformBrowser
 // import { platformUniversalDynamic } from 'angular2-universal/browser';
 
@@ -32,12 +33,4 @@ export function main() {
 }
 
 // support async tag or hmr
-switch (document.readyState) {
-  case 'loading':
-    document.addEventListener('DOMContentLoaded', () => main());
-    break;
-  case 'interactive':
-  case 'complete':
-  default:
-    main();
-}
+bootloader(main);
