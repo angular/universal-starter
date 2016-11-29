@@ -6,6 +6,7 @@ import './__workaround.browser'; // temporary until 2.1.1 things are patched in 
 // Angular 2
 import { enableProdMode } from '@angular/core';
 import { platformUniversalDynamic } from 'angular2-universal/browser';
+import { bootloader } from '@angularclass/bootloader';
 
 import { load as loadWebFont } from 'webfontloader';
 
@@ -30,12 +31,4 @@ export function main() {
 }
 
 // support async tag or hmr
-switch (document.readyState) {
-  case 'loading':
-    document.addEventListener('DOMContentLoaded', () => main());
-    break;
-  case 'interactive':
-  case 'complete':
-  default:
-    main();
-}
+bootloader(main);
