@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { UniversalModule, isBrowser, isNode, AUTO_PREBOOT } from 'angular2-universal/browser'; // for AoT we need to manually split universal packages
+import { IdlePreload, IdlePreloadModule } from '@angularclass/idle-preload';
 
 import { AppModule, AppComponent } from './+app/app.module';
 import { SharedModule } from './+app/shared/shared.module';
@@ -38,8 +39,9 @@ export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
     UniversalModule, // BrowserModule, HttpModule, and JsonpModule are included
 
     FormsModule,
-    RouterModule.forRoot([], { useHash: false }),
+    RouterModule.forRoot([], { useHash: false, preloadingStrategy: IdlePreload }),
 
+    IdlePreloadModule.forRoot(),
     SharedModule.forRoot(),
     AppModule,
   ],
