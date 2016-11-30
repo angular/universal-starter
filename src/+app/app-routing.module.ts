@@ -5,10 +5,11 @@ import { RouterModule } from '@angular/router';
   imports: [
     RouterModule.forChild([
       { path: '', redirectTo: '/home', pathMatch: 'full' },
-      { path: 'about', loadChildren: getAboutModule },
-      { path: 'home', loadChildren: getHomeModule },
-      { path: 'lazy', loadChildren: getLazyModule },
-      { path: 'todo', loadChildren: getTodoModule }
+      { path: 'about',  loadChildren: getAboutModule },
+      { path: 'home',   loadChildren: getHomeModule },
+      { path: 'lazy',   loadChildren: getLazyModule },
+      { path: 'todo',   loadChildren: getTodoModule },
+      { path: 'github', loadChildren: getGithubModule }
     ])
   ],
 })
@@ -54,4 +55,14 @@ export function getTodoModule() {
   }
 
   return System.import('./+todo/todo.module' + (process.env.AOT ? '.ngfactory' : '')).then(mod => mod[ngmodule]);
+}
+
+export function getGithubModule() {
+  let ngmodule = 'GithubModule' + (process.env.AOT ? 'NgFactory' : '');
+
+  if (process.env.PAGE === 'github') {
+    return (require('./+github/github.module' + (process.env.AOT ? '.ngfactory' : ''))[ngmodule])
+  }
+
+  return System.import('./+github/github.module' + (process.env.AOT ? '.ngfactory' : '')).then(mod => mod[ngmodule]);
 }
