@@ -12,10 +12,10 @@ export const commonPlugins = [
   new V8LazyParseWebpackPlugin(),
 
   new webpack.DefinePlugin({
-    'process.env': {
-      'NODE_ENV': JSON.stringify('production'),
-      'AOT': true
-    }
+    // do not use an object for 'process.env' otherwise all other environment
+    // variables are set to 'undefined' see issue #291
+    'process.env.NODE_ENV': JSON.stringify('production'),
+    'process.env.AOT': true
   }),
 
   // Loader options
