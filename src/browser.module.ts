@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { UniversalModule, isBrowser, isNode, AUTO_PREBOOT } from 'angular2-universal/browser'; // for AoT we need to manually split universal packages
 import { IdlePreload, IdlePreloadModule } from '@angularclass/idle-preload';
+import 'web-animations-js';
 
 import { AppModule, AppComponent } from './+app/app.module';
 import { SharedModule } from './+app/shared/shared.module';
