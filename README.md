@@ -14,6 +14,25 @@ A minimal Angular 2 starter for Universal JavaScript using TypeScript 2 and Webp
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
+
+## Installation
+
+* `npm install`
+
+## Serve
+
+* `npm start` to build your client app and start a web server
+* `npm run build` to prepare a distributable bundle
+
+## Development
+* run `npm start` and `npm run watch` in two separate terminals to build your client app, start a web server, and allow file changes to update in realtime
+
+## Watch files
+* `npm run watch` to build your client app and start a web server
+
+## AoT and Prod
+* `npm run build:prod:ngc` to compile the ngfactory files and build prod
+
 ## Universal "Gotchas"
 
 > When building Universal components in Angular 2 there are a few things to keep in mind.
@@ -84,24 +103,6 @@ app.use(interceptor((req, res)=>({
 })));
 ```
 this will check the support, compress and cache the response.
-
-## Installation
-
-* `npm install`
-
-## Serve
-
-* `npm start` to build your client app and start a web server
-* `npm run build` to prepare a distributable bundle
-
-## Development
-* run `npm start` and `npm run watch` in two separate terminals to build your client app, start a web server, and allow file changes to update in realtime
-
-## Watch files
-* `npm run watch` to build your client app and start a web server
-
-## AoT and Prod
-* `npm run build:prod:ngc` to compile the ngfactory files and build prod
 
 ## Edge case of server compatibility with Promise polyfills
 
