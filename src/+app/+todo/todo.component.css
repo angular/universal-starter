@@ -1,0 +1,22 @@
+.table {
+  padding-top: 30px;
+}
+.row {
+  display: table-row;
+  background: #f6f6f6;
+}
+
+.row:nth-of-type(odd) {
+  background: #e9e9e9;
+}
+
+.row.header {
+  color: #ffffff;
+  font-weight: bold;
+  background: #158126;
+}
+
+.cell {
+  padding: 20px;
+  display: table-cell;
+}
