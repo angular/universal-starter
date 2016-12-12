@@ -39,11 +39,10 @@ var TODOS = [
 
 export function createTodoApi() {
 
-  var router = Router()
+  var router = Router();
 
   router.route('/todos')
     .get(function(req, res) {
-      console.log('GET');
       // 70ms latency
       setTimeout(function() {
         res.json(TODOS);
@@ -51,7 +50,6 @@ export function createTodoApi() {
 
     })
     .post(function(req, res) {
-      console.log('POST', util.inspect(req.body, { colors: true }));
       var todo = req.body;
       if (todo) {
         TODOS.push({
@@ -81,13 +79,9 @@ export function createTodoApi() {
 
   router.route('/todos/:todo_id')
     .get(function(req, res) {
-      console.log('GET', util.inspect(req.todo, { colors: true }));
-
       res.json(req.todo);
     })
     .put(function(req, res) {
-      console.log('PUT', util.inspect(req.body, { colors: true }));
-
       var index = TODOS.indexOf(req.todo);
       var todo = TODOS[index] = req.body;
 
@@ -100,61 +94,6 @@ export function createTodoApi() {
       TODOS.splice(index, 1);
 
       res.json(req.todo);
-    });
-
-  return router;
-};
-
-
-// auth API
-
-let ACCOUNTS = {
-  'test': 'test'
-};
-
-let FAKE_TOKEN = 'test.jwt.token';
-
-let USERS = {
-  'test': {
-    'username': 'test',
-    'firstName': 'Test',
-    'lastName': 'User',
-    'email': 'test@user.com'
-  }
-};
-
-export function createAuthApi() {
-
-  var router = Router()
-
-  router.route('/login')
-    .get(function(req, res) {
-      console.log('GET');
-      return res.status(405).send({ error: 'Method not allowed!' });
-    })
-    .post(function(req, res) {
-      console.log('POST', util.inspect(req.body, { colors: true }));
-      var data = req.body;
-      if (data) {
-        if (ACCOUNTS[data.username] === data.password) {
-          return res.json({
-            token: FAKE_TOKEN
-          });
-        }
-      }
-      return res.status(401).json({ error: 'Invalid credentials!' });
-    });
-
-  router.route('/user')
-    .get(function(req, res) {
-      console.log('GET');
-      if (req.headers.authorization) {
-        var token = req.headers.authorization;
-        if (token === FAKE_TOKEN) {
-          return res.status(200).send(USERS[token.split('.')[0]]);
-        }
-      }
-      return res.status(401).send({ error: 'Unauthorized token!' });
     });
 
   return router;

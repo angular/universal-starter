@@ -25,7 +25,6 @@ export class ProfileComponent implements OnDestroy {
   }
 
   logout(): void {
-    console.log('logout');
     this.logoutSubscription = this.auth.logout().subscribe(() => {
       this._router.navigate(['/home']);
     });

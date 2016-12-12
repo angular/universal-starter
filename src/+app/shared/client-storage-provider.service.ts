@@ -1,4 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Http, Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+
+import { ApiService  } from './api.service';
 
 @Injectable()
 export class ClientStorageProviderService {
@@ -7,8 +11,14 @@ export class ClientStorageProviderService {
 
   // TODO: make optional between localStorage and sessionStorage
 
+  constructor(private _api: ApiService) {
+
+  }
+
   set(key: string, value: any): void {
-    sessionStorage.setItem(key, value);
+    this._api.post('/store/set/' + key, { value: value }).subscribe(() => {
+      sessionStorage.setItem(key, value);
+    });
   }
 
   get(key: string): string {
@@ -16,11 +26,15 @@ export class ClientStorageProviderService {
   }
 
   remove(key: string): void {
-    sessionStorage.removeItem(key);
+    this._api.get('/store/remove/' + key).subscribe(() => {
+      sessionStorage.removeItem(key);
+    });
   }
 
   clear(): void {
-    sessionStorage.clear();
+    this._api.get('/store/clear').subscribe(() => {
+      sessionStorage.clear();
+    });
   }
 
 }

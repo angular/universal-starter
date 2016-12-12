@@ -21,7 +21,7 @@ export class AuthService {
     this.userSubject = new Subject<User>();
     this._api.observableToken.subscribe((token: string) => {
       if (token) {
-        this._api.authorizedGet('/api/user').subscribe(response => {
+        this._api.authorizedGet('/auth/user').subscribe(response => {
           this.user = new User(response);
         });
       }
@@ -42,7 +42,7 @@ export class AuthService {
   }
 
   login(data: Login) {
-    return this._api.post('/api/login', data);
+    return this._api.post('/auth/login', data);
   }
 
   logout(): Observable<boolean> {
@@ -57,7 +57,7 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return this.user ? true : false;
+    return this._api.token ? true : false;
   }
 
   get user(): User {

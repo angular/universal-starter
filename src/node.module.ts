@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { Http } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { UniversalModule, isBrowser, isNode } from 'angular2-universal/node'; // for AoT we need to manually split universal packages
@@ -7,6 +8,8 @@ import { AppModule, AppComponent } from './+app/app.module';
 import { SharedModule } from './+app/shared/shared.module';
 import { CacheService } from './+app/shared/cache.service';
 import { NodeStorageProviderService } from './+app/shared/node-storage-provider.service';
+
+import { ApiService  } from './+app/shared/api.service';
 
 // Will be merged into @angular/platform-browser in a later release
 // see https://github.com/angular/angular/pull/12322
@@ -21,6 +24,7 @@ export function getRequest() {
 export function getResponse() {
   return Zone.current.get('res') || {};
 }
+
 export function storageProvider() {
   return new NodeStorageProviderService();
 }

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { Http } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { UniversalModule, isBrowser, isNode, AUTO_PREBOOT } from 'angular2-universal/browser'; // for AoT we need to manually split universal packages
@@ -8,6 +9,8 @@ import { AppModule, AppComponent } from './+app/app.module';
 import { SharedModule } from './+app/shared/shared.module';
 import { CacheService } from './+app/shared/cache.service';
 import { ClientStorageProviderService } from './+app/shared/client-storage-provider.service';
+
+import { ApiService  } from './+app/shared/api.service';
 
 // Will be merged into @angular/platform-browser in a later release
 // see https://github.com/angular/angular/pull/12322
@@ -28,8 +31,9 @@ export function getResponse() {
   // the response object is sent as the index.html and lives on the server
   return {};
 }
-export function storageProvider() {
-  return new ClientStorageProviderService();
+
+export function storageProvider(_api: ApiService) {
+  return new ClientStorageProviderService(_api);
 }
 
 // TODO(gdi2290): refactor into Universal
@@ -57,7 +61,7 @@ export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
 
     { provide: 'LRU', useFactory: getLRU, deps: [] },
 
-    { provide: 'StorageProvider', useFactory: storageProvider },
+    { provide: 'StorageProvider', useFactory: storageProvider, deps: [ApiService] },
 
     CacheService,
 

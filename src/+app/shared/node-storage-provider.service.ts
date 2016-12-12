@@ -1,30 +1,26 @@
 import { Injectable } from '@angular/core';
+import { Http, Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+
+import { Store  } from '../../backend/store';
 
 @Injectable()
 export class NodeStorageProviderService {
 
-  // TODO: setup redis servable available by configuration
-
-  private store: Map<string, any>;
-
-  constructor() {
-    this.store = new Map<string, any>();
-  }
-
   set(key: string, value: any): void {
-    this.store.set(key, value);
+    Store.set(key, value);
   }
 
   get(key: string): string {
-    return this.store.get(key);
+    return Store.get(key);
   }
 
   remove(key: string): void {
-    this.store.delete(key);
+    Store.remove(key);
   }
 
   clear(): void {
-    this.store.clear();
+    Store.clear();
   }
 
 }

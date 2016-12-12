@@ -6,9 +6,6 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import { CacheService  } from './cache.service';
-import { StorageService  } from './storage.service';
-
 @Injectable()
 export class ApiService {
 
@@ -16,7 +13,7 @@ export class ApiService {
 
   private tokenSubject: Subject<string>;
 
-  constructor(public _http: Http, private cache: CacheService, private storage: StorageService) {
+  constructor(public _http: Http) {
     this.tokenSubject = new Subject<string>();
   }
 
@@ -81,8 +78,6 @@ export class ApiService {
   set token(token: string) {
     this._token = token;
     this.tokenSubject.next(this.token);
-    this.cache.set('token', this.token);
-    this.storage.set('token', this.token);
   }
 
   get observableToken(): Observable<string> {
