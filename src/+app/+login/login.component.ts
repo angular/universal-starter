@@ -32,9 +32,11 @@ export class LoginComponent implements OnDestroy {
 
   login(): void {
     this.loginSubscription = this.auth.login(this.data).subscribe(response => {
-      this.cache.set('token', response.token);
-      this.storage.set('token', response.token);
       this._api.token = response.token;
+
+      // TODO: devise identifing key for synchronization
+      this.storage.set('token', response.token);
+
       this.auth.observableUser.subscribe(() => {
         this._router.navigate(['/profile']);
       });

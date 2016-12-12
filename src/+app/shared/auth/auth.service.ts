@@ -29,15 +29,9 @@ export class AuthService {
         this.user = undefined;
       }
     });
-    let token = this.cache.get('token');
+    let token = this.storage.get('token');
     if (token) {
       this._api.token = token;
-    }
-    else {
-      token = this.storage.get('token');
-      if (token) {
-        this._api.token = token;
-      }
     }
   }
 

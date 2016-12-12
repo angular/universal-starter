@@ -17,23 +17,23 @@ export class ClientStorageProviderService {
 
   set(key: string, value: any): void {
     this._api.post('/store/set/' + key, { value: value }).subscribe(() => {
-      sessionStorage.setItem(key, value);
+      localStorage.setItem(key, value);
     });
   }
 
   get(key: string): string {
-    return sessionStorage.getItem(key);
+    return localStorage.getItem(key);
   }
 
   remove(key: string): void {
     this._api.get('/store/remove/' + key).subscribe(() => {
-      sessionStorage.removeItem(key);
+      localStorage.removeItem(key);
     });
   }
 
   clear(): void {
     this._api.get('/store/clear').subscribe(() => {
-      sessionStorage.clear();
+      localStorage.clear();
     });
   }
 
