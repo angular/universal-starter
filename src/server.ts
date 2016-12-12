@@ -57,17 +57,18 @@ function cacheControl(req, res, next) {
   next();
 }
 // Serve static files
-app.use('/assets', cacheControl, express.static(path.join(__dirname, 'assets'), {maxAge: 30}));
-app.use(cacheControl, express.static(path.join(ROOT, 'dist/client'), {index: false}));
+app.use('/assets', cacheControl, express.static(path.join(__dirname, 'assets'), { maxAge: 30 }));
+app.use(cacheControl, express.static(path.join(ROOT, 'dist/client'), { index: false }));
 
 //
 /////////////////////////
 // ** Example API
 // Notice API should be in aseparate process
-import { serverApi, createTodoApi } from './backend/api';
+import { serverApi, createTodoApi, createAuthApi } from './backend/api';
 // Our API for demos only
 app.get('/data.json', serverApi);
 app.use('/api', createTodoApi());
+app.use('/api', createAuthApi());
 
 function ngApp(req, res) {
   res.render('index', {
@@ -77,7 +78,7 @@ function ngApp(req, res) {
     preboot: false,
     baseUrl: '/',
     requestUrl: req.originalUrl,
-    originUrl: `http://localhost:${ app.get('port') }`
+    originUrl: `http://localhost:${app.get('port')}`
   });
 }
 
