@@ -7,8 +7,8 @@ import { Todo } from './todo.schema'
 @Component({
   changeDetection: ChangeDetectionStrategy.Default,
   encapsulation: ViewEncapsulation.Emulated,
-  selector: 'todo',
-  styleUrls: [ './todo.component.css' ],
+  selector: 'starter-todo',
+  styleUrls: ['./todo.component.css'],
   templateUrl: './todo.component.html'
 })
 export class TodoComponent {
@@ -40,7 +40,7 @@ export class TodoComponent {
       .subscribe(data => {
         console.log(data);
         this.todos = data;
-    });
+      });
   }
 
 }

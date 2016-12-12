@@ -3,7 +3,7 @@ import { Component, Inject, ChangeDetectionStrategy, ViewEncapsulation } from '@
 @Component({
   changeDetection: ChangeDetectionStrategy.Default,
   encapsulation: ViewEncapsulation.Emulated,
-  selector: 'lazy',
+  selector: 'starter-lazy',
   template: `
     <p>
       Lazy component
