@@ -15,4 +15,8 @@ export class CookieService {
     return this.cookie.get(name);
   }
 
+  remove(name: string): void {
+    this.cookie.remove(name);
+  }
+
 }

@@ -49,6 +49,7 @@ export class AuthService {
       this._api.token = undefined;
       this.cache.remove('token');
       this.storage.remove('token');
+      this.cookie.remove('APP_ID');
       subscriber.next(true);
       subscriber.complete();
     });

@@ -27,4 +27,8 @@ export class CookieBrowser {
     return cookie;
   }
 
+  remove(name: string): void {
+    this.set(name, "", -1);
+  }
+
 }
