@@ -1,34 +1,33 @@
 import { Inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 
 import { CacheService } from './cache.service';
 
 @Injectable()
 export class StorageService {
 
-  constructor(private cache: CacheService, @Inject('StorageProvider') private storageProvider) {
+  constructor(private cache: CacheService, @Inject('Storage') private storage) {
 
   }
 
   set(key: string, value: string): void {
     this.cache.set(key, value);
-    this.storageProvider.set(key, value);
+    this.storage.set(key, value);
   }
 
   get(key: string): string {
     let value = this.cache.get(key);
     if (value === undefined) {
-      value = this.storageProvider.get(key);
+      value = this.storage.get(key);
     }
     return value;
   }
 
   remove(key: string): void {
-    this.storageProvider.remove(key);
+    this.storage.remove(key);
   }
 
   clear(): void {
-    this.storageProvider.clear();
+    this.storage.clear();
   }
 
 }

@@ -5,6 +5,7 @@ import { AuthService } from '../shared/auth/auth.service';
 import { ApiService } from '../shared/api.service';
 import { CacheService  } from '../shared/cache.service';
 import { StorageService  } from '../shared/storage.service';
+import { CookieService  } from '../shared/cookie.service';
 import { Login } from '../shared/auth/login.schema';
 
 @Component({
@@ -20,7 +21,7 @@ export class LoginComponent implements OnDestroy {
 
   private loginSubscription: any;
 
-  constructor(public auth: AuthService, private cache: CacheService, private storage: StorageService, private _api: ApiService, private _router: Router) {
+  constructor(public auth: AuthService, private cache: CacheService, private storage: StorageService, private cookie: CookieService, private _api: ApiService, private _router: Router) {
     this.data = new Login();
   }
 
@@ -34,8 +35,9 @@ export class LoginComponent implements OnDestroy {
     this.loginSubscription = this.auth.login(this.data).subscribe(response => {
       this._api.token = response.token;
 
-      // TODO: devise identifing key for synchronization
-      this.storage.set('token', response.token);
+      let key = this.cache.get('APP_ID');
+      this.cookie.set('APP_ID', key, 100);
+      this.storage.set(key, response.token);
 
       this.auth.observableUser.subscribe(() => {
         this._router.navigate(['/profile']);

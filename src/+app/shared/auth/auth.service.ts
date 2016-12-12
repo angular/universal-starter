@@ -4,6 +4,7 @@ import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
 import { ApiService  } from '../api.service';
+import { CookieService } from '../cookie.service';
 import { StorageService } from '../storage.service';
 import { CacheService } from '../cache.service';
 
@@ -17,7 +18,7 @@ export class AuthService {
 
   private userSubject: Subject<User>;
 
-  constructor(private storage: StorageService, private cache: CacheService, private _api: ApiService) {
+  constructor(private cookie: CookieService, private storage: StorageService, private cache: CacheService, private _api: ApiService) {
     this.userSubject = new Subject<User>();
     this._api.observableToken.subscribe((token: string) => {
       if (token) {
@@ -29,9 +30,12 @@ export class AuthService {
         this.user = undefined;
       }
     });
-    let token = this.storage.get('token');
-    if (token) {
-      this._api.token = token;
+    let key = this.cookie.get('APP_ID');
+    if (key) {
+      let token = this.storage.get(key);
+      if (token) {
+        this._api.token = token;
+      }
     }
   }
 

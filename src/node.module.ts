@@ -7,7 +7,8 @@ import { UniversalModule, isBrowser, isNode } from 'angular2-universal/node'; //
 import { AppModule, AppComponent } from './+app/app.module';
 import { SharedModule } from './+app/shared/shared.module';
 import { CacheService } from './+app/shared/cache.service';
-import { NodeStorageProviderService } from './+app/shared/node-storage-provider.service';
+import { NodeStorage } from './+app/shared/storage.node';
+import { CookieNode } from './+app/shared/cookie.node';
 
 import { ApiService  } from './+app/shared/api.service';
 
@@ -25,8 +26,11 @@ export function getResponse() {
   return Zone.current.get('res') || {};
 }
 
-export function storageProvider() {
-  return new NodeStorageProviderService();
+export function storage() {
+  return new NodeStorage();
+}
+export function cookie() {
+  return new CookieNode();
 }
 
 // TODO(gdi2290): refactor into Universal
@@ -53,7 +57,9 @@ export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
 
     { provide: 'LRU', useFactory: getLRU, deps: [] },
 
-    { provide: 'StorageProvider', useFactory: storageProvider },
+    { provide: 'Storage', useFactory: storage },
+
+    { provide: 'Cookie', useFactory: cookie },
 
     CacheService,
 
@@ -70,7 +76,9 @@ export class MainModule {
    * in Universal for now until it's fixed
    */
   universalDoDehydrate = (universalCache) => {
+    this.cache.set('APP_ID', universalCache.APP_ID);
     universalCache[CacheService.KEY] = JSON.stringify(this.cache.dehydrate());
+
   }
 
   /**

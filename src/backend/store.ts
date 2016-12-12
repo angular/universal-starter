@@ -4,6 +4,7 @@ let store: Map<string, any> = new Map<string, any>();
 
 function set(key: string, value: any): void {
   store.set(key, value);
+  console.log(store);
 }
 
 function get(key: string): string {
@@ -35,6 +36,8 @@ export function createServerStore() {
     })
     .post(function(req, res) {
       let key = req.params.key;
+
+      console.log(key);
       var data = req.body;
       if (data) {
         set(key, data.value);

@@ -6,6 +6,7 @@ import { ApiService } from './api.service';
 import { ModelService } from './model/model.service';
 import { AuthService } from './auth/auth.service';
 import { StorageService } from './storage.service';
+import { CookieService } from './cookie.service';
 
 const MODULES = [
   // Do NOT include UniversalModule, HttpModule, or JsonpModule here
@@ -27,7 +28,8 @@ const PROVIDERS = [
   ModelService,
   ApiService,
   AuthService,
-  StorageService
+  StorageService,
+  CookieService
 ]
 
 @NgModule({

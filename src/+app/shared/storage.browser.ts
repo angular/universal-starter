@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
 
 import { ApiService  } from './api.service';
 
 @Injectable()
-export class ClientStorageProviderService {
+export class BrowserStorage {
 
   // TODO: serialize any to string on put and desieralize on get
 

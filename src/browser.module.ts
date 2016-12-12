@@ -8,7 +8,8 @@ import { IdlePreload, IdlePreloadModule } from '@angularclass/idle-preload';
 import { AppModule, AppComponent } from './+app/app.module';
 import { SharedModule } from './+app/shared/shared.module';
 import { CacheService } from './+app/shared/cache.service';
-import { ClientStorageProviderService } from './+app/shared/client-storage-provider.service';
+import { BrowserStorage } from './+app/shared/storage.browser';
+import { CookieBrowser } from './+app/shared/cookie.browser';
 
 import { ApiService  } from './+app/shared/api.service';
 
@@ -32,8 +33,11 @@ export function getResponse() {
   return {};
 }
 
-export function storageProvider(_api: ApiService) {
-  return new ClientStorageProviderService(_api);
+export function storage(_api: ApiService) {
+  return new BrowserStorage(_api);
+}
+export function cookie() {
+  return new CookieBrowser();
 }
 
 // TODO(gdi2290): refactor into Universal
@@ -61,7 +65,9 @@ export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
 
     { provide: 'LRU', useFactory: getLRU, deps: [] },
 
-    { provide: 'StorageProvider', useFactory: storageProvider, deps: [ApiService] },
+    { provide: 'Storage', useFactory: storage, deps: [ApiService] },
+
+    { provide: 'Cookie', useFactory: cookie },
 
     CacheService,
 
