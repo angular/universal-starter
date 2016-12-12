@@ -6,7 +6,7 @@ import { Component, Directive, ElementRef, Renderer, ChangeDetectionStrategy, Vi
 // Notice we don't touch the Element directly
 
 @Directive({
-  selector: '[xLarge]'
+  selector: '[starterXLarge]'
 })
 export class XLargeDirective {
   constructor(element: ElementRef, renderer: Renderer) {
@@ -21,7 +21,7 @@ export class XLargeDirective {
 @Component({
   changeDetection: ChangeDetectionStrategy.Default,
   encapsulation: ViewEncapsulation.Emulated,
-  selector: 'app',
+  selector: 'starter-app',
   styles: [`
     * { padding:0; margin:0; font-family: 'Droid Sans', sans-serif; }
     #universal { text-align:center; font-weight:bold; padding:15px 0; }
@@ -45,7 +45,7 @@ export class XLargeDirective {
   <div class="hero-universal">
     <div class="inner-hero">
       <div>
-        <span xLarge>Universal JavaScript {{ title }}!</span>
+        <span starterXLarge>Universal JavaScript {{ title }}!</span>
       </div>
 
       Two-way binding: <input type="text" [value]="title" (input)="title = $event.target.value">

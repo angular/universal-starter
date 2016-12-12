@@ -1,9 +1,9 @@
 var util = require('util');
-var {Router} = require('express');
+var { Router } = require('express');
 
 // Our API for demos only
-import {fakeDataBase} from './db';
-import {fakeDemoRedisCache} from './cache';
+import { fakeDataBase } from './db';
+import { fakeDemoRedisCache } from './cache';
 
 // you would use cookies/token etc
 var USER_ID = 'f9d98cf1-1b96-464e-8755-bcc2a5c09077'; // hardcoded as an example
@@ -32,9 +32,9 @@ export function serverApi(req, res) {
 var COUNT = 4;
 var TODOS = [
   { id: 0, value: 'finish example', created_at: new Date(), completed: false },
-  { id: 1, value: 'add tests',      created_at: new Date(), completed: false },
+  { id: 1, value: 'add tests', created_at: new Date(), completed: false },
   { id: 2, value: 'include development environment', created_at: new Date(), completed: false },
-  { id: 3, value: 'include production environment',  created_at: new Date(), completed: false }
+  { id: 3, value: 'include production environment', created_at: new Date(), completed: false }
 ];
 
 export function createTodoApi() {
@@ -51,7 +51,7 @@ export function createTodoApi() {
 
     })
     .post(function(req, res) {
-      console.log('POST', util.inspect(req.body, {colors: true}));
+      console.log('POST', util.inspect(req.body, { colors: true }));
       var todo = req.body;
       if (todo) {
         TODOS.push({
@@ -81,12 +81,12 @@ export function createTodoApi() {
 
   router.route('/todos/:todo_id')
     .get(function(req, res) {
-      console.log('GET', util.inspect(req.todo, {colors: true}));
+      console.log('GET', util.inspect(req.todo, { colors: true }));
 
       res.json(req.todo);
     })
     .put(function(req, res) {
-      console.log('PUT', util.inspect(req.body, {colors: true}));
+      console.log('PUT', util.inspect(req.body, { colors: true }));
 
       var index = TODOS.indexOf(req.todo);
       var todo = TODOS[index] = req.body;
