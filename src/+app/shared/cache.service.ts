@@ -4,7 +4,7 @@ import { Inject, Injectable, isDevMode } from '@angular/core';
 export class CacheService {
   static KEY = 'CacheService';
 
-  constructor(@Inject('LRU') public _cache: Map<string, any>) {
+  constructor( @Inject('LRU') public _cache: Map<string, any>) {
 
   }
 
@@ -30,6 +30,14 @@ export class CacheService {
   get(key: string | number): any {
     let _key = this.normalizeKey(key);
     return this._cache.get(_key);
+  }
+
+  /**
+   * remove our cached value
+   */
+  remove(key: string | number): any {
+    let _key = this.normalizeKey(key);
+    return this._cache.delete(_key);
   }
 
   /**

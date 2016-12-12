@@ -1,0 +1,8 @@
+<h4>Profile Component</h4>
+<div *ngIf="this.auth.user">
+  <p>Username: {{this.auth.user.username}}</p>
+  <p>First Name: {{this.auth.user.firstName}}</p>
+  <p>Last Name: {{this.auth.user.lastName}}</p>
+  <p>Email: {{this.auth.user.email}}</p>
+  <button (click)="logout()">Logout</button>
+</div>

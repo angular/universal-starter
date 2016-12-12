@@ -7,6 +7,7 @@ import { IdlePreload, IdlePreloadModule } from '@angularclass/idle-preload';
 import { AppModule, AppComponent } from './+app/app.module';
 import { SharedModule } from './+app/shared/shared.module';
 import { CacheService } from './+app/shared/cache.service';
+import { ClientStorageProviderService } from './+app/shared/client-storage-provider.service';
 
 // Will be merged into @angular/platform-browser in a later release
 // see https://github.com/angular/angular/pull/12322
@@ -27,13 +28,15 @@ export function getResponse() {
   // the response object is sent as the index.html and lives on the server
   return {};
 }
-
+export function storageProvider() {
+  return new ClientStorageProviderService();
+}
 
 // TODO(gdi2290): refactor into Universal
 export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
 
 @NgModule({
-  bootstrap: [ AppComponent ],
+  bootstrap: [AppComponent],
   imports: [
     // MaterialModule.forRoot() should be included first
     UniversalModule, // BrowserModule, HttpModule, and JsonpModule are included
@@ -53,6 +56,8 @@ export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
     { provide: 'res', useFactory: getResponse },
 
     { provide: 'LRU', useFactory: getLRU, deps: [] },
+
+    { provide: 'StorageProvider', useFactory: storageProvider },
 
     CacheService,
 

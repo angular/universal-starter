@@ -37,6 +37,21 @@ var TODOS = [
   { id: 3, value: 'include production environment', created_at: new Date(), completed: false }
 ];
 
+let ACCOUNTS = {
+  'test': 'test'
+};
+
+let FAKE_TOKEN = 'test.jwt.token';
+
+let USERS = {
+  'test': {
+    'username': 'test',
+    'firstName': 'Test',
+    'lastName': 'User',
+    'email': 'test@user.com'
+  }
+};
+
 export function createTodoApi() {
 
   var router = Router()
@@ -64,6 +79,36 @@ export function createTodoApi() {
       }
 
       return res.end();
+    });
+
+  router.route('/login')
+    .get(function(req, res) {
+      console.log('GET');
+      return res.status(405).send({ error: 'Method not allowed!' });
+    })
+    .post(function(req, res) {
+      console.log('POST', util.inspect(req.body, { colors: true }));
+      var data = req.body;
+      if (data) {
+        if (ACCOUNTS[data.username] === data.password) {
+          return res.json({
+            token: FAKE_TOKEN
+          });
+        }
+      }
+      return res.status(401).json({ error: 'Invalid credentials!' });
+    });
+
+  router.route('/user')
+    .get(function(req, res) {
+      console.log('GET');
+      if (req.headers.authorization) {
+        var token = req.headers.authorization;
+        if (token === FAKE_TOKEN) {
+          return res.status(200).send(USERS[token.split('.')[0]]);
+        }
+      }
+      return res.status(401).send({ error: 'Unauthorized token!' });
     });
 
   router.param('todo_id', function(req, res, next, todo_id) {
