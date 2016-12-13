@@ -47,8 +47,9 @@ export class AuthService {
     return Observable.create((subscriber) => {
       this.user = undefined;
       this._api.token = undefined;
-      this.cache.remove('token');
-      this.storage.remove('token');
+      let key = this.cookie.get('APP_ID');
+      this.cache.remove(key);
+      this.storage.remove(key);
       this.cookie.remove('APP_ID');
       subscriber.next(true);
       subscriber.complete();
