@@ -1,0 +1,12 @@
+<div class="login">
+
+  <h4>Login Component</h4>
+  <p>username: test</p>
+  <p>password: test</p>
+  <form #f="ngForm" (ngSubmit)="login()">
+    <p>Username: <input type="text" name="username" [(ngModel)]="data.username"></p>
+    <p>Password: <input type="password" name="password" [(ngModel)]="data.password"></p>
+    <button>Login</button>
+  </form>
+
+</div>

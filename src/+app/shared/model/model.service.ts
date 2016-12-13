@@ -23,14 +23,14 @@ export function hashCodeString(str: string): string {
 // domain/feature service
 @Injectable()
 export class ModelService {
-   // This is only one example of one Model depending on your domain
+  // This is only one example of one Model depending on your domain
   constructor(public _api: ApiService, public _cache: CacheService) {
 
   }
 
- /**
-  * whatever domain/feature method name
-  */
+  /**
+   * whatever domain/feature method name
+   */
   get(url) {
     // you want to return the cache if there is a response in it.
     // This would cache the first response so if your API isn't idempotent

@@ -6,9 +6,9 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 // es6-modules are used here
-import {DomAdapter, getDOM} from '@angular/platform-browser/src/dom/dom_adapter';
+import { DomAdapter, getDOM } from '@angular/platform-browser/src/dom/dom_adapter';
 
 /**
  * Represent meta element.
@@ -69,7 +69,7 @@ export class Meta {
    * @param tags
    * @returns {HTMLMetaElement[]}
    */
-  addTags(...tags: Array<MetaDefinition|MetaDefinition[]>): HTMLMetaElement[] {
+  addTags(...tags: Array<MetaDefinition | MetaDefinition[]>): HTMLMetaElement[] {
     const presentTags = this._flattenArray(tags);
     if (presentTags.length === 0) return [];
     return presentTags.map((tag: MetaDefinition) => this._addInternal(tag));

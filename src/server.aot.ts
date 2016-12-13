@@ -51,7 +51,7 @@ app.use(cookieParser('Angular 2 Universal'));
 app.use(bodyParser.json());
 app.use(compression());
 
-const accessLogStream = fs.createWriteStream(ROOT + '/morgan.log', {flags: 'a'})
+const accessLogStream = fs.createWriteStream(ROOT + '/morgan.log', { flags: 'a' })
 
 app.use(morgan('common', {
   skip: (req, res) => res.statusCode < 400,
@@ -64,8 +64,8 @@ function cacheControl(req, res, next) {
   next();
 }
 // Serve static files
-app.use('/assets', cacheControl, express.static(path.join(__dirname, 'assets'), {maxAge: 30}));
-app.use(cacheControl, express.static(path.join(ROOT, 'dist/client'), {index: false}));
+app.use('/assets', cacheControl, express.static(path.join(__dirname, 'assets'), { maxAge: 30 }));
+app.use(cacheControl, express.static(path.join(ROOT, 'dist/client'), { index: false }));
 
 //
 /////////////////////////
@@ -76,6 +76,12 @@ import { serverApi, createTodoApi } from './backend/api';
 app.get('/data.json', serverApi);
 app.use('/api', createTodoApi());
 
+import { createAuthApi } from './backend/auth';
+app.use('/auth', createAuthApi());
+
+import { createServerStore } from './backend/store';
+app.use('/store', createServerStore());
+
 function ngApp(req, res) {
   res.render('index', {
     req,
@@ -84,7 +90,7 @@ function ngApp(req, res) {
     preboot: false,
     baseUrl: '/',
     requestUrl: req.originalUrl,
-    originUrl: `http://localhost:${ app.get('port') }`
+    originUrl: `http://localhost:${app.get('port')}`
   });
 }
 

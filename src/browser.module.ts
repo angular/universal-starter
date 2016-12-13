@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { Http } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { UniversalModule, isBrowser, isNode, AUTO_PREBOOT } from 'angular2-universal/browser'; // for AoT we need to manually split universal packages
@@ -7,6 +8,10 @@ import { IdlePreload, IdlePreloadModule } from '@angularclass/idle-preload';
 import { AppModule, AppComponent } from './+app/app.module';
 import { SharedModule } from './+app/shared/shared.module';
 import { CacheService } from './+app/shared/cache.service';
+import { BrowserStorage } from './+app/shared/storage.browser';
+import { CookieBrowser } from './+app/shared/cookie.browser';
+
+import { ApiService  } from './+app/shared/api.service';
 
 // Will be merged into @angular/platform-browser in a later release
 // see https://github.com/angular/angular/pull/12322
@@ -28,12 +33,18 @@ export function getResponse() {
   return {};
 }
 
+export function storage(_api: ApiService) {
+  return new BrowserStorage(_api);
+}
+export function cookie() {
+  return new CookieBrowser();
+}
 
 // TODO(gdi2290): refactor into Universal
 export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
 
 @NgModule({
-  bootstrap: [ AppComponent ],
+  bootstrap: [AppComponent],
   imports: [
     // MaterialModule.forRoot() should be included first
     UniversalModule, // BrowserModule, HttpModule, and JsonpModule are included
@@ -53,6 +64,10 @@ export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
     { provide: 'res', useFactory: getResponse },
 
     { provide: 'LRU', useFactory: getLRU, deps: [] },
+
+    { provide: 'Storage', useFactory: storage, deps: [ApiService] },
+
+    { provide: 'Cookie', useFactory: cookie },
 
     CacheService,
 

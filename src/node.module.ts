@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { Http } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { UniversalModule, isBrowser, isNode } from 'angular2-universal/node'; // for AoT we need to manually split universal packages
@@ -6,6 +7,10 @@ import { UniversalModule, isBrowser, isNode } from 'angular2-universal/node'; //
 import { AppModule, AppComponent } from './+app/app.module';
 import { SharedModule } from './+app/shared/shared.module';
 import { CacheService } from './+app/shared/cache.service';
+import { NodeStorage } from './+app/shared/storage.node';
+import { CookieNode } from './+app/shared/cookie.node';
+
+import { ApiService  } from './+app/shared/api.service';
 
 // Will be merged into @angular/platform-browser in a later release
 // see https://github.com/angular/angular/pull/12322
@@ -21,11 +26,18 @@ export function getResponse() {
   return Zone.current.get('res') || {};
 }
 
+export function storage() {
+  return new NodeStorage();
+}
+export function cookie() {
+  return new CookieNode();
+}
+
 // TODO(gdi2290): refactor into Universal
 export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
 
 @NgModule({
-  bootstrap: [ AppComponent ],
+  bootstrap: [AppComponent],
   imports: [
     // MaterialModule.forRoot() should be included first
     UniversalModule, // BrowserModule, HttpModule, and JsonpModule are included
@@ -45,6 +57,10 @@ export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
 
     { provide: 'LRU', useFactory: getLRU, deps: [] },
 
+    { provide: 'Storage', useFactory: storage },
+
+    { provide: 'Cookie', useFactory: cookie },
+
     CacheService,
 
     Meta,
@@ -60,12 +76,14 @@ export class MainModule {
    * in Universal for now until it's fixed
    */
   universalDoDehydrate = (universalCache) => {
+    this.cache.set('APP_ID', universalCache.APP_ID);
     universalCache[CacheService.KEY] = JSON.stringify(this.cache.dehydrate());
+
   }
 
- /**
-  * Clear the cache after it's rendered
-  */
+  /**
+   * Clear the cache after it's rendered
+   */
   universalAfterDehydrate = () => {
     // comment out if LRU provided at platform level to be shared between each user
     this.cache.clear();
