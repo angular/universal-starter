@@ -21,6 +21,7 @@ export class HomeComponent {
   universalInit() {
     this.model.get('/data.json').subscribe(data => {
       this.data = data;
+      throw new Error('break'); // <-- Add this line
     });
   }
 
