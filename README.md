@@ -55,8 +55,11 @@ constructor(element: ElementRef, renderer: Renderer) {
 
 ### Brotli Compression Support
 
-To enable Brotli compression for server response with fallback for gzip replace the following code from src/server.aot.ts
-
+To enable Brotli compression for server response with fallback for gzip.  Install the following packages
+```
+npm install --save-dev iltorb accepts @types/accepts express-interceptor memory-cache @types/memory-cache
+```
+and replace the following code from src/server.aot.ts.
 ```
   import * as compression from 'compression';
 
