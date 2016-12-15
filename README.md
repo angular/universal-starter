@@ -49,14 +49,17 @@ constructor(element: ElementRef, renderer: Renderer) {
 }
 ```
  - The application runs XHR requests on the server & once again on the Client-side (when the application bootstraps)
-    - Use a [UniversalCache](https://github.com/angular/universal-starter/blob/master/src/+app/shared/api.service.ts#L47-L71) instead of regular Http, to save certain requests so they aren't re-ran again on the Client.
+    - Use a [UniversalCache](https://github.com/angular/universal-starter/blob/master/src/%2Bapp/shared/model/model.service.ts#L34-L50) instead of regular Http, to save certain requests so they aren't re-ran again on the Client. ([Example useage here](https://github.com/angular/universal-starter/blob/cc71e2d5b2d783f2bb52eebd1b5c6fa0ba23f08a/src/%2Bapp/%2Bhome/home.component.ts#L22-L24))
  - Know the difference between attributes and properties in relation to the DOM.
  - Keep your directives stateless as much as possible. For stateful directives, you may need to provide an attribute that reflects the corresponding property with an initial string value such as url in img tag. For our native `<img src="">` element the src attribute is reflected as the src property of the element type HTMLImageElement.
 
 ### Brotli Compression Support
 
-To enable Brotli compression for server response with fallback for gzip replace the following code from src/server.aot.ts
-
+To enable Brotli compression for server response with fallback for gzip.  Install the following packages
+```
+npm install --save-dev iltorb accepts @types/accepts express-interceptor memory-cache @types/memory-cache
+```
+and replace the following code from src/server.aot.ts.
 ```
   import * as compression from 'compression';
 
