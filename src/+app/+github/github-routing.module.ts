@@ -8,7 +8,7 @@ import { RepoDetailComponent } from './repo-detail/repo-detail.component';
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'github', component: RepoBrowserComponent,
+      { path: '', component: RepoBrowserComponent,
         children: [
           { path: '', component: RepoListComponent },
           { path: ':org', component: RepoListComponent,
