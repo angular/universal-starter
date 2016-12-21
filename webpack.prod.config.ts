@@ -196,10 +196,8 @@ var webpackDev = webpackConfig();
 var client = webpackMerge(webpackDev[0], clone(commonConfig), clientConfig, {plugins: [ ...commonPlugins, ...clientPlugins ] });
 
 var clientPages = ROUTES.map((page) => {
-  var bundle = page
-  if (typeof page !== 'string') {
-    bundle = page.page;
-  }
+  var bundle: string = (typeof page !== 'string') ? page.page : page;
+
   return webpackMerge(client, {
     output: {
       filename: bundle + '.[chunkhash].js',

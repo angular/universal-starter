@@ -112,7 +112,7 @@ import { serverApi, createTodoApi } from './backend/api';
 app.get('/data.json', serverApi);
 app.use('/api', createTodoApi());
 
-function wrap(page) {
+function wrapNgApp(page) {
   return function ngApp(req, res) {
     res.render(page, {
       req,
@@ -129,7 +129,7 @@ function wrap(page) {
 /**
  * use universal for specific routes
  */
-app.get('/', wrap('home'));
+app.get('/', wrapNgApp('home'));
 ROUTES.forEach((route) => {
   if (typeof route !== 'string') {
     route.routes.forEach((_route) => {
