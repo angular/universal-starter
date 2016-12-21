@@ -9,7 +9,9 @@
  * 'home', 'about'
  * ];
  **/
-export const routes: string[] = [
+export type UniversalRoute = string | { page: string, routes: string[] };
+
+export const ROUTES: UniversalRoute[] = [
   'about',
   'home',
   'lazy',

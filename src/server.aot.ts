@@ -28,7 +28,7 @@ import { createEngine } from 'angular2-express-engine';
 import { MainModuleNgFactory } from './node.module.ngfactory';
 
 // Routes
-import { routes } from './server.routes';
+import { ROUTES } from './server.routes';
 
 // enable prod for faster renders
 enableProdMode();
@@ -56,7 +56,7 @@ app.use(cookieParser('Angular 2 Universal'));
 app.use(bodyParser.json());
 
 app.use(interceptor((req, res)=>({
-  // don't compress responses with this request header 
+  // don't compress responses with this request header
   isInterceptable: () => (!req.headers['x-no-compression']),
   intercept: ( body, send ) => {
     const encodings  = new Set(accepts(req).encodings());
@@ -130,9 +130,15 @@ function wrap(page) {
  * use universal for specific routes
  */
 app.get('/', wrap('home'));
-routes.forEach(route => {
-  app.get(`/${route}`, wrap(route));
-  app.get(`/${route}/*`, wrap(route));
+ROUTES.forEach((route) => {
+  if (typeof route !== 'string') {
+    route.routes.forEach((_route) => {
+      app.get(`/${_route}`, wrapNgApp(route.page));
+    });
+  } else {
+    app.get(`/${route}`, wrapNgApp(route));
+    app.get(`/${route}/*`, wrapNgApp(route));
+  }
 });
 
 

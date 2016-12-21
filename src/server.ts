@@ -22,7 +22,7 @@ import { createEngine } from 'angular2-express-engine';
 import { MainModule } from './node.module';
 
 // Routes
-import { routes } from './server.routes';
+import { ROUTES } from './server.routes';
 
 // enable prod for faster renders
 enableProdMode();
@@ -87,9 +87,15 @@ function wrap(page) {
  * use universal for specific routes
  */
 app.get('/', wrap('home'));
-routes.forEach(route => {
-  app.get(`/${route}`, wrap('home'));
-  app.get(`/${route}/*`, wrap('home'));
+ROUTES.forEach((route) => {
+  if (typeof route !== 'string') {
+    route.routes.forEach((_route) => {
+      app.get(`/${_route}`, wrapNgApp('home'));
+    });
+  } else {
+    app.get(`/${route}`, wrapNgApp('home'));
+    app.get(`/${route}/*`, wrapNgApp('home'));
+  }
 });
 
 app.get('*', function(req, res) {

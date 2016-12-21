@@ -87,7 +87,7 @@ export var serverConfig = {
     ],
   },
   externals: includeClientPackages(
-    /@angularclass|@angular|angular2-|ng2-|ng-|@ng-|angular-|@ngrx|ngrx-|@angular2|ionic|@ionic|-angular2|-ng2|-ng/
+    /@angularclass|@angular|angular2-|ng2-|ng-|ngx-|@ng-|angular-|@ngrx|ngrx-|@angular2|ionic|@ionic|-angular2|-ng2|-ng/
   ),
   node: {
     global: true,
@@ -114,10 +114,9 @@ var developmentClientPlugins = [
 
 var developmentPlugins = [
   new webpack.DefinePlugin({
-    'process.env': {
-      'PAGE': JSON.stringify('home'),
-      'AOT': false
-    }
+    'process.env.NODE_ENV': JSON.stringify('production'),
+    'process.env.AOT': true,
+    'process.env.PAGE': JSON.stringify('home')
   }),
 ];
 export default function(env: any = {}) {

@@ -40,11 +40,14 @@ export function getGithubModule() {
 export function getAsyncModule(AsyncModule, path) {
   let ngmodule = AsyncModule + (process.env.AOT ? 'NgFactory' : '');
 
-  // sync route
+  // sync route if it's the current page route
   if (process.env.PAGE === path) {
     return (require('./+' + path + '/' + path + '.module' + (process.env.AOT ? '.ngfactory' : ''))[ngmodule])
   }
-
-  // async route
+  // force sync all routes for development
+  if (process.env.NODE_ENV !== 'prod') {
+    return (require('./+' + path + '/' + path + '.module' + (process.env.AOT ? '.ngfactory' : ''))[ngmodule])
+  }
+  // async route for everything else
   return System.import('./+' + path + '/' + path + '.module' + (process.env.AOT ? '.ngfactory' : '')).then(mod => mod[ngmodule]);
 }

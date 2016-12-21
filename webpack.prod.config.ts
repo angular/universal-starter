@@ -6,8 +6,9 @@ const V8LazyParseWebpackPlugin = require('v8-lazy-parse-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+// const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 import webpackConfig, { root,  includeClientPackages } from './webpack.config';
-import { routes as ROUTES } from './src/server.routes';
+import { ROUTES } from './src/server.routes';
 // const CompressionPlugin = require('compression-webpack-plugin');
 
 
@@ -15,11 +16,9 @@ export const commonPlugins = [
   new V8LazyParseWebpackPlugin(),
 
   new webpack.DefinePlugin({
-    'process.env': {
-      'NODE_ENV': JSON.stringify('production'),
-      'AOT': true,
-      // 'PAGE': JSON.stringify('home') // see below
-    }
+    'process.env.NODE_ENV': JSON.stringify('production'),
+    'process.env.AOT': true
+    // 'process.env.PAGE': JSON.stringify('home') // see below
   }),
 
   // Loader options
@@ -138,8 +137,7 @@ export const clientPlugins = [
 
 ];
 export const clientConfig = {
-  entry: './src/client.aot',
-  recordsOutputPath: root('webpack.records.json')
+  entry: './src/client.aot'
 };
 
 // Server.
@@ -169,7 +167,20 @@ export const serverPlugins = [
   }),
   new webpack.DefinePlugin({
     'process.env.PAGE': '"home"'
-  })
+  }),
+
+  // https://github.com/mzgoddard/hard-source-webpack-plugin
+  // update "clean:dist": "rimraf dist/client dist/server dist/_ts",
+  // new HardSourceWebpackPlugin({
+  //   // Either an absolute path or relative to output.path.
+  //   cacheDirectory: './_tmp/cache/server',
+  //   recordsPath: root('./dist/_records/webpack.server.records.json'),
+  //   environmentHash: {
+  //     root: process.cwd(),
+  //     directories: ['node_modules'],
+  //     files: ['package.json'],
+  //   },
+  // }),
 ];
 export const serverConfig = {
   entry: './src/server.aot',
@@ -185,25 +196,43 @@ var webpackDev = webpackConfig();
 var client = webpackMerge(webpackDev[0], clone(commonConfig), clientConfig, {plugins: [ ...commonPlugins, ...clientPlugins ] });
 
 var clientPages = ROUTES.map((page) => {
+  var bundle = page
+  if (typeof page !== 'string') {
+    bundle = page.page;
+  }
   return webpackMerge(client, {
     output: {
-      filename: page + '.[chunkhash].js',
-      chunkFilename: '[id].' + page + '.[chunkhash].js'
+      filename: bundle + '.[chunkhash].js',
+      chunkFilename: '[id].' + bundle + '.[chunkhash].js'
     },
+    // recordsOutputPath: root('_records/webpack.client-' + page + '.records.json'),
     plugins: [
       new HtmlWebpackPlugin({
         template: root('src/index.html'),
-        filename: page + '.html'
+        filename: bundle + '.html'
       }),
 
       new ScriptExtHtmlWebpackPlugin({
-        async: [new RegExp(page)]
+        async: [new RegExp( bundle )]
       }),
 
       new webpack.DefinePlugin({
-        'process.env.PAGE': JSON.stringify(page)
-      })
-    ]
+        'process.env.PAGE': JSON.stringify(bundle)
+      }),
+
+      // https://github.com/mzgoddard/hard-source-webpack-plugin
+      // update "clean:dist": "rimraf dist/client dist/server dist/_ts",
+      // new HardSourceWebpackPlugin({
+      //   // Either an absolute path or relative to output.path.
+      //   cacheDirectory: './_tmp/cache/'+ page,
+      //   recordsPath: root('./dist/_records/webpack.client-' + page + '.records.json'),
+      //   environmentHash: {
+      //     root: process.cwd(),
+      //     directories: ['node_modules'],
+      //     files: ['package.json'],
+      //   },
+      // })
+    ],
   });
 });
 
