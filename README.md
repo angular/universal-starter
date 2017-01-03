@@ -98,8 +98,11 @@ app.use(interceptor((req, res)=>({
       }
     } else {
       const { output, encoding } = mcache.get(key);
-      res.setHeader('Content-Encoding', encoding);
-      send(output);
+      if(encodings.has(encoding)){
+          res.setHeader('Content-Encoding', encoding);
+          send(output);
+          return;
+      }
     }
     send(output);
   }
