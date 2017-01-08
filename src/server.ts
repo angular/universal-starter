@@ -69,7 +69,10 @@ import { serverApi, createTodoApi } from './backend/api';
 app.get('/data.json', serverApi);
 app.use('/api', createTodoApi());
 
-process.on('uncaughtException', function (err) { console.error('Catching errors to avoid process crash') })
+process.on('uncaughtException', function (err) { 
+  console.error('Catching uncaught errors to avoid process crash', err);
+});
+
 function ngApp(req, res) {
   Zone.current
     .fork({
