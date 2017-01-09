@@ -76,6 +76,10 @@ import { serverApi, createTodoApi } from './backend/api';
 app.get('/data.json', serverApi);
 app.use('/api', createTodoApi());
 
+process.on('uncaughtException', function (err) { 
+  console.error('Catching uncaught errors to avoid process crash', err);
+});
+
 function ngApp(req, res) {
   res.render('index', {
     req,
@@ -84,7 +88,12 @@ function ngApp(req, res) {
     preboot: false,
     baseUrl: '/',
     requestUrl: req.originalUrl,
-    originUrl: `http://localhost:${ app.get('port') }`
+    originUrl: `http://localhost:${ app.get('port') }`,
+    onHandleError: (parentZoneDelegate, currentZone, targetZone, error) => {
+      console.warn('Error in SSR, serving for direct CSR');
+      res.sendFile('index.html', {root: './src'});
+      return false;
+    }
   });
 }
 
