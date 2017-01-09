@@ -74,25 +74,20 @@ process.on('uncaughtException', function (err) {
 });
 
 function ngApp(req, res) {
-  Zone.current
-    .fork({
-      name: 'CSR fallback',
-      onHandleError: (parentZoneDelegate, currentZone, targetZone, error) => {
-        console.warn("Error in SSR, serving for direct CSR");
-        res.sendFile('index.html', {root: './src'});
-        return false;
-      }
-    }).run(() => {
-      res.render('index', {
-        req,
-        res,
-        // time: true, // use this to determine what part of your app is slow only in development
-        preboot: false,
-        baseUrl: '/',
-        requestUrl: req.originalUrl,
-        originUrl: `http://localhost:${ app.get('port') }`
-      });
-    });
+  res.render('index', {
+    req,
+    res,
+    // time: true, // use this to determine what part of your app is slow only in development
+    preboot: false,
+    baseUrl: '/',
+    requestUrl: req.originalUrl,
+    originUrl: `http://localhost:${ app.get('port') }`,
+    onHandleError: (parentZoneDelegate, currentZone, targetZone, error) => {
+      console.warn("Error in SSR, serving for direct CSR");
+      res.sendFile('index.html', {root: './src'});
+      return false;
+    }
+  });
 }
 
 /**
