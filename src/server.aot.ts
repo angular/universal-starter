@@ -77,16 +77,30 @@ import { serverApi, createTodoApi } from './backend/api';
 app.get('/data.json', serverApi);
 app.use('/api', createTodoApi());
 
+process.on('uncaughtException', function (err) { 
+  console.error('Catching uncaught errors to avoid process crash', err);
+});
+
 function ngApp(req, res) {
-  res.render('index', {
-    req,
-    res,
-    // time: true, // use this to determine what part of your app is slow only in development
-    preboot: false,
-    baseUrl: '/',
-    requestUrl: req.originalUrl,
-    originUrl: `http://localhost:${ app.get('port') }`
+
+  function onHandleError(parentZoneDelegate, currentZone, targetZone, error)  {
+    console.warn('Error in SSR, serving for direct CSR');
+    res.sendFile('index.html', {root: './src'});
+    return false;
+  }
+
+  Zone.current.fork({ name: 'CSR fallback', onHandleError }).run(() => {
+    res.render('index', {
+      req,
+      res,
+      // time: true, // use this to determine what part of your app is slow only in development
+      preboot: false,
+      baseUrl: '/',
+      requestUrl: req.originalUrl,
+      originUrl: `http://localhost:${ app.get('port') }`
+    });
   });
+
 }
 
 /**
