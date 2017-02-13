@@ -1,7 +1,7 @@
 // the polyfills must be the first thing imported
 import 'angular2-universal-polyfills';
 import 'ts-helpers';
-import './__workaround.browser'; // temporary until 2.1.1 things are patched in Core
+import './shared/workarounds/__workaround.browser'; // temporary until 2.1.1 things are patched in Core
 
 // Angular 2
 import { enableProdMode } from '@angular/core';
@@ -15,7 +15,7 @@ import { load as loadWebFont } from 'webfontloader';
 // enable prod for faster renders
 enableProdMode();
 
-import { MainModuleNgFactory } from './browser.module.ngfactory';
+import { MainModuleNgFactory } from './platform-modules/browser.module.ngfactory';
 
 export const platformRef = platformBrowser();
 

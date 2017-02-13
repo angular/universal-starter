@@ -4,13 +4,13 @@ import { RouterModule } from '@angular/router';
 import { UniversalModule, isBrowser, isNode, AUTO_PREBOOT } from 'angular2-universal/browser'; // for AoT we need to manually split universal packages
 import { IdlePreload, IdlePreloadModule } from '@angularclass/idle-preload';
 
-import { AppModule, AppComponent } from './+app/app.module';
-import { SharedModule } from './+app/shared/shared.module';
-import { CacheService } from './+app/shared/cache.service';
+import { AppModule, AppComponent } from '../+app/app.module';
+import { SharedModule } from '../+app/shared/shared.module';
+import { CacheService } from '../+app/shared/cache.service';
 
 // Will be merged into @angular/platform-browser in a later release
 // see https://github.com/angular/angular/pull/12322
-import { Meta } from './angular2-meta';
+import { Meta } from '../shared/meta/angular2-meta';
 
 // import * as LRU from 'modern-lru';
 
