@@ -37,17 +37,17 @@
     "Mark Pieszak <mpieszak84@gmail.com>"
   ],
   "dependencies": {
-    "@angular/common": "~2.1.2",
-    "@angular/compiler": "~2.1.2",
-    "@angular/compiler-cli": "~2.1.2",
-    "@angular/core": "~2.1.2",
-    "@angular/forms": "~2.1.2",
-    "@angular/http": "~2.1.2",
-    "@angular/platform-browser": "~2.1.2",
-    "@angular/platform-browser-dynamic": "~2.1.2",
-    "@angular/platform-server": "~2.1.2",
-    "@angular/router": "~3.1.2",
-    "@angular/upgrade": "~2.1.2",
+    "@angular/common": "2.2.3",
+    "@angular/compiler": "2.2.3",
+    "@angular/compiler-cli": "2.2.3",
+    "@angular/core": "2.2.3",
+    "@angular/forms": "2.2.3",
+    "@angular/http": "2.2.3",
+    "@angular/platform-browser": "2.2.3",
+    "@angular/platform-browser-dynamic": "2.2.3",
+    "@angular/platform-server": "2.2.3",
+    "@angular/router": "3.2.3",
+    "@angular/upgrade": "2.2.3",
     "@angularclass/bootloader": "~1.0.1",
     "@angularclass/idle-preload": "~1.0.4",
     "angular2-express-engine": "~2.1.0-rc.1",
@@ -63,7 +63,7 @@
     "preboot": "~4.5.2",
     "rxjs": "5.0.0-beta.12",
     "webfontloader": "^1.6.26",
-    "zone.js": "~0.6.26"
+    "zone.js": "0.7.4"
   },
   "devDependencies": {
     "@types/morgan": "^1.7.32",
