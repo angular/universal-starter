@@ -20,6 +20,7 @@ webpack.records.json
 
 # Angular #
 *.ngfactory.ts
+*.css
 *.css.shim.ts
 *.ngsummary.json
 *.metadata.json
