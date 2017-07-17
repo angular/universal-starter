@@ -9,7 +9,7 @@ import {fakeDemoRedisCache} from './cache';
 var USER_ID = 'f9d98cf1-1b96-464e-8755-bcc2a5c09077'; // hardcoded as an example
 
 // Our API for demos only
-export function serverApi(req, res) {
+export const serverApi = (req, res) => {
   let key = USER_ID + '/data.json';
   let cache = fakeDemoRedisCache.get(key);
   if (cache !== undefined) {
@@ -37,20 +37,20 @@ var TODOS = [
   { id: 3, value: 'include production environment',  created_at: new Date(), completed: false }
 ];
 
-export function createTodoApi() {
+export const createTodoApi = () => {
 
   var router = Router()
 
   router.route('/todos')
-    .get(function(req, res) {
+    .get((req, res) => {
       console.log('GET');
       // 70ms latency
-      setTimeout(function() {
+      setTimeout(() => {
         res.json(TODOS);
       }, 0);
 
     })
-    .post(function(req, res) {
+    .post((req, res) => {
       console.log('POST', util.inspect(req.body, {colors: true}));
       var todo = req.body;
       if (todo) {
@@ -66,7 +66,7 @@ export function createTodoApi() {
       return res.end();
     });
 
-  router.param('todo_id', function(req, res, next, todo_id) {
+  router.param('todo_id', (req, res, next, todo_id) => {
     // ensure correct prop type
     var id = Number(req.params.todo_id);
     try {
@@ -80,12 +80,12 @@ export function createTodoApi() {
   });
 
   router.route('/todos/:todo_id')
-    .get(function(req, res) {
+    .get((req, res) => {
       console.log('GET', util.inspect(req.todo, {colors: true}));
 
       res.json(req.todo);
     })
-    .put(function(req, res) {
+    .put((req, res) => {
       console.log('PUT', util.inspect(req.body, {colors: true}));
 
       var index = TODOS.indexOf(req.todo);
@@ -93,7 +93,7 @@ export function createTodoApi() {
 
       res.json(todo);
     })
-    .delete(function(req, res) {
+    .delete((req, res) => {
       console.log('DELETE', req.todo_id);
 
       var index = TODOS.indexOf(req.todo);
