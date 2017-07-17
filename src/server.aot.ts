@@ -4,7 +4,7 @@
 // if you are including modules that modify Promise, such as NewRelic,, you must include them before polyfills
 import 'angular2-universal-polyfills';
 import 'ts-helpers';
-import './__workaround.node'; // temporary until 2.1.1 things are patched in Core
+import './shared/workarounds/__workaround.node'; // temporary until 2.1.1 things are patched in Core
 
 import * as fs from 'fs';
 import * as path from 'path';
@@ -20,10 +20,10 @@ import { enableProdMode } from '@angular/core';
 import { createEngine } from 'angular2-express-engine';
 
 // App
-import { MainModuleNgFactory } from './node.module.ngfactory';
+import { MainModuleNgFactory } from './platform-modules/node.module.ngfactory';
 
 // Routes
-import { routes } from './server.routes';
+import { routes } from './backend/server.routes';
 
 // enable prod for faster renders
 enableProdMode();
@@ -76,7 +76,7 @@ import { serverApi, createTodoApi } from './backend/api';
 app.get('/data.json', serverApi);
 app.use('/api', createTodoApi());
 
-process.on('uncaughtException', function (err) { 
+process.on('uncaughtException', function (err) {
   console.error('Catching uncaught errors to avoid process crash', err);
 });
 
