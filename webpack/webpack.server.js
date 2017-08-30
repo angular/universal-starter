@@ -8,8 +8,10 @@ const nodeExternals = require('webpack-node-externals');
  */
 module.exports = {
   externals: [nodeExternals({
-    /@angular/,
-    /@ng/
+    whitelist: [
+      /@angular/,
+      /@ng/
+    ]
   })],
   entry: root('./src/main.server.ts'),
   output: {
