@@ -1,5 +1,3 @@
-# Minimal Starter with Angular on both Server and Browser Platforms
-
 <p align="center">
   <img src="https://cloud.githubusercontent.com/assets/1016365/10639063/138338bc-7806-11e5-8057-d34c75f3cafc.png" alt="Universal Angular" height="320"/>
 </p>
@@ -13,22 +11,20 @@ A minimal Angular starter for Universal JavaScript using TypeScript and Webpack
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
+## Getting Started
+There are two projects hosting in this reposity: `/cli` and `/custom-webpack`, choose the one that best fits your situation.
 
-## Installation
+## [cli](https://github.com/angular/universal-starter/tree/master/cli)
+An implimentation of Universal using [@angular/cli](https://github.com/angular/angular-cli) to handle configuration.  
+* Build config is already done for you
+* Standard in the Angular community
+* Less flexible than a custom build config
 
-* `npm install`
+## [custom-webpack](https://github.com/angular/universal-starter/tree/master/custom-webpack)
+An implimentation of Universal using a custom webpack configuration.  
+* As flexible as possible
+* Sometimes hard to debug since not everyone has the same config
 
-## Serve
-
-* `npm start` to build your client app and start a web server
-* `npm run build` to prepare a distributable bundle
-
-## Development
-* run `npm start` and `npm run watch` in two separate terminals to build your client app, start a web server, and allow file changes to update in realtime
-
-## Prod
-* `npm run build:prod` to compile the ngfactory files and build prod
-* `npm run server` to start up the server
 
 ## Universal "Gotchas"
 
