@@ -1,0 +1,53 @@
+{
+  "name": "ng-universal-demo",
+  "version": "0.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angular/universal-starter.git"
+  },
+  "contributors": [
+    "AngularClass <hello@angularclass.com>",
+    "PatrickJS <patrick@angularclass.com>",
+    "Jeff Whelpley <jeff@gethuman.com>",
+    "Jeff Cross <crossj@google.com>",
+    "Mark Pieszak <mpieszak84@gmail.com>",
+    "Jason Jean <jasonjean1993@gmail.com>",
+    "Fabian Wiles <fabian.wiles@gmail.com>"
+  ],
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "build:static": "ng build --prod && ng build --prod --app 1 --output-hashing=false && node prerender",
+    "build:dynamic": "ng build --prod && ng build --prod --app 1 --output-hashing=false && cpy ./server.js ./dist",
+    "serve:static": "npm run build:static && cd dist && http-server",
+    "serve:dynamic": "npm run build:dynamic && cd dist && node server"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^4.2.4",
+    "@angular/common": "^4.2.4",
+    "@angular/compiler": "^4.2.4",
+    "@angular/core": "^4.2.4",
+    "@angular/forms": "^4.2.4",
+    "@angular/http": "^4.2.4",
+    "@angular/platform-browser": "^4.2.4",
+    "@angular/platform-browser-dynamic": "^4.2.4",
+    "@angular/platform-server": "^4.3.6",
+    "@angular/router": "^4.2.4",
+    "@nguniversal/express-engine": "^1.0.0-beta.3",
+    "@nguniversal/module-map-ngfactory-loader": "^1.0.0-beta.3",
+    "core-js": "^2.4.1",
+    "rxjs": "^5.4.2",
+    "zone.js": "^0.8.14"
+  },
+  "devDependencies": {
+    "@angular/cli": "^1.3.0",
+    "@angular/compiler-cli": "^4.2.4",
+    "@angular/language-service": "^4.2.4",
+    "cpy-cli": "^1.0.1",
+    "http-server": "^0.10.0",
+    "typescript": "~2.3.3"
+  }
+}
