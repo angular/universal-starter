@@ -29,6 +29,7 @@ export class ServerTransferState extends TransferState {
       }
 
       const script = renderer.createElement('script');
+      renderer.setAttribute(script, 'nonce', 'nonce-universal-transfer-state');
       renderer.setValue(script, `window['TRANSFER_STATE'] = ${transferStateString}`);
       renderer.appendChild(head, script);
     } catch (e) {
