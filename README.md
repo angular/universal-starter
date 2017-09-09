@@ -36,9 +36,9 @@ An implementation of Universal using a custom webpack configuration.
     - If you need to use them, consider limiting them to only your main.client and wrapping them situationally with the imported *isBrowser*.  `import * as isBrowser from 'is-browser'`;
  - **Don't manipulate the nativeElement directly**. Use the _Renderer2_ from ["@angular/core"](https://angular.io/api/core/Renderer2). We do this to ensure that in any environment we're able to change our view.
 ```
-constructor(element: ElementRef, renderer: Renderer) {
-  renderer.setElementStyle(element.nativeElement, 'font-size', 'x-large');
-}
+  constructor(element: ElementRef, renderer2: Renderer2) {
+    this.renderer2.setStyle(element.nativeElement, 'font-size', 'x-large');
+  }
 ```
 # License
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](/LICENSE)
