@@ -12,16 +12,16 @@ A minimal Angular starter for Universal JavaScript using TypeScript and Webpack
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ## Getting Started
-There are two projects hosting in this reposity: `/cli` and `/custom-webpack`, choose the one that best fits your situation.
+There are two projects hosting in this repository: `/cli` and `/custom-webpack`, choose the one that best fits your situation.
 
 ## [cli](https://github.com/angular/universal-starter/tree/master/cli)
-An implimentation of Universal using [@angular/cli](https://github.com/angular/angular-cli) to handle configuration.  
+An implementation of Universal using [@angular/cli](https://github.com/angular/angular-cli) to handle configuration.  
 * Build config is already done for you
 * Standard in the Angular community
 * Less flexible than a custom build config
 
 ## [custom-webpack](https://github.com/angular/universal-starter/tree/master/custom-webpack)
-An implimentation of Universal using a custom webpack configuration.  
+An implementation of Universal using a custom webpack configuration.  
 * As flexible as possible
 * Sometimes hard to debug since not everyone has the same config
 

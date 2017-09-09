@@ -4,9 +4,9 @@
 
 * `npm install` or `yarn`
 
-## Static or Dyanmic
+## Static or Dynamic
 
-This repo demonstraits the use of 2 different forms of Server Side Rendering.
+This repo demonstrates the use of 2 different forms of Server Side Rendering.
 
 **Static** Also known as prerendering - This happens at build time; it renders your application and replaces the dist index.html with a rendered version.
 
@@ -16,7 +16,7 @@ This repo demonstraits the use of 2 different forms of Server Side Rendering.
 * run `npm run start` which will start `ng serve`
 
 ## Prod
-* `npm run build:static` or `npm run build:dynamic` to compile your application for distrbution
+* `npm run build:static` or `npm run build:dynamic` to compile your application for distribution
 
 This demo is built following this guide: https://github.com/angular/angular-cli/wiki/stories-universal-rendering
 Along with https://github.com/angular/universal/tree/master/modules/ng-module-map-ngfactory-loader to enable Lazy Loading
