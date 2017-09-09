@@ -30,10 +30,11 @@ An implementation of Universal using a custom webpack configuration.
 
 > When building Universal components in Angular there are a few things to keep in mind.
 
+ - For the server bundle you may need to include your 3rd party module into `nodeExternals` whitelist
+
  - **`window`**, **`document`**, **`navigator`**, and other browser types - _do not exist on the server_ - so using them, or any library that uses them (jQuery for example) will not work. You do have some options, if you truly need some of this functionality:
-    - If you need to use them, consider limiting them to only your main.client and wrapping them situationally with the imported *isBrowser / isNode* features from Universal.  `import { isBrowser, isNode } from 'angular2-universal'`;
-    - Another option is using `DOM` from ["@angular/platform-browser"](https://github.com/angular/angular/blob/e3687706c71beb7c9dbdae1bbb5fbbcea588c476/modules/%40angular/platform-browser/src/dom/dom_adapter.ts#L34)
- - **Don't manipulate the nativeElement directly**. Use the _Renderer_. We do this to ensure that in any environment we're able to change our view.
+    - If you need to use them, consider limiting them to only your main.client and wrapping them situationally with the imported *isBrowser*.  `import * as isBrowser from 'is-browser'`;
+ - **Don't manipulate the nativeElement directly**. Use the _Renderer2_ from ["@angular/core"](https://angular.io/api/core/Renderer2). We do this to ensure that in any environment we're able to change our view.
 ```
 constructor(element: ElementRef, renderer: Renderer) {
   renderer.setElementStyle(element.nativeElement, 'font-size', 'x-large');
