@@ -1,19 +1,19 @@
-require('zone.js/dist/zone-node');
-require('reflect-metadata');
-const express = require('express');
-const fs = require('fs');
+import 'zone.js/dist/zone-node';
+import 'reflect-metadata';
+import * as express from 'express';
+import * as fs from 'fs';
 
-const { platformServer, renderModuleFactory } = require('@angular/platform-server');
-const { ngExpressEngine } = require('@nguniversal/express-engine');
+import { platformServer, renderModuleFactory } from '@angular/platform-server';
+import { ngExpressEngine } from '@nguniversal/express-engine';
 // Import module map for lazy loading
-const { provideModuleMap } = require('@nguniversal/module-map-ngfactory-loader');
+import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 
 // Import the AOT compiled factory for your AppServerModule.
 // This import will change with the hash of your built server bundle.
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require(`./dist-server/main.bundle`);
 
 const app = express();
-const port = 8000;
+const port = 8080;
 const baseUrl = `http://localhost:${port}`;
 
 // Set the engine

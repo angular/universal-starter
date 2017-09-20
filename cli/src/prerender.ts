@@ -1,17 +1,16 @@
-// Load zone.js for the server.
-require('zone.js/dist/zone-node');
-require('reflect-metadata')
-const fs = require('fs');
+import 'zone.js/dist/zone-node';
+import 'reflect-metadata';
+import * as fs from 'fs';
 
 // Import renderModuleFactory from @angular/platform-server.
-const { renderModuleFactory } = require('@angular/platform-server');
+import { renderModuleFactory } from '@angular/platform-server';
 
 // Import module map for lazy loading
-const { provideModuleMap } = require('@nguniversal/module-map-ngfactory-loader');
+import { provideModuleMap }  from '@nguniversal/module-map-ngfactory-loader';
 
 // Import the AOT compiled factory for your AppServerModule.
 // This import will change with the hash of your built server bundle.
-const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require(`./dist/dist-server/main.bundle`);
+const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require(`../dist/dist-server/main.bundle`);
 
 // Load the index.html file containing referances to your application bundle.
 const index = fs.readFileSync('./dist/index.html', 'utf8');
