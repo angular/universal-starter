@@ -48,6 +48,7 @@
     "@angular/language-service": "^4.2.4",
     "cpy-cli": "^1.0.1",
     "http-server": "^0.10.0",
-    "typescript": "~2.3.3"
+    "typescript": "~2.3.3",
+    "reflect-metadata":"^0.1.10"
   }
 }
