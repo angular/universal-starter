@@ -36,7 +36,7 @@ app.engine('html', ngExpressEngine({
 }));
 
 app.set('view engine', 'html');
-app.set('views', 'src');
+app.set('views', join(DIST_FOLDER, 'browser'));
 
 /* - Example Express Rest API endpoints -
   app.get('/api/**', (req, res) => { });

@@ -33,6 +33,7 @@ module.exports = {
       // fixes WARNING Critical dependency: the request of a dependency is an expression
       /(.+)?express(\\|\/)(.+)?/,
       path.join(__dirname, 'src'),
+      {}
     )
   ]
 }
