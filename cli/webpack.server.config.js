@@ -1,3 +1,5 @@
+// Work around for https://github.com/angular/angular-cli/issues/7200
+
 const path = require('path');
 
 module.exports = {
