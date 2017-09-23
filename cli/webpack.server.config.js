@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   entry: {
@@ -8,9 +9,7 @@ module.exports = {
     prerender: './prerender.ts'
   },
   target: 'node',
-  resolve: {
-    extensions: ['.ts', '.js'],
-  },
+  resolve: { extensions: ['.ts', '.js'] },
   // Make sure we include all node_modules etc
   externals: [/(node_modules|main\..*\.js)/,],
   output: {
