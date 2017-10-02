@@ -14,7 +14,8 @@ import { HomeComponent } from './home/home.component';
     BrowserModule.withServerTransition({appId: 'my-app'}),
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full'},
-      { path: 'lazy', loadChildren: './lazy/lazy.module#LazyModule'}
+      { path: 'lazy', loadChildren: './lazy/lazy.module#LazyModule'},
+      { path: 'lazy/nested', loadChildren: './lazy/lazy.module#LazyModule'}
     ])
   ],
   providers: [],
