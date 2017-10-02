@@ -5,6 +5,10 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import { chdir } from 'process';
 
+import { enableProdMode } from '@angular/core';
+// Faster server renders w/ Prod mode (dev mode never needed)
+enableProdMode();
+
 // Express Engine
 import { ngExpressEngine } from '@nguniversal/express-engine';
 // Import module map for lazy loading
