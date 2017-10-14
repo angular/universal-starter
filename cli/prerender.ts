@@ -27,6 +27,8 @@ const BROWSER_FOLDER = join(process.cwd(), 'browser');
 // Load the index.html file containing referances to your application bundle.
 const index = readFileSync(join('browser', 'index.html'), 'utf8');
 
+let prom = Promise.resolve();
+
 // Iterate each route path
 PATHS.forEach(function (route) {
   // Changes current directory to ./dist/browser
@@ -42,11 +44,11 @@ PATHS.forEach(function (route) {
     });
 
   // Writes rendered HTML to index.html, replacing the file if it already exists.
-  renderModuleFactory(AppServerModuleNgFactory, {
+  prom = prom.then(_ => renderModuleFactory(AppServerModuleNgFactory, {
     document: index,
     url: route,
     extraProviders: [
       provideModuleMap(LAZY_MODULE_MAP)
     ]
-  }).then(html => writeFileSync(join(BROWSER_FOLDER, route, 'index.html'), html));
+  })).then(html => writeFileSync(join(BROWSER_FOLDER, route, 'index.html'), html));
 });
