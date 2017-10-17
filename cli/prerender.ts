@@ -48,7 +48,7 @@ PATHS.forEach(function (route) {
     document: index,
     url: route,
     extraProviders: [
-      provideModuleMap(LAZY_MODULE_MAP)
+      [provideModuleMap(LAZY_MODULE_MAP)]
     ]
   })).then(html => writeFileSync(join(BROWSER_FOLDER, route, 'index.html'), html));
 });
