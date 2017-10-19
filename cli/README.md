@@ -1,4 +1,4 @@
-# Minimal Starter with the Anguar-CLI
+# Angular Universal & Anguar-CLI minimal starter
 
 > This demo is built following the [Angular-CLI Wiki guide](https://github.com/angular/angular-cli/wiki/stories-universal-rendering)
 
@@ -22,13 +22,33 @@ This repo demonstrates the use of 2 different forms of Server Side Rendering.
 ## Installation
 * `npm install` or `yarn`
 
+---
+
 ## Development (Client-side only rendering)
-* run `npm run start` which will start `ng serve`
+* run `npm run start` which will start `ng serve` (project served at the standard: localhost:4200)
 
-## Production (also for testing Universal/Prerendering locally)
-**`npm run build:dynamic && npm run serve:dynamic`** - Compiles your application and spins up a Node Express to dynamically serve your Universal application on `http://localhost:4000`.
+---
 
-**`npm run build:static && npm run serve:static`** - Compiles your application and prerenders your applications files, spinning up a demo http-server so you can view it on `http://127.0.0.1:8080`
-**Note**: To deploy your static site to a static hosting platform you will have to deploy the `dist/browser` folder, rather than the usual `dist`
+## Production 
+
+Depending on whether you're publishing dynamic or static prerendering, run the build command, and then serve up your dist folder assets.
+
+> **NOTE**: To deploy your **Static** site to a static hosting platform you will have to deploy the *`dist/browser`* folder, rather than the usual *`dist`*
+
+ie: `npm run build:dynamic` or `npm run build:static`. All of the files that need to be served will be found within the `/dist` folder.
+
+
+
+---
+
+## Testing Universal (dynamic or static) builds -Locally-
+
+**Dynamic** : **`npm run start:dynamic`**
+
+Compiles your application and spins up a Node Express to dynamically serve your Universal application on `http://localhost:4000`.
+
+**Static** : **`npm run start:static`**
+
+- Compiles your application and prerenders your applications files, spinning up a demo http-server so you can view it on `http://127.0.0.1:8080`
 
 
