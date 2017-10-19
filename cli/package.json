@@ -18,6 +18,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:dynamic": "npm run build:dynamic && npm run serve:dynamic",
+    "start:static": "npm run build:static && npm run serve:static",
     "build": "ng build",
     "build:client-and-server-bundles": "ng build --prod && ng build --prod --app 1 --output-hashing=false",
     "build:static": "npm run build:client-and-server-bundles && npm run webpack:server && npm run generate:static",
