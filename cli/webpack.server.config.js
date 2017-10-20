@@ -6,9 +6,9 @@ const webpack = require('webpack');
 module.exports = {
   entry: {
     // This is our Express server for Dynamic universal
-    server: './server.ts',
+    server: './src/server.ts',
     // This is an example of Static prerendering (generative)
-    prerender: './prerender.ts'
+    prerender: './src/prerender.ts'
   },
   target: 'node',
   resolve: { extensions: ['.ts', '.js'] },
