@@ -39,7 +39,7 @@
     "@angular/http": "^4.2.4",
     "@angular/platform-browser": "^4.2.4",
     "@angular/platform-browser-dynamic": "^4.2.4",
-    "@angular/platform-server": "^4.3.6",
+    "@angular/platform-server": "^4.2.4",
     "@angular/router": "^4.2.4",
     "@nguniversal/express-engine": "^1.0.0-beta.3",
     "@nguniversal/module-map-ngfactory-loader": "^1.0.0-beta.3",
