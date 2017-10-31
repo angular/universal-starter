@@ -1,5 +1,6 @@
 .idea
 .DS_Store
+.vscode
 morgan.log
 
 # Built #
@@ -9,6 +10,7 @@ morgan.log
 /typings/
 /tsd_typings/
 /dist/
+/dist-server/
 /compiled/
 
 # Node #
