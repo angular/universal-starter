@@ -12,18 +12,37 @@ A minimal Angular starter for Universal JavaScript using TypeScript and Webpack
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ## Getting Started
-There are two projects hosting in this repository: `/cli` and `/custom-webpack`, choose the one that best fits your situation.
 
-## [cli](https://github.com/angular/universal-starter/tree/master/cli)
-An implementation of Universal using [@angular/cli](https://github.com/angular/angular-cli) to handle configuration.  
-* Build config is already done for you
-* Standard in the Angular community
-* Less flexible than a custom build config
+> This demo is built following the [Angular-CLI Wiki guide](https://github.com/angular/angular-cli/wiki/stories-universal-rendering)
 
-## [custom-webpack](https://github.com/angular/universal-starter/tree/master/custom-webpack)
-An implementation of Universal using a custom webpack configuration.  
-* As flexible as possible
-* Sometimes hard to debug since not everyone has the same config
+We're utilizing packages from the [Angular Universal @nguniversal](https://github.com/angular/universal) repo, such as [ng-module-map-ngfactory-loader](https://github.com/angular/universal/tree/master/modules/module-map-ngfactory-loader) to enable Lazy Loading.
+
+---
+
+### Build Time Prerender(prerender) Vs. Server Side Rendering(ssr)
+This repo demonstrates the use of 2 different forms of Server Side Rendering.
+
+**Prerender(prerender)** 
+* Happens at build time
+* Renders your application and replaces the dist index.html with a version rendered at the route `/`.
+
+**Server-Side Rendering(ssr)**
+* Happens at runtime
+* Uses `ngExpressEngine` to render you application on the fly at the requested url.
+
+---
+
+### Installation
+* `npm install` or `yarn`
+
+### Development (Client-side only rendering)
+* run `npm run start` which will start `ng serve`
+
+### Production (also for testing SSR/Pre-rendering locally)
+**`npm run build:ssr && npm run serve:ssr`** - Compiles your application and spins up a Node Express to serve your Universal application on `http://localhost:4000`.
+
+**`npm run build:prerender && npm run serve:prerender`** - Compiles your application and prerenders your applications files, spinning up a demo http-server so you can view it on `http://localhost:8080`
+**Note**: To deploy your static site to a static hosting platform you will have to deploy the `dist/browser` folder, rather than the usual `dist`
 
 
 ## Universal "Gotchas"
