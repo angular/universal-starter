@@ -4,6 +4,7 @@ import { renderModuleFactory } from '@angular/platform-server';
 import { enableProdMode } from '@angular/core';
 
 import * as express from 'express';
+import * as compression from 'compression';
 import { join } from 'path';
 import { readFileSync } from 'fs';
 
@@ -35,6 +36,8 @@ app.engine('html', ngExpressEngine({
   ]
 }));
 
+// Add compression support
+app.use(compression());
 app.set('view engine', 'html');
 app.set('views', join(DIST_FOLDER, 'browser'));
 
