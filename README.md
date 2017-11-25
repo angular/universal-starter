@@ -44,6 +44,21 @@ This repo demonstrates the use of 2 different forms of Server Side Rendering.
 **`npm run build:prerender && npm run serve:prerender`** - Compiles your application and prerenders your applications files, spinning up a demo http-server so you can view it on `http://localhost:8080`
 **Note**: To deploy your static site to a static hosting platform you will have to deploy the `dist/browser` folder, rather than the usual `dist`
 
+### run unit tests
+```bash
+npm run test
+```
+
+### run unit tests with coverage
+```bash
+npm run test:coverage
+```
+
+### run end-to-end tests
+```bash
+# this will start a test server and launch Protractor
+npm run e2e
+```
 
 ## Universal "Gotchas"
 
