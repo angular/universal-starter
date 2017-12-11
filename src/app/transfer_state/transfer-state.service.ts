@@ -1,54 +1,47 @@
 import {APP_ID, Inject, Injectable, PLATFORM_ID} from '@angular/core';
-import {TransferState, makeStateKey, StateKey} from '@angular/platform-browser';
-
-const transferStateCache = [];
-import {isPlatformBrowser, Location} from '@angular/common';
+import {TransferState, makeStateKey} from '@angular/platform-browser';
+import {isPlatformBrowser} from '@angular/common';
 
 /**
- * Helper service to store transfer-state, it means to store the state of the application when app serves by node
- * (server-side rendering) and gives data back to the application on browser-side
- * @author Kermani
+ * Keep caches (makeStateKey) into it in each `setCache` function call
+ * @type {any[]}
  */
+const transferStateCache = [];
+
 @Injectable()
 export class TransferStateService {
     constructor(private transferState: TransferState,
                 @Inject(PLATFORM_ID) private platformId: Object,
-                @Inject(APP_ID) private appId: string,) {
+                @Inject(APP_ID) private appId: string) {
     }
 
+    /**
+     * Set cache only when it's running on server
+     * @param {string} key
+     * @param data Data to store to cache
+     */
     setCache(key: string, data: any) {
-        if (!this.isBrowser()) {
-            console.log("set ceche, true");
+        if (!isPlatformBrowser(this.platformId)) {
+            transferStateCache[key] = makeStateKey<any>(key);
             this.transferState.set(transferStateCache[key], data);
         }
     }
 
-    getCache(key: string) {
-        if (this.isTransferStateAllowed(transferStateCache[key])) {
-            console.log("GET cache, true");
-            const cacheData = this.transferState.get(transferStateCache[key], null as any);
-            this.transferState.remove(transferStateCache[key]);
-            return cacheData;
-        }
-    }
 
     /**
-     * This method will check if it's the first request (no route change), and it's browser, and also
-     *  the value of the transferState variable is not false or empty, then will fill the app required
-     *  variables which app works as expected and will not make repetitive requests to server to
-     *  receive the same API endpoint.
-     * @param {StateKey<string>} keyToCheck Cache (variable) name to check if already exist
-     * @returns {boolean}
-     * @author Kermani
+     * Returns stored cache only when it's running on browser
+     * @param {string} key
+     * @returns {any} cachedData
      */
-    isTransferStateAllowed(keyToCheck: StateKey<string>) {
-        if (this.isBrowser() && this.transferState.hasKey(keyToCheck)) {
-            return true;
+    getCache(key: string) {
+        if (isPlatformBrowser(this.platformId)) {
+            const cachedData: any = this.transferState['store'][key];
+            /**
+             * Delete the cache to request the data from network next time which is the
+             * user's expected behavior
+             */
+            delete this.transferState['store'][key];
+            return cachedData;
         }
-        return false;
-    }
-
-    isBrowser() {
-        return isPlatformBrowser(this.platformId);
     }
 }

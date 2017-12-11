@@ -13,9 +13,7 @@ export class TransferStateInterceptor implements HttpInterceptor {
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        console.log('INTERCEPTOR:');
         /**
-         * Before doing anything, it's important to only cache GET requests.
          * Skip this interceptor if the request method isn't GET.
          */
         if (req.method !== 'GET') {
@@ -24,8 +22,7 @@ export class TransferStateInterceptor implements HttpInterceptor {
 
         const cachedResponse = this.transferStateService.getCache(req.url);
         if (cachedResponse) {
-            console.log('cache found');
-            // A cached response exists. Serve it instead of forwarding
+            // A cached response exists which means server set it before. Serve it instead of forwarding
             // the request to the next handler.
             return Observable.of(new HttpResponse<any>({body: cachedResponse}));
         }
@@ -36,8 +33,6 @@ export class TransferStateInterceptor implements HttpInterceptor {
          */
         return next.handle(req).do(event => {
             if (event instanceof HttpResponse) {
-                // Set cache
-                console.log('No cache found, set cache now')
                 this.transferStateService.setCache(req.url, event.body);
             }
         });
