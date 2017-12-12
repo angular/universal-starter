@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
