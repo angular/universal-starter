@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'home',
+  selector: 'app-home',
   template: `<h3>{{ message }}</h3>`
 })
 export class HomeComponent implements OnInit {
