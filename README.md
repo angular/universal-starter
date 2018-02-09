@@ -28,7 +28,7 @@ This repo demonstrates the use of 2 different forms of Server Side Rendering.
 
 **Server-Side Rendering(ssr)**
 * Happens at runtime
-* Uses `ngExpressEngine` to render you application on the fly at the requested url.
+* Uses `ngExpressEngine` to render your application on the fly at the requested url.
 
 ---
 
