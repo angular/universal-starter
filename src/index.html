@@ -7,8 +7,42 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <template>
+      {{ > partial }}
+  </template>
+
+  <template>
+      <!-- These are not evaluated when running ng serve -->
+      <script>
+          dataLayer = [{
+            "gtm_init_brand": "{{ brand }}",
+            "gtm_init_platform": "{{ platform }}",
+            "gtm_init_environment": "{{ environment }}"
+          }];
+        </script>
+        <script name="gtm">
+          (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+              'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+              j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+              '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+          })(window, document, 'script', 'dataLayer', '{{ containerID }}');
+        </script>
+
+        <script async src="{{ optimizleUrl }}"></script>
+  </template>
 </head>
+
 <body>
+  <template>
+      <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id={{ containerID }}" height="0" width="0" class="hide"></iframe>
+      </noscript>
+  </template>
+
   <app-root></app-root>
 </body>
 </html>
