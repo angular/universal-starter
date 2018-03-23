@@ -43,9 +43,9 @@
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/platform-server": "^5.0.0",
     "@angular/router": "^5.0.0",
-    "@nguniversal/common": "^5.0.0-beta.5",
-    "@nguniversal/express-engine": "^5.0.0-beta.5",
-    "@nguniversal/module-map-ngfactory-loader": "^5.0.0-beta.5",
+    "@nguniversal/common": "^5.0.0-beta.8",
+    "@nguniversal/express-engine": "^5.0.0-beta.8",
+    "@nguniversal/module-map-ngfactory-loader": "^5.0.0-beta.8",
     "core-js": "^2.4.1",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"
