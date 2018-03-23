@@ -8,6 +8,8 @@ import {provideModuleMap} from '@nguniversal/module-map-ngfactory-loader';
 
 import * as express from 'express';
 import {join} from 'path';
+import {readFileSync} from 'fs';
+import {render} from 'mustache';
 
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
@@ -41,9 +43,30 @@ app.get('*.*', express.static(join(DIST_FOLDER, 'browser'), {
   maxAge: '1y'
 }));
 
-// ALl regular routes use the Universal engine
+const template = readFileSync(join(DIST_FOLDER, 'browser', 'index.html'))
+  .toString()
+  // we need to do this due to the fact that we don't have JS to use the 'template'
+  .replace(/<template>|<\/template>/g, '');
+
 app.get('*', (req, res) => {
-  res.render('index', { req });
+  res.render('index', {
+    req,
+    res,
+    document: render(
+      template,
+      {
+        // these are from API
+        containerID: 1235,
+        brand: 'wildfire',
+        platform: 'desktop'
+      },
+      {
+        // possible partial from exterbnal file, this can be populated via readFile
+        // optimizlyContainer: optimizlyEnabled ? optimizleCacheTemplate : noop(),
+        partial: 'hello from {{brand}}'
+      }
+    )
+  });
 });
 
 // Start up the Node server
