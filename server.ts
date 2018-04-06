@@ -1,6 +1,9 @@
+// These are important and needed before anything else
 import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
+
 import {enableProdMode} from '@angular/core';
+
 // Express Engine
 import {ngExpressEngine} from '@nguniversal/express-engine';
 // Import module map for lazy loading
@@ -8,6 +11,7 @@ import {provideModuleMap} from '@nguniversal/module-map-ngfactory-loader';
 
 import * as express from 'express';
 import {join} from 'path';
+import * as fs from 'fs';
 
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
@@ -16,7 +20,11 @@ enableProdMode();
 const app = express();
 
 const PORT = process.env.PORT || 4000;
-const DIST_FOLDER = join(process.cwd(), 'dist');
+const DIST_FOLDER = join(process.cwd(), 'dist'); // change this to '.' if you gonna publish only the dist files
+
+const indexContents = fs.readFileSync(join(DIST_FOLDER, 'browser', 'index.html'), 'utf8');
+
+const BASE_HREF = /<base.*href=\"([a-z\/]+)\".*?>/gmi.exec(indexContents)[1] || '/';
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const {AppServerModuleNgFactory, LAZY_MODULE_MAP} = require('./dist/server/main.bundle');
@@ -36,7 +44,7 @@ app.set('views', join(DIST_FOLDER, 'browser'));
 // app.get('/api/**', (req, res) => { });
 
 // Server static files from /browser
-app.get('*.*', express.static(join(DIST_FOLDER, 'browser'), {
+app.use(BASE_HREF, express.static(join(DIST_FOLDER, 'browser'), {
   maxAge: '1y'
 }));
 
