@@ -1,7 +1,6 @@
 .idea
 .DS_Store
 .vscode
-morgan.log
 
 # Built #
 /__build__/
@@ -14,7 +13,7 @@ morgan.log
 /compiled/
 
 # Node #
-npm-debug.log
+*.log
 /npm-debug.log.*
 
 # Webpack #
