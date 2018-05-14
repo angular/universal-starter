@@ -46,7 +46,6 @@
     "@nguniversal/module-map-ngfactory-loader": "^6.0.0",
     "core-js": "^2.4.1",
     "rxjs": "6.0.0",
-    "webpack": "^4.5.0",
     "webpack-cli": "^2.0.14",
     "zone.js": "^0.8.26"
   },
