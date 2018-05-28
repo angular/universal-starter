@@ -2,6 +2,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
   mode: 'none',
@@ -14,7 +15,7 @@ module.exports = {
   target: 'node',
   resolve: { extensions: ['.ts', '.js'] },
   // Make sure we include all node_modules etc
-  externals: [/node_modules/],
+  externals: [nodeExternals()],
   output: {
     // Puts the output at the root of the dist folder
     path: path.join(__dirname, 'dist'),
