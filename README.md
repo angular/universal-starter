@@ -3,14 +3,14 @@
 # Angular Universal Starter
 > Server-Side Rendering for Angular
 
-A minimal Angular starter for Universal JavaScript using the [Angular CLI](/angular/angular-cli)
-If you're looking for the Angular Universal repo go to [**angular/universal**](/angular/universal)  
+A minimal Angular starter for Universal JavaScript using the [Angular CLI](https://github.com/angular/angular-cli)
+If you're looking for the Angular Universal repo go to [**angular/universal**](https://github.com/angular/universal)  
 
 ## Getting Started
 
-This demo is built following the [Angular-CLI Wiki guide](/angular/angular-cli/wiki/stories-universal-rendering)
+This demo is built following the [Angular-CLI Wiki guide](https://github.com/angular/angular-cli/wiki/stories-universal-rendering)
 
-We're utilizing packages from the [Angular Universal @nguniversal](/angular/universal) repo, such as [ng-module-map-ngfactory-loader](/angular/universal/modules/module-map-ngfactory-loader) to enable Lazy Loading.
+We're utilizing packages from the [Angular Universal @nguniversal](https://github.com/angular/universal) repo, such as [ng-module-map-ngfactory-loader](https://github.com/angular/universal/modules/module-map-ngfactory-loader) to enable Lazy Loading.
 
 ---
 
@@ -41,7 +41,7 @@ This repo demonstrates the use of 2 different forms of Server Side Rendering.
 
 
 ## Universal "Gotchas"
-Moved to [/angular/universal/docs/gotchas.md](/angular/universal/blob/fabian/readme-logo/docs/gotchas.md)
+Moved to [/angular/universal/docs/gotchas.md](https://github.com/angular/universal/blob/fabian/readme-logo/docs/gotchas.md)
 
 # License
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](/LICENSE)
