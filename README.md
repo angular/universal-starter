@@ -1,7 +1,7 @@
-![Angular Universal](https://angular.io/assets/images/logos/concept-icons/universal.png)
-
 # Angular Universal Starter
 > Server-Side Rendering for Angular
+
+![Angular Universal](https://angular.io/assets/images/logos/concept-icons/universal.png)
 
 A minimal Angular starter for Universal JavaScript using the [Angular CLI](https://github.com/angular/angular-cli)
 If you're looking for the Angular Universal repo go to [**angular/universal**](https://github.com/angular/universal)  
