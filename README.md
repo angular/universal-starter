@@ -1,5 +1,4 @@
 # Angular Universal Starter
-> Server-Side Rendering for Angular
 
 ![Angular Universal](https://angular.io/assets/images/logos/concept-icons/universal.png)
 
