@@ -41,7 +41,7 @@ This repo demonstrates the use of 2 different forms of Server Side Rendering.
 
 
 ## Universal "Gotchas"
-Moved to [/angular/universal/docs/gotchas.md](https://github.com/angular/universal/blob/fabian/readme-logo/docs/gotchas.md)
+Moved to [/angular/universal/docs/gotchas.md](https://github.com/angular/universal/blob/master/readme-logo/docs/gotchas.md)
 
 # License
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](/LICENSE)
