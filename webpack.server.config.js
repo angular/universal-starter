@@ -15,6 +15,9 @@ module.exports = {
   resolve: { extensions: ['.ts', '.js'] },
   // Make sure we include all node_modules etc
   externals: [/node_modules/],
+  optimization: {
+    minimize: false
+  },
   output: {
     // Puts the output at the root of the dist folder
     path: path.join(__dirname, 'dist'),
@@ -46,4 +49,3 @@ module.exports = {
     )
   ]
 }
-  
