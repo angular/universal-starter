@@ -46,7 +46,6 @@
     "@nguniversal/module-map-ngfactory-loader": "^6.0.0",
     "core-js": "^2.4.1",
     "rxjs": "6.0.0",
-    "webpack-cli": "^2.0.14",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
@@ -63,6 +62,7 @@
     "reflect-metadata": "^0.1.10",
     "ts-loader": "^4.2.0",
     "tslint": "^5.7.0",
-    "typescript": "~2.7.2"
+    "typescript": "~2.7.2",
+    "webpack-cli": "^2.0.14"
   }
 }
