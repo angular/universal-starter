@@ -13,8 +13,6 @@ module.exports = {
   },
   target: 'node',
   resolve: { extensions: ['.ts', '.js'] },
-  // Make sure we don't include all node_modules
-  externals: [/node_modules/],
   optimization: {
     minimize: false
   },
