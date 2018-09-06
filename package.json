@@ -45,6 +45,8 @@
     "@nguniversal/express-engine": "^6.0.0",
     "@nguniversal/module-map-ngfactory-loader": "^6.0.0",
     "core-js": "^2.4.1",
+    "express": "^4.15.2",
+    "reflect-metadata": "^0.1.10",
     "rxjs": "^6.2.2",
     "zone.js": "^0.8.26"
   },
@@ -55,10 +57,8 @@
     "@angular/language-service": "^6.0.0",
     "@types/node": "^8.0.30",
     "codelyzer": "^4.0.2",
-    "express": "^4.15.2",
     "http-server": "^0.10.0",
     "pre-commit": "^1.2.2",
-    "reflect-metadata": "^0.1.10",
     "ts-loader": "^4.2.0",
     "tslint": "^5.7.0",
     "typescript": "~2.7.2"
