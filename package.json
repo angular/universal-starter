@@ -59,7 +59,6 @@
     "codelyzer": "^4.0.2",
     "http-server": "^0.10.0",
     "pre-commit": "^1.2.2",
-    "ts-loader": "^4.2.0",
     "tslint": "^5.7.0",
     "typescript": "~2.7.2"
   }
