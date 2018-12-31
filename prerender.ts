@@ -13,13 +13,13 @@ import {provideModuleMap} from '@nguniversal/module-map-ngfactory-loader';
 import {renderModuleFactory} from '@angular/platform-server';
 import {ROUTES} from './static.paths';
 
-// * NOTE :: leave this as require() since this file is built Dynamically from webpack
-const {AppServerModuleNgFactory, LAZY_MODULE_MAP} = require('./server/main');
+// NOTE: this will be an error in your console until the universal bundle is built
+import { AppServerModuleNgFactory, LAZY_MODULE_MAP } from './dist/server/main';
 
-const BROWSER_FOLDER = join(process.cwd(), 'browser');
+const BROWSER_FOLDER = join(process.cwd(), 'dist', 'browser');
 
 // Load the index.html file containing referances to your application bundle.
-const index = readFileSync(join('browser', 'index.html'), 'utf8');
+const index = readFileSync(join(BROWSER_FOLDER, 'index.html'), 'utf8');
 
 let previousRender = Promise.resolve();
 

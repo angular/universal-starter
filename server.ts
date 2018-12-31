@@ -18,7 +18,6 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 const DIST_FOLDER = join(process.cwd(), 'dist');
 
-// * NOTE :: leave this as require() since this file is built Dynamically from webpack
 // NOTE: this will be an error in your console until the universal bundle is built
 import { AppServerModuleNgFactory, LAZY_MODULE_MAP } from './dist/server/main';
 
