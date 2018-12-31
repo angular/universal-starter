@@ -50,7 +50,6 @@
     "express": "^4.15.2",
     "reflect-metadata": "^0.1.10",
     "rxjs": "^6.2.2",
-    "tslib": "^1.9.3",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
