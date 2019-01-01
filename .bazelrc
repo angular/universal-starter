@@ -1,0 +1,73 @@
+###############################
+# Typescript / Angular        #
+###############################
+# Make TypeScript and Angular compilation fast, by keeping a few copies of the
+# compiler running as daemons, and cache SourceFile AST's to reduce parse time.
+build --strategy=TypeScriptCompile=worker
+build --strategy=AngularTemplateCompile=worker
+# Use the Angular 6 compiler
+build --define=compile=legacy
+
+# Don't create bazel-* symlinks in the WORKSPACE directory.
+# These require .gitignore and may scare users.
+# Also, it's a workaround for https://github.com/bazelbuild/rules_typescript/issues/12
+# which affects the common case of having `tsconfig.json` in the WORKSPACE directory.
+#
+# Instead, you should run `bazel info bazel-bin` to find out where the outputs went.
+build --symlink_prefix=dist/
+
+
+#########
+# Tests #
+#########
+
+test --test_output=errors
+
+
+# Enable debugging tests with --config=debug
+test:debug --test_arg=--node_options=--inspect-brk --test_output=streamed --test_strategy=exclusive --test_timeout=9999 --nocache_test_results
+
+###############################
+# Filesystem interactions     #
+###############################
+
+# Performance: avoid stat'ing input files
+build --watchfs
+
+###############################
+# Release support             #
+###############################
+
+
+###############################
+# Output                      #
+###############################
+
+# A more useful default output mode for bazel query
+# Prints eg. "ng_module rule //foo:bar" rather than just "//foo:bar"
+query --output=label_kind
+
+# Don't print every dependency in :node_modules, for example
+query --noimplicit_deps
+
+# Show which actions are run under workers,
+# and print all the actions running in parallel.
+# Helps to demonstrate that bazel uses all the cores on the machine.
+build --experimental_ui
+test --experimental_ui
+
+###############################
+# Python                      #
+###############################
+
+# Uncomment this line once kronos works with python 3 correctly
+#run --python_top=//tools/python:python-3
+
+# Enable this when updated to latest
+# Turn off legacy external runfiles
+# run --nolegacy_external_runfiles
+# test --nolegacy_external_runfiles
+
+########################################
+# Docker rules don't support this yet ##
+build --incompatible_remove_native_git_repository=false --incompatible_remove_native_http_archive=false

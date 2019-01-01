@@ -1,0 +1,26 @@
+load("@build_bazel_rules_typescript//:defs.bzl", "ts_library")
+load("@build_bazel_rules_nodejs//:defs.bzl", "nodejs_binary", "jasmine_node_test", "node_modules_filegroup")
+
+
+ts_library(
+    name = "server",
+    srcs = ["server.ts"],
+    tsconfig = ":tsconfig.json",
+    deps = [
+        # "//src:src_server",
+        "//src/app:app_server",
+        "@npm//@types/node",
+        "@nguniversal//modules/express-engine",
+        "@nguniversal//modules/module-map-ngfactory-loader",
+        "@angular//packages/core",
+        "@npm//express",
+        "@npm//zone.js",
+    ]
+)
+
+nodejs_binary(
+    name = "server_bin",
+    data = [":server"] + ["@npm//zone.js", "@npm//tslib", "@npm//domino", "@npm//xhr2"] + ["//src:index.html"],
+    entry_point = "angular_universal_starter/server/server.js",
+    install_source_map_support = True,
+)

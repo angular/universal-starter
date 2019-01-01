@@ -1,0 +1,30 @@
+load("@angular//:index.bzl", "ng_module")
+
+package(default_visibility = ["//visibility:public"])
+
+ng_module(
+    name = "app",
+    srcs = glob(["**/*.ts"], exclude = ["app.server.module.ts"]),
+    assets = [ ],
+    tsconfig = "//src:tsconfig.json",
+    deps = [
+        "@angular//packages/core",
+        "@angular//packages/platform-browser",
+        "@angular//packages/router",
+        "@nguniversal//modules/common",
+    ],
+)
+
+ng_module(
+    name = "app_server",
+    srcs = ["app.server.module.ts"],
+    assets = [ ],
+    tsconfig = "//src:tsconfig.json",
+    deps = [
+        ":app",
+        "@angular//packages/core",
+        "@angular//packages/platform-server",
+        "@nguniversal//modules/common",
+        "@nguniversal//modules/module-map-ngfactory-loader"
+    ],
+)

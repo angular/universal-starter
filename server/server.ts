@@ -16,16 +16,16 @@ enableProdMode();
 const app = express();
 
 const PORT = process.env.PORT || 4000;
-const DIST_FOLDER = join(process.cwd(), 'dist');
+const DIST_FOLDER = join(process.cwd(), 'src');
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
-const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./server/main');
+import { AppServerModuleNgFactory } from 'angular_universal_starter/src/app/app.server.module.ngfactory';
 
 // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
 app.engine('html', ngExpressEngine({
   bootstrap: AppServerModuleNgFactory,
   providers: [
-    provideModuleMap(LAZY_MODULE_MAP),
+    // provideModuleMap(LAZY_MODULE_MAP),
     // In case you want to use an AppShell with SSR and Lazy loading
     // you'd need to uncomment the below. (see: https://github.com/angular/angular-cli/issues/9202)
     // {
@@ -40,13 +40,13 @@ app.engine('html', ngExpressEngine({
 }));
 
 app.set('view engine', 'html');
-app.set('views', join(DIST_FOLDER, 'browser'));
+app.set('views', join(DIST_FOLDER));
 
 // Example Express Rest API endpoints
 // app.get('/api/**', (req, res) => { });
 
 // Server static files from /browser
-app.get('*.*', express.static(join(DIST_FOLDER, 'browser'), {
+app.get('*.*', express.static(join(DIST_FOLDER), {
   maxAge: '1y'
 }));
 

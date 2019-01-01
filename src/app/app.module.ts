@@ -5,6 +5,7 @@ import {RouterModule} from '@angular/router';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
 import {TransferHttpCacheModule} from '@nguniversal/common';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -13,11 +14,7 @@ import {TransferHttpCacheModule} from '@nguniversal/common';
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'my-app'}),
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full'},
-      { path: 'lazy', loadChildren: './lazy/lazy.module#LazyModule'},
-      { path: 'lazy/nested', loadChildren: './lazy/lazy.module#LazyModule'}
-    ]),
+    AppRoutingModule,
     TransferHttpCacheModule,
   ],
   providers: [],

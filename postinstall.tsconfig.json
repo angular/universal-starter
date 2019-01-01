@@ -1,0 +1,31 @@
+// WORKAROUND https://github.com/angular/angular/issues/18810
+//
+// This file is required to run ngc on 3rd party libraries such as @ngrx,
+// to write files like node_modules/@ngrx/store/store.ngsummary.json.
+//
+// Using ngc to create generated files is sufficient as long
+// as there are no components or directives in the 3rd party library
+// that are used. If there are, then there is an existing issue where
+// components & modules that use these 3rd party components or directives
+// can't be tested with ts_web_test_suite().
+// See https://github.com/bazelbuild/rules_typescript/issues/192
+//
+// The work-around for this right now is to compile the 3rd party
+// from source using Bazel so that Bazel is used to create
+// its generated files.
+{
+    "compilerOptions": {
+        "lib": [
+            "dom",
+            "es2015"
+        ],
+        "experimentalDecorators": true,
+        "types": []
+    },
+    "include": [
+        "node_modules/@nguniversal/**/*",
+        "node_modules/@angular/platform-server/*"
+    ],
+    "exclude": [
+    ]
+}
