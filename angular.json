@@ -7,6 +7,42 @@
       "root": "",
       "projectType": "application",
       "architect": {
+        "ssrWatch": {
+          "builder": "@nguniversal/builders:ssr",
+          "options": {
+            "browserTarget": "ng-universal-demo:build",
+            "universalTarget": "ng-universal-demo:server",
+            "ssrExecuteTarget": "ng-universal-demo:ssrExecute"
+          }
+        },
+        "ssrBuild": {
+          "builder": "@nrwl/builders:node-build",
+          "options": {
+            "main": "server.ts",
+            "tsConfig": "tsconfig.json",
+            "outputPath": "dist/ssr"
+          }
+        },
+        "ssrExecute": {
+          "builder": "@nrwl/builders:node-execute",
+          "options": {
+            "buildTarget": "ng-universal-demo:ssrBuild"
+          }
+        },
+        "prerenderBuild": {
+          "builder": "@nrwl/builders:node-build",
+          "options": {
+            "main": "prerender.ts",
+            "tsConfig": "tsconfig.json",
+            "outputPath": "dist/prerender"
+          }
+        },
+        "prerenderExecute": {
+          "builder": "@nrwl/builders:node-execute",
+          "options": {
+            "buildTarget": "ng-universal-demo:prerenderBuild"
+          }
+        },
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
